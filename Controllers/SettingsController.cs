@@ -8,5 +8,11 @@ namespace EDA.Controllers
         {
             return View();
         }
+
+        public IActionResult Companies()
+        {
+            return View();
+        }
+
     }
 }
