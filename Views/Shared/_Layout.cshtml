@@ -16,7 +16,7 @@
         <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
-                    <img src="~/images/lgi-logo-blue.png" width="32" height="32" alt="LGI" />
+                    <img src="~/images/lgi-logo-blue.png" width="32" height="32" alt="LGI" title="The Lauridsen Group" />
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">The Lauridsen Group</a>
@@ -25,26 +25,26 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a class="sidebar-link" asp-controller="Home" asp-action="Index">
-                        <i class="lni lni-dashboard"></i>
+                        <i class="lni lni-dashboard" title="Dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" asp-controller="Orders" asp-action="Index">
-                        <i class="lni lni-layers"></i>
+                        <i class="lni lni-layers" title="Orders"></i>
                         <span>Orders</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" asp-controller="Customers" asp-action="Index">
-                        <i class="lni lni-customer"></i>
+                        <i class="lni lni-customer" title="Customers"></i>
                         <span>Customers</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                        data-bs-target="#masters" aria-expanded="false" aria-controls="masters">
-                        <i class="lni lni-grid-alt"></i>
+                        <i class="lni lni-grid-alt" title="Masters"></i>
                         <span>Masters</span>
                     </a>
                     <ul id="masters" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">                        
@@ -76,7 +76,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" asp-controller="CommCenter" asp-action="Index">
-                        <i class="lni lni-popup"></i>
+                        <i class="lni lni-popup" title="Comm Center"></i>
                         <span>CommCenter</span>
                     </a>
                 </li>
@@ -84,7 +84,7 @@
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                        data-bs-target="#settings" aria-expanded="false" aria-controls="settings">
-                        <i class="lni lni-cog"></i>
+                        <i class="lni lni-cog" title="Settings"></i>
                         <span>Settings</span>
                     </a>
                     <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
@@ -119,6 +119,9 @@
             <nav class="navbar navbar-expand px-4 py-3">
                 <form action="#" class="d-none d-sm-inline-block">
                 </form>
+                <div class="app-title">
+                    Export & Domestic Application
+                </div>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
@@ -149,7 +152,7 @@
                     <div class="row text-body-secondary">
                         <div class="col-4 text-start">
                             <a class="text-body-secondary" href="#">
-                                <strong>The Lauridsen Group</strong> &copy; 2024
+                                <strong>The Lauridsen Group &copy; 2024</strong>
                             </a>
                         </div>
                         <div class="col-4 text-start">
