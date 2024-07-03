@@ -24,19 +24,19 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a class="sidebar-link" asp-controller="Home" asp-action="Index">
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a class="sidebar-link" asp-controller="Orders" asp-action="Index">
                         <i class="lni lni-layers"></i>
                         <span>Orders</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a class="sidebar-link" asp-controller="Customers" asp-action="Index">
                         <i class="lni lni-customer"></i>
                         <span>Customers</span>
                     </a>
@@ -49,58 +49,61 @@
                     </a>
                     <ul id="masters" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">                        
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Consignee Types</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="ConsigneeTypes">ConsigneeTypes</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Container Sizes</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="ContainerSizes">ContainerSizes</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Incoterms</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="Incoterms">Incoterms</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Paperworks List</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="PaperWorksList">PaperWorksList</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Payment Terms</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="PaymentTerms">PaymentTerms</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Ports</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="Ports">Ports</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Products</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="Products">Products</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Ship Via</a>
+                            <a class="sidebar-link" asp-controller="Masters" asp-action="ShipVia">ShipVia</a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a class="sidebar-link" asp-controller="CommCenter" asp-action="Index">
                         <i class="lni lni-popup"></i>
-                        <span>Comm Center</span>
+                        <span>CommCenter</span>
                     </a>
-                </li>                
+                </li>
+
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                        data-bs-target="#settings" aria-expanded="false" aria-controls="settings">
-                        <i class="lni lni-grid-alt"></i>
+                        <i class="lni lni-cog"></i>
                         <span>Settings</span>
                     </a>
                     <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Companies</a>
+                            <a class="sidebar-link" asp-controller="Settings" asp-action="Companies">Companies</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Countries</a>
+                            <a class="sidebar-link" asp-controller="Settings" asp-action="Countries">Countries</a>
+
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Plant Locations</a>
+                            <a class="sidebar-link" asp-controller="Settings" asp-action="PlantLocations">PlantLocations</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Users</a>
+                            <a class="sidebar-link" asp-controller="Settings" asp-action="Users">Users</a>
                         </li>
+                </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Others</a>
+                            <a class="sidebar-link" asp-controller="Settings" asp-action="Index">Others</a>
                         </li>
                     </ul>
                 </li>
@@ -138,107 +141,7 @@
                     <div>
                         @RenderBody()
                     </div>
-                    <div class="mb-3">
-                        <h3 class="fw-bold fs-4 mb-3">Export Dashboard</h3>
-                        <div class="row">
-                            <div class="col-12 col-md-4">
-                                <div class="card border-0">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Memebers Progress
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <div class="card  border-0">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Memebers Progress
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Memebers Progress
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="fw-bold fs-4 my-3">
-                            Avg. Agent Earnings
-                        </h3>
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="highlight">
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </main>
             <footer class="footer">
