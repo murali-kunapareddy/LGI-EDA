@@ -14,5 +14,20 @@ namespace EDA.Controllers
             return View();
         }
 
+        public IActionResult Countries()
+        {
+            return View();
+        }
+
+        public IActionResult PlantLocations()
+        {
+            return View();
+        }
+
+        public IActionResult Users()
+        {
+            return View();
+        }
+
     }
 }
