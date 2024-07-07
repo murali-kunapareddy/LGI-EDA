@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using WISSEN.EDA.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<AppDBContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EDA-DEV")));
 
 var app = builder.Build();
 
