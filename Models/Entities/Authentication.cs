@@ -6,8 +6,9 @@ namespace WISSEN.EDA.Models.Entities
     public class Authentication : BaseTable
     {
         [Key]
-        [StringLength(100)]
-        public string? Email { get; set; }
+        public Guid Id { get; set; }
+        [Required]
+        public User? User { get; set; }
         [Required]
         [StringLength (40)]
         public string? PasswordHash { get; set; }

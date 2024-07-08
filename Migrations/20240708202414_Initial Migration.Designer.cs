@@ -12,7 +12,7 @@ using WISSEN.EDA.Data;
 namespace WISSEN.EDA.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240707105111_Initial Migration")]
+    [Migration("20240708202414_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -27,9 +27,9 @@ namespace WISSEN.EDA.Migrations
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
                 {
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -70,57 +70,15 @@ namespace WISSEN.EDA.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.HasKey("Email");
-
-                    b.ToTable("Authenticaions");
-                });
-
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authorization", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MenuCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PermissionCode")
-                        .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
-
                     b.Property<string>("UserEmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuCode");
-
                     b.HasIndex("UserEmail");
 
-                    b.ToTable("Authorizations");
+                    b.ToTable("Authenticaions");
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Company", b =>
@@ -247,6 +205,10 @@ namespace WISSEN.EDA.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<int>("AppCode")
+                        .HasMaxLength(2)
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -276,6 +238,14 @@ namespace WISSEN.EDA.Migrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("Sequence")
+                        .HasColumnType("int");
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Code");
 
@@ -401,21 +371,86 @@ namespace WISSEN.EDA.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authorization", b =>
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.UserPrivilege", b =>
                 {
-                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", "Menu")
-                        .WithMany()
-                        .HasForeignKey("MenuCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Application")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyCode")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Create")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Delete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MenuCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("PlantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Read")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<bool>("Update")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyCode");
+
+                    b.HasIndex("MenuCode");
+
+                    b.HasIndex("PlantId");
+
+                    b.HasIndex("UserEmail");
+
+                    b.ToTable("UserPrivileges");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
+                {
                     b.HasOne("WISSEN.EDA.Models.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserEmail")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Menu");
 
                     b.Navigation("User");
                 });
@@ -459,6 +494,41 @@ namespace WISSEN.EDA.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.UserPrivilege", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", "Menu")
+                        .WithMany()
+                        .HasForeignKey("MenuCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Plant", "Plant")
+                        .WithMany()
+                        .HasForeignKey("PlantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Menu");
+
+                    b.Navigation("Plant");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

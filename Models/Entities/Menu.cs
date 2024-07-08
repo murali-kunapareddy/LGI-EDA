@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using WISSEN.EDA.Data;
+using static WISSEN.EDA.Data.Enums;
 
 namespace WISSEN.EDA.Models.Entities
 {
@@ -11,6 +12,14 @@ namespace WISSEN.EDA.Models.Entities
         [Required(ErrorMessage ="Menu name is required")]
         [StringLength(25)]
         public string? Name { get; set; }
+        [Required(ErrorMessage = "URL is required")]
+        [StringLength(50)]
+        public string? URL { get; set; }
+        [Required(ErrorMessage ="Sequence is required")]
+        public int Sequence { get; set; }
+        [Required]
+        [StringLength(2)]
+        public AppCode AppCode { get; set; }
         [Required]
         [StringLength(10)]
         public string? Parent { get; set; }

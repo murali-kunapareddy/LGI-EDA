@@ -17,7 +17,7 @@ namespace WISSEN.EDA.Models.Entities
         public string? LastName { get; set; }
         [StringLength(15)]
         public string? Mobile { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Company is required")]
         public Company? Company { get; set; }
     }
 }
