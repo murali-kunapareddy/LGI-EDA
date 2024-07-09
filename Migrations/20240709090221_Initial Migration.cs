@@ -35,7 +35,8 @@ namespace WISSEN.EDA.Migrations
                 {
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    URL = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Controller = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sequence = table.Column<int>(type: "int", nullable: false),
                     AppCode = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     Parent = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),

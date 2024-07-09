@@ -12,7 +12,7 @@ using WISSEN.EDA.Data;
 namespace WISSEN.EDA.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240708202414_Initial Migration")]
+    [Migration("20240709090221_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -205,9 +205,19 @@ namespace WISSEN.EDA.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("AppCode")
                         .HasMaxLength(2)
                         .HasColumnType("int");
+
+                    b.Property<string>("Controller")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -241,11 +251,6 @@ namespace WISSEN.EDA.Migrations
 
                     b.Property<int>("Sequence")
                         .HasColumnType("int");
-
-                    b.Property<string>("URL")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Code");
 

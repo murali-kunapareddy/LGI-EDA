@@ -12,9 +12,12 @@ namespace WISSEN.EDA.Models.Entities
         [Required(ErrorMessage ="Menu name is required")]
         [StringLength(25)]
         public string? Name { get; set; }
-        [Required(ErrorMessage = "URL is required")]
+        [Required(ErrorMessage = "Controller is required")]
         [StringLength(50)]
-        public string? URL { get; set; }
+        public string? Controller { get; set; }
+        [Required(ErrorMessage = "Action is required")]
+        [StringLength(50)]
+        public string? Action { get; set; }
         [Required(ErrorMessage ="Sequence is required")]
         public int Sequence { get; set; }
         [Required]
