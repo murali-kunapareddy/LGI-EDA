@@ -4,7 +4,18 @@
 // Write your JavaScript code.
 
 const hamBurger = document.querySelector(".toggle-btn");
+//let isCollapsed = true;
 
-hamBurger.addEventListener("click", function () {
-    document.querySelector("#sidebar").classList.toggle("expand");
+$(function () {
+    //if (localStorage.getItem('navbarstatus')) {
+    //    document.querySelector("#sidebar").classList.remove("expand");
+    //} else {
+    //    document.querySelector("#sidebar").classList.add("expand");
+    //}
+    hamBurger.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("expand");
+        //if (isCollapsed) isCollapsed = true; else isCollapsed = false;
+        //localStorage.setItem('navbarstatus', isCollapsed);
+    });
 });
+

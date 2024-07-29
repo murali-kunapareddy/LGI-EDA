@@ -12,7 +12,7 @@ using WISSEN.EDA.Data;
 namespace WISSEN.EDA.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240709090221_Initial Migration")]
+    [Migration("20240711014535_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -24,6 +24,21 @@ namespace WISSEN.EDA.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("MenuMenu", b =>
+                {
+                    b.Property<string>("ChildrenCode")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ParentsCode")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("ChildrenCode", "ParentsCode");
+
+                    b.HasIndex("ParentsCode");
+
+                    b.ToTable("MenuMenu");
+                });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
                 {
@@ -447,6 +462,21 @@ namespace WISSEN.EDA.Migrations
                     b.HasIndex("UserEmail");
 
                     b.ToTable("UserPrivileges");
+                });
+
+            modelBuilder.Entity("MenuMenu", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", null)
+                        .WithMany()
+                        .HasForeignKey("ChildrenCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", null)
+                        .WithMany()
+                        .HasForeignKey("ParentsCode")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>

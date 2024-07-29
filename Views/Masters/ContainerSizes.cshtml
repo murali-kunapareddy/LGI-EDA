@@ -1,8 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "ContainerSizes Page";
+    ViewData["Title"] = "Container Sizes";
+}
+
+@section Styles {
+    <style>
+        .ag-theme-quartz {
+            --ag-borders: none;
+            /*--ag-row-border-color: rgb(150, 150, 200);*/
+            --ag-font-size: 1.2rem;
+            --ag-font-family: 'Barlow Semi Condensed', sans-serif;
+            --ag-header-background-color: #0D47A1;
+            --ag-odd-row-background-color: rgb(179, 229, 252, 0.5);
+        }
+
+        .ag-header-cell {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
+
+        .ag-header-cell-label {
+            justify-content: center;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+
+    <script>
+        // grid options
+        const gridOptions = {
+            domLayout: "autoHeight",
+            autoSizeStrategy: {
+                type: "fitGridWidth",
+                defaultMinWidth: 100
+            },
+            // Row Data: The data to be displayed.
+            rowData: [
+                { action: "", ContainerSize: "20' Std (10 Pallets)", ShipVia: "Buyer's Truck", IsActive: true },
+                { action: "", ContainerSize: "20' Tri-Axle (20 Floor Load)", ShipVia: "Buyer's Truck", IsActive: true },
+                { action: "", ContainerSize: "40' (18 Pallets)", ShipVia: "Buyer's Truck", IsActive: true },
+                { action: "", ContainerSize: "40' (18 Pallets) - Plastic Bags", ShipVia: "Buyer's Truck", IsActive: true },
+                { action: "", ContainerSize: "Air Frieght", ShipVia: "Air", IsActive: true },
+                { action: "", ContainerSize: "Truck (18 Pallets) - Plastic Bags", ShipVia: "Truck", IsActive: true },
+                { action: "", ContainerSize: "Truck (19 PALLETS)-PLASTIC BAGS (MEXICO)", ShipVia: "Truck", IsActive: true },
+                { action: "", ContainerSize: "Truck (23 PALLETS)-BIO", ShipVia: "Buyer's Truck", IsActive: true },
+                { action: "", ContainerSize: "20' Std (10 Pallets)", ShipVia: "Ocean", IsActive: true },
+                { action: "", ContainerSize: "Truck (18 Pallets) - Plastic Bags", ShipVia: "Truck", IsActive: true },
+                { action: "", ContainerSize: "Truck (19 PALLETS)-PLASTIC BAGS (MEXICO)", ShipVia: "Truck", IsActive: true },
+            ],
+            // Column Definitions: Defines the columns to be displayed.
+            columnDefs: [
+                {
+                    headerName: "Actions",
+                    field: "action",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    flex: 1
+                },
+                {
+                    headerName: "Container Size",
+                    field: "ContainerSize",
+                    flex: 2
+                },
+                {
+                    headerName: "Ship Via",
+                    field: "ShipVia",
+                    flex: 3
+                },
+                {
+                    headerName: "Is Active",
+                    field: "IsActive",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    flex: 1
+                }
+            ]
+        };
+        // get grid element and apply grid options
+        const gridElement = document.querySelector('#gridContainerSizes');
+        agGrid.createGrid(gridElement, gridOptions);
+    </script>
 }
 
 <div class="text-center">
-    <h1 class="display-5">This is Masters > ContainerSizes Page</h1>
-    <p>Under Construction</p>
+    <h1 class="display-5">Container Sizes</h1>
+    <div id="gridContainerSizes" class="ag-theme-quartz"></div>
 </div>
+

@@ -88,6 +88,29 @@ namespace WISSEN.EDA.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MenuMenu",
+                columns: table => new
+                {
+                    ChildrenCode = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    ParentsCode = table.Column<string>(type: "nvarchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuMenu", x => new { x.ChildrenCode, x.ParentsCode });
+                    table.ForeignKey(
+                        name: "FK_MenuMenu_Menus_ChildrenCode",
+                        column: x => x.ChildrenCode,
+                        principalTable: "Menus",
+                        principalColumn: "Code",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MenuMenu_Menus_ParentsCode",
+                        column: x => x.ParentsCode,
+                        principalTable: "Menus",
+                        principalColumn: "Code");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Plants",
                 columns: table => new
                 {
@@ -242,6 +265,11 @@ namespace WISSEN.EDA.Migrations
                 column: "CountryCode");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MenuMenu_ParentsCode",
+                table: "MenuMenu",
+                column: "ParentsCode");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Plants_CompanyCode",
                 table: "Plants",
                 column: "CompanyCode");
@@ -282,6 +310,9 @@ namespace WISSEN.EDA.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Authenticaions");
+
+            migrationBuilder.DropTable(
+                name: "MenuMenu");
 
             migrationBuilder.DropTable(
                 name: "UserPrivileges");

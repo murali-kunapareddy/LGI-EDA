@@ -1,8 +1,133 @@
-﻿@{
-    ViewData["Title"] = "Incoterms Page";
+﻿@using Newtonsoft.Json
+@using WISSEN.EDA.Models.Entities
+@model IEnumerable<MasterItem>
+@{
+    ViewData["Title"] = "Incoterms";
+}
+
+@section Styles {
+    <style>
+        .ag-theme-quartz {
+            --ag-borders: none;
+            /*--ag-row-border-color: rgb(150, 150, 200);*/
+            --ag-font-size: 1.2rem;
+            --ag-font-family: 'Barlow Semi Condensed', sans-serif;
+            --ag-header-background-color: #0D47A1;
+            --ag-odd-row-background-color: rgb(179, 229, 252, 0.5);
+        }
+
+        .ag-header-cell {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
+
+        .ag-header-cell-label {
+            justify-content: center;
+        }
+
+        .ag-cell-focus, .ag-cell-no-focus {
+            border: none !important;
+        }
+        /* This CSS is to not apply the border for the column having 'no-border' class */
+        .no-border.ag-cell:focus {
+            border: none !important;
+            outline: none;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+
+    <script>
+        var actionRenderer = function (params) {
+            var eDiv = document.createElement('div');
+            eDiv.innerHTML = '<i class="lni lni-pencil" title="Edit"></i> &nbsp; <i class="lni lni-lock" title="Suspend"></i>';
+            return eDiv;
+        };
+        // grid options
+        const gridOptions = {
+            domLayout: "autoHeight",
+            autoSizeStrategy: {
+                type: "fitGridWidth",
+                defaultMinWidth: 100
+            },
+            // Row Data: The data to be displayed.
+            rowData: @Html.Raw(JsonConvert.SerializeObject(Model)),
+            // Column Definitions: Defines the columns to be displayed.
+            columnDefs: [
+                {
+                    headerName: "Actions",
+                    field: "action",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    cellRenderer: actionRenderer,
+                    flex: 1
+                },
+                {
+                    headerName: "Id",
+                    field: "Id",
+                    minWidth: 50,
+                    maxWidth: 50,
+                    //hide: true,
+                    //suppressToolPanel: true,
+                    flex: 1
+                },
+                {
+                    headerName: "Master Name",
+                    field: "Name",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    flex: 1
+                },
+                {
+                    headerName: "Master Key",
+                    field: "Key",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    flex: 1
+                },
+                {
+                    headerName: "Master Value",
+                    field: "Value",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    flex: 1
+                },
+                {
+                    headerName: "Master Sequence",
+                    field: "Sequence",
+                    minWidth: 150,
+                    maxWidth: 150,
+                    flex: 1
+                },
+                {
+                    headerName: "Master Notes",
+                    field: "Notes",
+                    flex: 2
+                }
+            ]
+        };
+        // get grid element and apply grid options
+        const gridElement = document.querySelector('#gridIncoterms');
+        agGrid.createGrid(gridElement, gridOptions);
+    </script>
 }
 
 <div class="text-center">
-    <h1 class="display-5">This is Masters > Incoterms Page</h1>
-    <p>Under Construction</p>
+    <h1 class="display-5">Incoterms</h1>
+</div>
+@* add section *@
+<div class="mb-4">
+    <div>
+        <div class="col-md-2 offset-10 d-flex justify-content-end">
+            <button id="btn_add" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addIncoterm">
+                <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD INCOTERM
+            </button>
+        </div>
+    </div>
+</div>
+@* list, edit & delete section *@
+<div class="text-center">
+    <div id="gridIncoterms" class="ag-theme-quartz"></div>
 </div>

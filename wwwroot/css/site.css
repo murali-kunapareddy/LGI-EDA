@@ -173,8 +173,10 @@ a.sidebar-link:hover {
 }
 
 .navbar {
-    background-color: #efefef;
-    box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
+    /*background-color: #efefef;*/
+    /*box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);*/
+    border-bottom: 2px solid #C0C0C0;
+    background-image: linear-gradient(180deg, #FCFCFC 0%, #E0E0E0 35%, #D0D0D0 100%);
 }
 
 .navbar-expand .navbar-collapse {
@@ -203,10 +205,11 @@ a.sidebar-link:hover {
     padding-left: 10px;
 }
 
-.footer{
-    margin: 10px 20px;
+.footer {
+    /*margin: 10px;*/
     padding: 10px 0;
-    border-top: 2px solid #808080;
+    border-top: 2px solid #C0C0C0;
+    background-image: linear-gradient(0deg, #FCFCFC 0%, #E0E0E0 35%, #D0D0D0 100%);
 }
 
 

@@ -1,13 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using WISSEN.EDA.Data;
+using WISSEN.EDA.Repositories;
+using WISSEN.EDA.Repositories.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+// db context
 builder.Services.AddDbContext<AppDBContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("EDA-DEV")));
+// register repostories
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -31,4 +35,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+await app.RunAsync();

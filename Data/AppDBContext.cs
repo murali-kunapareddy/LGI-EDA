@@ -16,5 +16,7 @@ namespace WISSEN.EDA.Data
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Authentication> Authenticaions { get; set; }
         public DbSet<UserPrivilege> UserPrivileges { get; set; }
+        public DbSet<ConfigurationItem> ConfigurationItems { get; set; }
+        public DbSet<MasterItem> MasterItems { get; set; }
     }
 }
