@@ -106,21 +106,79 @@ namespace EDA.Controllers
         #endregion
 
         #region ***** Incoterms *****
-        public async Task<IActionResult> Incoterms()
+        public IActionResult Incoterms()
         {
-            var incoterms = await _unitOfWork.MasterRepository.GetAllAsync("INCOTERM");
-            return View(incoterms);
+            return View();
         }
 
-        [HttpPost]
-        public IActionResult AddIncoterms(MasterItem model)
+        [HttpGet]
+        public async Task<JsonResult> GetAllIncoterms()
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return Json("Invalid Model: " + ModelState);
             }
-            return View();
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("INCOTERM"));
         }
+
+        [HttpPost]
+        public async Task<JsonResult> AddIncoterm(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("Incoterm " + model.Key + " saved successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> EditIncoterm(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+        [HttpGet]
+        public async Task<JsonResult> SuspendIncoterm(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            return Json("Incoterm <b>" + model.Key + "</b> suspended successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> UpdateIncoterm(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("Incoterm " + model.Key + " updated successfully.");
+        }
+
         #endregion
 
         #region ***** PaperworksList *****
