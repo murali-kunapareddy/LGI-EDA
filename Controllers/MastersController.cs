@@ -133,7 +133,7 @@ namespace EDA.Controllers
             await _unitOfWork.SaveAsync();
             return Json("Incoterm " + model.Key + " saved successfully.");
         }
-        [HttpPost]
+        [HttpGet]
         public async Task<JsonResult> EditIncoterm(int id)
         {
             if (!ModelState.IsValid)
@@ -186,12 +186,146 @@ namespace EDA.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<JsonResult> GetAllPaperworkLists()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PAPERWORKLIST"));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddPaperworkList(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("PaperworkList " + model.Key + " saved successfully.");
+        }
+        [HttpGet]
+        public async Task<JsonResult> EditPaperworkList(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+        [HttpGet]
+        public async Task<JsonResult> SuspendPaperworkList(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            return Json("PaperworkList <b>" + model.Key + "</b> suspended successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> UpdatePaperworkList(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("PaperworkList " + model.Key + " updated successfully.");
+        }
         #endregion
 
         #region ***** PaymentTerms *****
         public IActionResult PaymentTerms()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetAllPaymentTerms()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM"));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddPaymentTerm(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("PaymentTerm <b>" + model.Key + " saved successfully.");
+        }
+        [HttpGet]
+        public async Task<JsonResult> EditPaymentTerm(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+        [HttpGet]
+        public async Task<JsonResult> SuspendPaymentTerm(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            return Json("PaymentTerm <b>" + model.Key + "</b> suspended successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> UpdatePaymentTerm(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("PaymentTerm " + model.Key + " updated successfully.");
         }
         #endregion
 
@@ -200,12 +334,146 @@ namespace EDA.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<JsonResult> GetAllPorts()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PORT"));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddPort(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("Port " + model.Key + " saved successfully.");
+        }
+        [HttpGet]
+        public async Task<JsonResult> EditPort(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+        [HttpGet]
+        public async Task<JsonResult> SuspendPort(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            return Json("Port <b>" + model.Key + "</b> suspended successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> UpdatePort(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("Port " + model.Key + " updated successfully.");
+        }
         #endregion
 
         #region ***** Products *****
         public IActionResult Products()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetAllProducts()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PRODUCT"));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddProduct(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("Product " + model.Key + " saved successfully.");
+        }
+        [HttpGet]
+        public async Task<JsonResult> EditProduct(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+        [HttpGet]
+        public async Task<JsonResult> SuspendProduct(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            return Json("Product <b>" + model.Key + "</b> suspended successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> UpdateProduct(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("Product " + model.Key + " updated successfully.");
         }
         #endregion
 

@@ -1,13 +1,13 @@
 ﻿// form load
 $(function () {
-    GetAllIncoterms();
+    GetAllPaperworkLists();
 });
 
-// get all Incoterms types
-function GetAllIncoterms() {
+// get all consignee types
+function GetAllPaperworkLists() {
     $.ajax({
         type: 'get',
-        url: '/Masters/GetAllIncoterms',
+        url: '/Masters/GetAllPaperworkLists',
         dataType: 'json',
         success: function (response) {
             gridApi.setGridOption("rowData", response);
@@ -19,13 +19,13 @@ function GetAllIncoterms() {
 }
 
 // show popup
-$("#btnAddIncoterm").on("click", function () {
-    $("#IncotermModal").modal("show");
-    $("#modalTitle").text("Add Incoterm");
+$("#btnAddPaperworkList").on("click", function () {
+    $("#PaperworkListModal").modal("show");
+    $("#modalTitle").text("Add PaperworkList");
 });
 
 // add consignee type
-function AddIncoterm() {
+function AddPaperworkList() {
     // do validation
     let result = Validate();
     if (!result) {
@@ -34,7 +34,7 @@ function AddIncoterm() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
-    formData.name = "INCOTERM";
+    formData.name = "PAPERWORKLIST";
     formData.key = $("#Key").val();
     formData.value = $("#Value").val();
     formData.sequence = $("#Sequence").val();
@@ -43,14 +43,14 @@ function AddIncoterm() {
 
     $.ajax({
         type: 'post',
-        url: '/Masters/AddIncoterm',
+        url: '/Masters/AddPaperworkList',
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
                 alert("Unable to save " + formData.name);
             } else {
                 HideModal();
-                GetAllIncoterms();
+                GetAllPaperworkLists();
                 alert(response);
             }
         },
@@ -61,10 +61,10 @@ function AddIncoterm() {
 }
 
 // edit master item
-function EditIncoterm(id) {
+function EditPaperworkList(id) {
     //
     $.ajax({
-        url: '/Masters/EditIncoterm?id=' + id,
+        url: '/Masters/EditPaperworkList?id=' + id,
         type: 'get',
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
@@ -74,7 +74,7 @@ function EditIncoterm(id) {
             } else if (response.length == 0) {
                 alert("Data not available for Id: " + id);
             } else {
-                $("#IncotermModal").modal("show");
+                $("#PaperworkListModal").modal("show");
                 $("#modalTitle").text('Update Product');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
@@ -95,7 +95,7 @@ function EditIncoterm(id) {
 }
 
 // update Incoterm type
-function UpdateIncoterm() {
+function UpdatePaperworkList() {
     // without changing id & name update the record
     // get form data
     let result = Validate();
@@ -113,7 +113,7 @@ function UpdateIncoterm() {
     formData.createdBy = $("#CreatedBy").val();
     formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
     // set url
-    let URL = '/Masters/UpdateIncoterm';
+    let URL = '/Masters/UpdatePaperworkList';
     //
     $.ajax({
         type: 'post',
@@ -124,7 +124,7 @@ function UpdateIncoterm() {
                 alert("Unable to update " + formData.key);
             } else {
                 HideModal();
-                GetAllIncoterms();
+                GetAllPaperworkLists();
                 alert(response);
             }
         },
@@ -135,12 +135,12 @@ function UpdateIncoterm() {
 }
 
 // suspend consignee type
-function SuspendIncoterm(id) {
+function SuspendPaperworkList(id) {
     // without changing id & name suspend the record
     //
     $.ajax({
         type: 'get',
-        url: '/Masters/SuspendIncoterm?id=' + id,
+        url: '/Masters/SuspendPaperworkList?id=' + id,
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
         success: function (response) {
@@ -149,7 +149,7 @@ function SuspendIncoterm(id) {
             } else if (response.length == 0) {
                 alert("Data not available for Id: " + id);
             } else {
-                GetAllIncoterms();
+                GetAllPaperworkLists();
                 alert(response);
             }
         },
@@ -174,7 +174,7 @@ function ClearModal() {
 // hide modal
 function HideModal() {
     ClearModal();
-    $("#IncotermModal").modal("hide");
+    $("#PaperworkListModal").modal("hide");
 }
 
 // validation
@@ -227,39 +227,3 @@ $("#Notes").on("change", function () {
 
 
 
-
-// Custom Button Component
-class MasterButtonComponent {
-    eGui;
-    eSpan;
-    eventListener;
-
-    init() {
-        this.eGui = document.createElement('div');
-        let eSpan = document.createElement('span');
-        eSpan.className = "lni lni-pencil px-2";
-        this.eventListener = () => alert('Edit Launched');
-        eSpan.addEventListener('click', this.eventListener);
-        this.eGui.appendChild(eSpan);
-        this.eGui.text = "&nbsp;";
-        eSpan = document.createElement('span');
-        eSpan.className = "lni lni-lock px-2";
-        this.eventListener = () => alert('Lock Launched');
-        eSpan.addEventListener('click', this.eventListener);
-        this.eGui.appendChild(eSpan);
-    }
-
-    getGui() {
-        return this.eGui;
-    }
-
-    refresh() {
-        return true;
-    }
-
-    destroy() {
-        if (this.eButton) {
-            this.eButton.removeEventListener('click', this.eventListener);
-        }
-    }
-}
