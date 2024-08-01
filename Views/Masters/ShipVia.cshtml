@@ -1,8 +1,134 @@
-﻿@{
-    ViewData["Title"] = "ShipVia Page";
+﻿@using Newtonsoft.Json
+@using WISSEN.EDA.Models.Entities
+@model MasterItem
+@{
+    ViewData["Title"] = "ShipVias";
+    var mi = new MasterItem();
+}
+
+@section Styles {
+    <style>
+        .ag-theme-quartz {
+            --ag-borders: none;
+            /*--ag-row-border-color: rgb(150, 150, 200);*/
+            --ag-font-size: 1.2rem;
+            --ag-font-family: 'Barlow Semi Condensed', sans-serif;
+            --ag-header-background-color: #0D47A1;
+            --ag-odd-row-background-color: rgb(179, 229, 252, 0.5);
+        }
+
+        .ag-header-cell {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
+
+        .ag-header-cell-label {
+            justify-content: center;
+        }
+
+        .ag-cell-focus, .ag-cell-no-focus {
+            border: none !important;
+        }
+        /* This CSS is to not apply the border for the column having 'no-border' class */
+        .no-border.ag-cell:focus {
+            border: none !important;
+            outline: none;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="~/js/ShipVia.js"></script>
+    <script>
+        // grid options
+        const gridOptions = {
+            domLayout: "autoHeight",
+            autoSizeStrategy: {
+                type: "fitGridWidth",
+                defaultMinWidth: 100
+            },
+            // Row Data: The data to be displayed.
+            //rowData: @Html.Raw(JsonConvert.SerializeObject(Model)),
+            // Column Definitions: Defines the columns to be displayed.
+            columnDefs: [
+                {
+                    field: "action", headerName: "Actions", cellRenderer: function (params) {
+                        if (params.data != null) {
+                            if (params.data.isActive) {
+                                return '<a onclick="EditShipVia(' + params.data.id + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendShipVia(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
+                            } else {
+                                return '<a onclick="EditShipVia(' + params.data.id + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendShipVia(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
+                            }
+                        }
+                    }, maxWidth: 100
+                },
+                { field: "id", headerName: "Id", hide: true },
+                { field: "name", headerName: "Master Name", hide: true },
+                { field: "key", headerName: "ShipVia Name", flex: 1 },
+                { field: "value", headerName: "ShipVia Value", flex: 1 },
+                { field: "sequence", headerName: "Sequence", flex: 1 },
+                { field: "notes", headerName: "Notes", flex: 2 }
+            ]
+        };
+        // get grid element and apply grid options
+        const gridElement = document.querySelector('#gridShipVias');
+        const gridApi = agGrid.createGrid(gridElement, gridOptions);
+    </script>
 }
 
 <div class="text-center">
-    <h1 class="display-5">This is Masters > ShipVia Page</h1>
-    <p>Under Construction</p>
+    <h1 class="display-5">ShipVias</h1>
+    <input type="hidden" id="miName" value="SHIPVIA" />
+</div>
+@* add section *@
+<div class="mb-4">
+    <div>
+        <div class="col-md-2 offset-10 d-flex justify-content-end">
+            <button id="btnAddShipVia" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addShipVia">
+                <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD SHIPVIAS
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ShipViaModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle"></h3>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="Id" value="0" />
+                <input type="hidden" asp-for="Name" value="SHIPVIA" />
+                <input type="hidden" asp-for="CreatedBy" />
+                <div class="mb-2">
+                    <label asp-for="Key"></label>
+                    <input type="text" asp-for="Key" placeholder="ShipVia Name" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Value"></label>
+                    <input type="text" asp-for="Value" placeholder="ShipVia Value" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Sequence"></label>
+                    <input type="number" asp-for="Sequence" placeholder="Sequence No" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Notes"></label>
+                    <input type="text" asp-for="Notes" placeholder="ShipVia Notes" class="form-control" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="Save" type="submit" onclick="AddShipVia();">Save</button>
+                <button class="btn btn-success" id="Update" type="submit" style="display: none;" onclick="UpdateShipVia();">Update</button>
+                <button class="btn btn-danger" id="Close" data-bs-dismiss="modal" onclick="HideModal();">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* list, edit & delete section *@
+<div class="text-center">
+    <div id="gridShipVias" class="ag-theme-quartz"></div>
 </div>

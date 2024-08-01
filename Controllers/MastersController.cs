@@ -482,6 +482,74 @@ namespace EDA.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<JsonResult> GetAllShipVias()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("ShipVia"));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddShipVia(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("ShipVia " + model.Key + " saved successfully.");
+        }
+        [HttpGet]
+        public async Task<JsonResult> EditShipVia(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+        [HttpGet]
+        public async Task<JsonResult> SuspendShipVia(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            return Json("ShipVia <b>" + model.Key + "</b> suspended successfully.");
+        }
+        [HttpPost]
+        public async Task<JsonResult> UpdateShipVia(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("ShipVia " + model.Key + " updated successfully.");
+        }
         #endregion
+       
     }
 }
