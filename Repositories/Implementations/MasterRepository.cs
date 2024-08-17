@@ -35,6 +35,12 @@ namespace WISSEN.EDA.Repositories.Implementations
             return masterItems;
         }
 
+        public async Task<List<MasterItem>> GetAllAsync()
+        {
+            var masterItems = await _dbContext.MasterItems.ToListAsync();
+            return masterItems;
+        }
+
         public async Task<MasterItem> GetByIdAsync(int id)
         {
             var masterItem = await _dbContext.MasterItems.FindAsync(id);

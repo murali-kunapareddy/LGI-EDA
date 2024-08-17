@@ -5,8 +5,9 @@ namespace WISSEN.EDA.Repositories
     {
         Task<MasterItem> GetByIdAsync(int id);
         Task<List<MasterItem>> GetAllAsync(string masterItemName);
-        Task AddAsync(MasterItem masterItemViewModel);
-        Task UpdateAsync(MasterItem masterItemViewModel);
+        Task<List<MasterItem>> GetAllAsync();
+        Task AddAsync(MasterItem masterItem);
+        Task UpdateAsync(MasterItem masterItem);
         Task DeleteAsync(int id);
     }
 }

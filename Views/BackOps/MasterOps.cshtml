@@ -2,7 +2,7 @@
 @using WISSEN.EDA.Models.Entities
 @model MasterItem
 @{
-    ViewData["Title"] = "Incoterms";
+    ViewData["Title"] = "Masters";
     var mi = new MasterItem();
 }
 
@@ -26,6 +26,10 @@
             justify-content: center;
         }
 
+        .cellCenter .ag-cell-wrapper {
+            justify-content: center;
+        }
+
         .ag-cell-focus, .ag-cell-no-focus {
             border: none !important;
         }
@@ -39,7 +43,7 @@
 
 @section Scripts {
     <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
-    <script src="~/js/Incoterm.js"></script>
+    <script src="~/js/masters.js"></script>
     <script>
         // grid options
         const gridOptions = {
@@ -54,45 +58,60 @@
             columnDefs: [
                 {
                     field: "action", headerName: "Actions", cellRenderer: function (params) {
+                        let actionString = '<a onclick="EditMasterItem(' + params.data.id + ')"><i class="bi bi-pencil" title="Click to Edit"></i></a>';
                         if (params.data != null) {
                             if (params.data.isActive) {
-                                return '<a onclick="EditIncoterm(' + params.data.id + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendIncoterm(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
+                                actionString += '&nbsp; <a onclick="SuspendMasterItem(' + params.data.id + ')"><i class="bi bi-unlock" title="Click to Suspend"></i></a>';
                             } else {
-                                return '<a onclick="EditIncoterm(' + params.data.id + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendIncoterm(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
+                                actionString += '&nbsp; <a onclick="SuspendMasterItem(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Click to Reactivate"></i></a>';
+                            }
+                            if (params.data.isDeleted) {
+                                actionString += '&nbsp; <a onclick="DeleteMasterItem(' + params.data.id + ')"><i class="bi bi-arrow-counterclockwise text-danger" title="Click to Revoke"></i></a>';
+                            } else {
+                                actionString += '&nbsp; <a onclick="DeleteMasterItem(' + params.data.id + ')"><i class="bi bi-trash3" title="Click to Delete"></i></a>';
                             }
                         }
-                    }, maxWidth: 100
+                        return actionString;
+                    }, maxWidth: 150
                 },
                 { field: "id", headerName: "Id", hide: true },
-                { field: "name", headerName: "Master Name", hide: true },
-                { field: "key", headerName: "Incoterm Name", flex: 1 },
-                { field: "value", headerName: "Incoterm Value", flex: 1 },
+                { field: "name", headerName: "Master Name", flex: 1 },
+                { field: "key", headerName: "Master Key", flex: 1 },
+                { field: "value", headerName: "Master Value", flex: 1 },
                 { field: "sequence", headerName: "Sequence", flex: 1 },
-                { field: "notes", headerName: "Notes", flex: 2 }
+                { field: "notes", headerName: "Notes", flex: 2 },
+                { field: "isActive", headerName: "Is Active?", cellClass: 'cellCenter', maxWidth: 150, flex: 1 },
+                { field: "isDeleted", headerName: "Is Deleted?", cellClass: 'cellCenter', maxWidth: 150, flex: 1 },
+                { field: "createdBy", headerName: "Created By", hide: true },
+                { field: "createdOn", headerName: "Created On", hide: true },
+                { field: "modifiedBy", headerName: "Modified By", hide: true },
+                { field: "modifiedOn", headerName: "Modified On", hide: true }
             ]
         };
         // get grid element and apply grid options
-        const gridElement = document.querySelector('#gridIncoterms');
+        const gridElement = document.querySelector('#gridMasterItems');
         const gridApi = agGrid.createGrid(gridElement, gridOptions);
     </script>
 }
 
+@* page title *@
 <div class="text-center">
-    <h1 class="display-5">Incoterms</h1>
-    <input type="hidden" id="miName" value="INCOTERM" />
+    <h1 class="display-5">Masters Management</h1>
 </div>
+
 @* add section *@
 <div class="mb-4">
     <div>
         <div class="col-md-2 offset-10 d-flex justify-content-end">
-            <button id="btnAddIncoterm" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addIncoterm">
-                <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD INCOTERMS
+            <button id="btnAddMasterItem" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnAddMasterItem">
+                <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD MASTER ITEM
             </button>
         </div>
     </div>
 </div>
 
-<div class="modal" id="IncotermModal">
+@* modal popup *@
+<div class="modal" id="MasterItemModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,15 +119,19 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" asp-for="Id" value="0" />
-                <input type="hidden" asp-for="Name" value="INCOTERM" />
                 <input type="hidden" asp-for="CreatedBy" />
                 <div class="mb-2">
+                    <label asp-for="Name"></label>
+                    @* <input type="text" asp-for="Name" placeholder="Master Type" class="form-control" /> *@
+                    <select 
+                </div>
+                <div class="mb-2">
                     <label asp-for="Key"></label>
-                    <input type="text" asp-for="Key" placeholder="Incoterm Name" class="form-control" />
+                    <input type="text" asp-for="Key" placeholder="Master Name" class="form-control" />
                 </div>
                 <div class="mb-2">
                     <label asp-for="Value"></label>
-                    <input type="text" asp-for="Value" placeholder="Incoterm Value" class="form-control" />
+                    <input type="text" asp-for="Value" placeholder="Master Value" class="form-control" />
                 </div>
                 <div class="mb-2">
                     <label asp-for="Sequence"></label>
@@ -116,19 +139,19 @@
                 </div>
                 <div class="mb-2">
                     <label asp-for="Notes"></label>
-                    <input type="text" asp-for="Notes" placeholder="Incoterm Notes" class="form-control" />
+                    <input type="text" asp-for="Notes" placeholder="Master Notes" class="form-control" />
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="Save" type="submit" onclick="AddIncoterm();">Save</button>
-                <button class="btn btn-success" id="Update" type="submit" style="display: none;" onclick="UpdateIncoterm();">Update</button>
+                <button class="btn btn-primary" id="Save" type="submit" onclick="AddMasterItem();">Save</button>
+                <button class="btn btn-success" id="Update" type="submit" style="display: none;" onclick="UpdateMasterItem();">Update</button>
                 <button class="btn btn-danger" id="Close" data-bs-dismiss="modal" onclick="HideModal();">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-@* list, edit & delete section *@
+@* ag grid *@
 <div class="text-center">
-    <div id="gridIncoterms" class="ag-theme-quartz"></div>
+    <div id="gridMasterItems" class="ag-theme-quartz"></div>
 </div>

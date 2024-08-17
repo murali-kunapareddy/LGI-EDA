@@ -133,7 +133,8 @@ namespace EDA.Controllers
             await _unitOfWork.SaveAsync();
             return Json("Incoterm " + model.Key + " saved successfully.");
         }
-        [HttpPost]
+
+        [HttpGet]
         public async Task<JsonResult> EditIncoterm(int id)
         {
             if (!ModelState.IsValid)
