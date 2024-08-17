@@ -19,13 +19,29 @@ function GetAllMasterItems() {
 }
 
 // show popup
-$("#btnAddConsigneeType").on("click", function () {
-    $("#ConsigneeTypeModal").modal("show");
-    $("#modalTitle").text("Add Consignee Type");
+$("#btnAddMasterItem").on("click", function () {
+    $("#MasterItemModal").modal("show");
+    $("#modalTitle").text("Add Master Item");
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetMastersDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#Name').empty();
+            $('#Name').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#Name').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+        }
+    });
+
 });
 
 // add consignee type
-function AddConsigneeType() {
+function AddMasterItem() {
     // do validation
     let result = Validate();
     if (!result) {
@@ -34,7 +50,7 @@ function AddConsigneeType() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
-    formData.name = "CONSIGNEETYPE";
+    formData.name = $("#Name").val();
     formData.key = $("#Key").val();
     formData.value = $("#Value").val();
     formData.sequence = $("#Sequence").val();
@@ -43,14 +59,14 @@ function AddConsigneeType() {
 
     $.ajax({
         type: 'post',
-        url: '/Masters/AddConsigneeType',
+        url: '/BackOps/AddMasterItem',
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
                 alert("Unable to save " + formData.name);
             } else {
                 HideModal();
-                GetAllConsigneeTypes();
+                GetAllMasterItems();
                 alert(response);
             }
         },
@@ -174,12 +190,19 @@ function ClearModal() {
 // hide modal
 function HideModal() {
     ClearModal();
-    $("#ConsigneeTypeModal").modal("hide");
+    $("#MasterItemModal").modal("hide");
 }
 
 // validation
 function Validate() {
     let isValid = true;
+
+    if ($("#Name").find(":selected").val() == "") {
+        $("#Name").css('border-color', 'red');
+        isValid = false;
+    } else {
+        $("#Name").css('border-color', 'lightgrey');
+    }
 
     if ($("#Key").val().trim() == "") {
         $("#Key").css('border-color', 'red');
@@ -212,6 +235,9 @@ function Validate() {
     return isValid;
 }
 
+$("#Name").on("change", function () {
+    Validate();
+});
 $("#Key").on("change", function () {
     Validate();
 });
@@ -224,8 +250,6 @@ $("#Sequence").on("change", function () {
 $("#Notes").on("change", function () {
     Validate();
 });
-
-
 
 
 // Custom Button Component

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WISSEN.EDA.Models.Entities;
 using WISSEN.EDA.Repositories;
 using WISSEN.EDA.Repositories.Implementations;
 
@@ -18,7 +20,7 @@ namespace WISSEN.EDA.Controllers
             return View();
         }
 
-        public IActionResult MasterOps()
+        public IActionResult Masters()
         {
             return View();
         }
@@ -32,15 +34,28 @@ namespace WISSEN.EDA.Controllers
             return Json(await _unitOfWork.MasterRepository.GetAllAsync());
         }
 
-        public JsonResult GetMastersForDDL()
+        [HttpGet]
+        public JsonResult GetMastersDDL()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            var masters = _unitOfWork.MasterRepository.GetDDLMasters();
+            return Json(masters);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddMasterItem(MasterItem model)
         {
             if (!ModelState.IsValid)
             {
                 return Json("Invalid Model: " + ModelState);
             }
 
-            //var ddlMasters = 
-            return Json("");
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json($"A new {model.Name} with {model.Key} is saved successfully.");
         }
     }
 }

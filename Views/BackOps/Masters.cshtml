@@ -1,4 +1,5 @@
 ﻿@using Newtonsoft.Json
+@using WISSEN.EDA.Controllers
 @using WISSEN.EDA.Models.Entities
 @model MasterItem
 @{
@@ -46,6 +47,39 @@
     <script src="~/js/masters.js"></script>
     <script>
         // grid options
+        const columnDefs = [
+            {
+                field: "action", headerName: "Actions", cellRenderer: function (params) {
+                    let actionString = '<a onclick="EditMasterItem(' + params.data.id + ')"><i class="bi bi-pencil" title="Click to Edit"></i></a>';
+                    if (params.data != null) {
+                        if (params.data.isActive) {
+                            actionString += '&nbsp; <a onclick="SuspendMasterItem(' + params.data.id + ')"><i class="bi bi-unlock" title="Click to Suspend"></i></a>';
+                        } else {
+                            actionString += '&nbsp; <a onclick="SuspendMasterItem(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Click to Reactivate"></i></a>';
+                        }
+                        if (params.data.isDeleted) {
+                            actionString += '&nbsp; <a onclick="DeleteMasterItem(' + params.data.id + ')"><i class="bi bi-arrow-counterclockwise text-danger" title="Click to Revoke"></i></a>';
+                        } else {
+                            actionString += '&nbsp; <a onclick="DeleteMasterItem(' + params.data.id + ')"><i class="bi bi-trash3" title="Click to Delete"></i></a>';
+                        }
+                    }
+                    return actionString;
+                }, maxWidth: 150
+            },
+            { field: "id", headerName: "Id", hide: true },
+            { field: "name", headerName: "Master Name", flex: 1 },
+            { field: "key", headerName: "Master Key", flex: 1 },
+            { field: "value", headerName: "Master Value", flex: 1 },
+            { field: "sequence", headerName: "Sequence", flex: 1 },
+            { field: "notes", headerName: "Notes", flex: 2 },
+            { field: "isActive", headerName: "Is Active?", cellClass: 'cellCenter', maxWidth: 150, flex: 1 },
+            { field: "isDeleted", headerName: "Is Deleted?", cellClass: 'cellCenter', maxWidth: 150, flex: 1 },
+            { field: "createdBy", headerName: "Created By", hide: true },
+            { field: "createdOn", headerName: "Created On", hide: true },
+            { field: "modifiedBy", headerName: "Modified By", hide: true },
+            { field: "modifiedOn", headerName: "Modified On", hide: true }
+        ];
+
         const gridOptions = {
             domLayout: "autoHeight",
             autoSizeStrategy: {
@@ -55,38 +89,10 @@
             // Row Data: The data to be displayed.
             //rowData: @Html.Raw(JsonConvert.SerializeObject(Model)),
             // Column Definitions: Defines the columns to be displayed.
-            columnDefs: [
-                {
-                    field: "action", headerName: "Actions", cellRenderer: function (params) {
-                        let actionString = '<a onclick="EditMasterItem(' + params.data.id + ')"><i class="bi bi-pencil" title="Click to Edit"></i></a>';
-                        if (params.data != null) {
-                            if (params.data.isActive) {
-                                actionString += '&nbsp; <a onclick="SuspendMasterItem(' + params.data.id + ')"><i class="bi bi-unlock" title="Click to Suspend"></i></a>';
-                            } else {
-                                actionString += '&nbsp; <a onclick="SuspendMasterItem(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Click to Reactivate"></i></a>';
-                            }
-                            if (params.data.isDeleted) {
-                                actionString += '&nbsp; <a onclick="DeleteMasterItem(' + params.data.id + ')"><i class="bi bi-arrow-counterclockwise text-danger" title="Click to Revoke"></i></a>';
-                            } else {
-                                actionString += '&nbsp; <a onclick="DeleteMasterItem(' + params.data.id + ')"><i class="bi bi-trash3" title="Click to Delete"></i></a>';
-                            }
-                        }
-                        return actionString;
-                    }, maxWidth: 150
-                },
-                { field: "id", headerName: "Id", hide: true },
-                { field: "name", headerName: "Master Name", flex: 1 },
-                { field: "key", headerName: "Master Key", flex: 1 },
-                { field: "value", headerName: "Master Value", flex: 1 },
-                { field: "sequence", headerName: "Sequence", flex: 1 },
-                { field: "notes", headerName: "Notes", flex: 2 },
-                { field: "isActive", headerName: "Is Active?", cellClass: 'cellCenter', maxWidth: 150, flex: 1 },
-                { field: "isDeleted", headerName: "Is Deleted?", cellClass: 'cellCenter', maxWidth: 150, flex: 1 },
-                { field: "createdBy", headerName: "Created By", hide: true },
-                { field: "createdOn", headerName: "Created On", hide: true },
-                { field: "modifiedBy", headerName: "Modified By", hide: true },
-                { field: "modifiedOn", headerName: "Modified On", hide: true }
-            ]
+            columnDefs: columnDefs,
+            paginationPageSize: 10,
+            paginationPageSizeSelector: [10, 20, 50],
+            pagination: true,
         };
         // get grid element and apply grid options
         const gridElement = document.querySelector('#gridMasterItems');
@@ -122,12 +128,11 @@
                 <input type="hidden" asp-for="CreatedBy" />
                 <div class="mb-2">
                     <label asp-for="Name"></label>
-                    @* <input type="text" asp-for="Name" placeholder="Master Type" class="form-control" /> *@
-                    <select 
+                    <select name="Name" asp-for="Name" id="Name" title="Master Name" class="form-control"></select>
                 </div>
                 <div class="mb-2">
                     <label asp-for="Key"></label>
-                    <input type="text" asp-for="Key" placeholder="Master Name" class="form-control" />
+                    <input type="text" asp-for="Key" placeholder="Master Key" class="form-control" />
                 </div>
                 <div class="mb-2">
                     <label asp-for="Value"></label>

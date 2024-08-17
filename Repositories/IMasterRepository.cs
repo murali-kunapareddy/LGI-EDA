@@ -1,4 +1,5 @@
-﻿using WISSEN.EDA.Models.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using WISSEN.EDA.Models.Entities;
 namespace WISSEN.EDA.Repositories
 {
     public interface IMasterRepository
@@ -6,6 +7,7 @@ namespace WISSEN.EDA.Repositories
         Task<MasterItem> GetByIdAsync(int id);
         Task<List<MasterItem>> GetAllAsync(string masterItemName);
         Task<List<MasterItem>> GetAllAsync();
+        List<SelectListItem> GetDDLMasters();
         Task AddAsync(MasterItem masterItem);
         Task UpdateAsync(MasterItem masterItem);
         Task DeleteAsync(int id);
