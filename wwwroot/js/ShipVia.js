@@ -1,13 +1,13 @@
 ﻿// form load
 $(function () {
-    GetAllIncoterms();
+    GetAllShipVias();
 });
 
-// get all Incoterms types
-function GetAllIncoterms() {
+// get all ShipVias types
+function GetAllShipVias() {
     $.ajax({
         type: 'get',
-        url: '/Masters/GetAllIncoterms',
+        url: '/Masters/GetAllShipVias',
         dataType: 'json',
         success: function (response) {
             gridApi.setGridOption("rowData", response);
@@ -19,13 +19,13 @@ function GetAllIncoterms() {
 }
 
 // show popup
-$("#btnAddIncoterm").on("click", function () {
-    $("#IncotermModal").modal("show");
-    $("#modalTitle").text("Add Incoterm");
+$("#btnAddShipVia").on("click", function () {
+    $("#ShipViaModal").modal("show");
+    $("#modalTitle").text("Add ShipVia");
 });
 
-// add consignee type
-function AddIncoterm() {
+// add ShipVia type
+function AddShipVia() {
     // do validation
     let result = Validate();
     if (!result) {
@@ -34,7 +34,7 @@ function AddIncoterm() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
-    formData.name = "INCOTERM";
+    formData.name = "SHIPVIA";
     formData.key = $("#Key").val();
     formData.value = $("#Value").val();
     formData.sequence = $("#Sequence").val();
@@ -43,14 +43,14 @@ function AddIncoterm() {
 
     $.ajax({
         type: 'post',
-        url: '/Masters/AddIncoterm',
+        url: '/Masters/AddShipVia',
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
                 alert("Unable to save " + formData.name);
             } else {
                 HideModal();
-                GetAllIncoterms();
+                GetAllShipVias();
                 alert(response);
             }
         },
@@ -61,10 +61,10 @@ function AddIncoterm() {
 }
 
 // edit master item
-function EditIncoterm(id) {
+function EditShipVia(id) {
     //
     $.ajax({
-        url: '/Masters/EditIncoterm?id=' + id,
+        url: '/Masters/EditShipVia?id=' + id,
         type: 'get',
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
@@ -74,7 +74,7 @@ function EditIncoterm(id) {
             } else if (response.length == 0) {
                 alert("Data not available for Id: " + id);
             } else {
-                $("#IncotermModal").modal("show");
+                $("#ShipViaModal").modal("show");
                 $("#modalTitle").text('Update Product');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
@@ -94,8 +94,8 @@ function EditIncoterm(id) {
     });
 }
 
-// update Incoterm type
-function UpdateIncoterm() {
+// update ShipVia type
+function UpdateShipVia() {
     // without changing id & name update the record
     // get form data
     let result = Validate();
@@ -113,7 +113,7 @@ function UpdateIncoterm() {
     formData.createdBy = $("#CreatedBy").val();
     formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
     // set url
-    let URL = '/Masters/UpdateIncoterm';
+    let URL = '/Masters/UpdateShipVia';
     //
     $.ajax({
         type: 'post',
@@ -124,7 +124,7 @@ function UpdateIncoterm() {
                 alert("Unable to update " + formData.key);
             } else {
                 HideModal();
-                GetAllIncoterms();
+                GetAllShipVias();
                 alert(response);
             }
         },
@@ -135,12 +135,12 @@ function UpdateIncoterm() {
 }
 
 // suspend consignee type
-function SuspendIncoterm(id) {
+function SuspendShipVia(id) {
     // without changing id & name suspend the record
     //
     $.ajax({
         type: 'get',
-        url: '/Masters/SuspendIncoterm?id=' + id,
+        url: '/Masters/SuspendShipVia?id=' + id,
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
         success: function (response) {
@@ -149,7 +149,7 @@ function SuspendIncoterm(id) {
             } else if (response.length == 0) {
                 alert("Data not available for Id: " + id);
             } else {
-                GetAllIncoterms();
+                GetAllShipVias();
                 alert(response);
             }
         },
@@ -174,7 +174,7 @@ function ClearModal() {
 // hide modal
 function HideModal() {
     ClearModal();
-    $("#IncotermModal").modal("hide");
+    $("#ShipViaModal").modal("hide");
 }
 
 // validation
