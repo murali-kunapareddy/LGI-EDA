@@ -77,10 +77,26 @@ function AddMasterItem() {
 }
 
 // edit master item
-function EditConsigneeType(id) {
+function EditMasterItem(id) {
+    // load ddl masters to name
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetMastersDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#Name').empty();
+            $('#Name').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#Name').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+        }
+    });
     //
     $.ajax({
-        url: '/Masters/EditConsigneeType?id=' + id,
+        url: '/BackOps/EditMasterItem?id=' + id,
         type: 'get',
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
@@ -90,13 +106,13 @@ function EditConsigneeType(id) {
             } else if (response.length == 0) {
                 alert("Data not available for Id: " + id);
             } else {
-                $("#ConsigneeTypeModal").modal("show");
+                $("#MasterItemModal").modal("show");
                 $("#modalTitle").text('Update Product');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
                 //
                 $("#Id").val(response.id);
-                $("#Name").val(response.name);
+                $("#Name").find('option[value="' + response.name + '"]').attr('selected', 'selected');
                 $("#Key").val(response.key);
                 $("#Value").val(response.value);
                 $("#Sequence").val(response.sequence);
@@ -110,9 +126,8 @@ function EditConsigneeType(id) {
     });
 }
 
-// update consignee type
-function UpdateConsigneeType() {
-    // without changing id & name update the record
+// update master item
+function UpdateMasterItem() {
     // get form data
     let result = Validate();
     if (!result) {
@@ -129,7 +144,7 @@ function UpdateConsigneeType() {
     formData.createdBy = $("#CreatedBy").val();
     formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
     // set url
-    let URL = '/Masters/UpdateConsigneeType';
+    let URL = '/BackOps/UpdateMasterItem';
     //
     $.ajax({
         type: 'post',
@@ -140,7 +155,7 @@ function UpdateConsigneeType() {
                 alert("Unable to update " + formData.key);
             } else {
                 HideModal();
-                GetAllConsigneeTypes();
+                GetAllMasterItems();
                 alert(response);
             }
         },
@@ -151,12 +166,11 @@ function UpdateConsigneeType() {
 }
 
 // suspend consignee type
-function SuspendConsigneeType(id) {
-    // without changing id & name suspend the record
+function SuspendMasterItem(id) {
     //
     $.ajax({
         type: 'get',
-        url: '/Masters/SuspendConsigneeType?id=' + id,
+        url: '/BackOps/SuspendMasterItem?id=' + id,
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
         success: function (response) {
@@ -165,12 +179,55 @@ function SuspendConsigneeType(id) {
             } else if (response.length == 0) {
                 alert("Data not available for Id: " + id);
             } else {
-                GetAllConsigneeTypes();
+                GetAllMasterItems();
                 alert(response);
             }
         },
         error: function (xhr) {
             alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+        }
+    });
+}
+
+function DeleteMasterItem(id) {
+    //
+    $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
+        open: function () {
+            $(this).closest(".ui-dialog")
+                .find(".ui-dialog-titlebar-close")
+                .removeClass("ui-dialog-titlebar-close")
+                .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
+        },
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+            "Yes, Do this!": function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/BackOps/DeleteMasterItem?id=' + id,
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response == null || response == undefined) {
+                            alert("Unable to read the data");
+                        } else if (response.length == 0) {
+                            alert("Data not available for Id: " + id);
+                        } else {
+                            GetAllMasterItems();
+                            $("<div title='Success'>" + response + "</div>").dialog();
+                        }
+                    },
+                    error: function (xhr) {
+                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+                    }
+                });
+                $(this).dialog("close");
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
         }
     });
 }

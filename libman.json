@@ -73,6 +73,10 @@
       "files": [
         "dist/ag-grid-community.min.js"
       ]
+    },
+    {
+      "library": "jqueryui@1.14.0",
+      "destination": "wwwroot/lib/jqueryui/"
     }
   ]
 }

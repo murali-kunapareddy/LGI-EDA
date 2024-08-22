@@ -7,7 +7,8 @@
     <title>LGI > EDA > @ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />    
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @* <link rel="stylesheet" href="~/EDA.styles.css" asp-append-version="true" /> *@
 
@@ -105,13 +106,13 @@
                     </a>
                     <ul id="backops" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="BackOps" asp-action="AppOps"><i class="bi bi-sliders2-vertical"></i> App Operations</a>
+                            <a class="sidebar-link" asp-controller="BackOps" asp-action="AppOps"><i class="bi bi-sliders2-vertical"></i> App Behavior</a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-controller="BackOps" asp-action="Masters"><i class="bi bi-database-gear"></i> Master Operations</a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Settings" asp-action="AuditOps"><i class="bi bi-list-check"></i> Audit Operations</a>
+                            <a class="sidebar-link" asp-controller="Settings" asp-action="AuditOps"><i class="bi bi-list-check"></i> Audit Trails</a>
                         </li>
                     </ul>
                 </li>
@@ -169,6 +170,7 @@
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
