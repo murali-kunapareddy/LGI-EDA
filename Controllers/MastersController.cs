@@ -193,7 +193,7 @@ namespace EDA.Controllers
             {
                 return Json("Invalid Model: " + ModelState);
             }
-            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PAPERWORKLIST"));
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK"));
         }
 
         [HttpPost]

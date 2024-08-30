@@ -22,6 +22,8 @@ function GetAllPaperworkLists() {
 $("#btnAddPaperworkList").on("click", function () {
     $("#PaperworkListModal").modal("show");
     $("#modalTitle").text("Add PaperworkList");
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
 });
 
 // add consignee type
