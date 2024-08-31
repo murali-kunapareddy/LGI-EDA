@@ -20,10 +20,10 @@ function GetAllPaperworkLists() {
 
 // show popup
 $("#btnAddPaperworkList").on("click", function () {
-    $("#PaperworkListModal").modal("show");
-    $("#modalTitle").text("Add PaperworkList");
     $("#Save").css('display', 'block');
     $("#Update").css('display', 'none');
+    $("#PaperworkListModal").modal("show");
+    $("#modalTitle").text("Add PaperworkList");
 });
 
 // add consignee type

@@ -20,6 +20,8 @@ function GetAllProducts() {
 
 // show popup
 $("#btnAddProduct").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#ProductModal").modal("show");
     $("#modalTitle").text("Add Product");
 });

@@ -20,6 +20,8 @@ function GetAllShipVias() {
 
 // show popup
 $("#btnAddShipVia").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#ShipViaModal").modal("show");
     $("#modalTitle").text("Add ShipVia");
 });

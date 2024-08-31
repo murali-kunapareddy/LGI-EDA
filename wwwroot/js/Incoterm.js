@@ -20,6 +20,8 @@ function GetAllIncoterms() {
 
 // show popup
 $("#btnAddIncoterm").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#IncotermModal").modal("show");
     $("#modalTitle").text("Add Incoterm");
 });

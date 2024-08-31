@@ -20,6 +20,8 @@ function GetAllPaymentTerms() {
 
 // show popup
 $("#btnAddPaymentTerm").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#PaymentTermModal").modal("show");
     $("#modalTitle").text("Add PaymentTerm");
 });

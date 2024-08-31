@@ -20,6 +20,8 @@ function GetAllConsigneeTypes() {
 
 // show popup
 $("#btnAddConsigneeType").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#ConsigneeTypeModal").modal("show");
     $("#modalTitle").text("Add Consignee Type");
 });
@@ -75,7 +77,7 @@ function EditConsigneeType(id) {
                 alert("Data not available for Id: " + id);
             } else {
                 $("#ConsigneeTypeModal").modal("show");
-                $("#modalTitle").text('Update Product');
+                $("#modalTitle").text('Update Consignee Type');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
                 //
@@ -169,6 +171,8 @@ function ClearModal() {
     $("#Sequence").css('border-color', 'lightgrey');
     $("#Notes").val('');
     $("#Notes").css('border-color', 'lightgrey');
+    $("#Save").css('display', 'none');
+    $("#Update").css('display', 'block');
 }
 
 // hide modal

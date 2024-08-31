@@ -20,6 +20,8 @@ function GetAllMasterItems() {
 
 // show popup
 $("#btnAddMasterItem").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#MasterItemModal").modal("show");
     $("#modalTitle").text("Add Master Item");
     $.ajax({

@@ -20,6 +20,8 @@ function GetAllPorts() {
 
 // show popup
 $("#btnAddPort").on("click", function () {
+    $("#Save").css('display', 'block');
+    $("#Update").css('display', 'none');
     $("#PortModal").modal("show");
     $("#modalTitle").text("Add Port");
 });
