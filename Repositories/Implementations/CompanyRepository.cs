@@ -1,0 +1,63 @@
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using WISSEN.EDA.Data;
+using WISSEN.EDA.Models.Entities;
+
+namespace WISSEN.EDA.Repositories.Implementations
+{
+    public class CompanyRepository : ICompanyRepository
+    {
+        private readonly AppDBContext _dbContext;
+
+        public CompanyRepository(AppDBContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public async Task AddAsync(Company company)
+        {
+            await _dbContext.Companies.AddAsync(company);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var company = await _dbContext.Companies.FindAsync(id, false);
+            if (company != null)
+            {
+                _dbContext.Companies.Remove(company);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task<List<Company>> GetAllAsync()
+        {
+            var companies = await _dbContext.Companies.ToListAsync();
+            return companies;
+        }
+
+        public async Task<Company> GetByIdAsync(int id)
+        {
+            var company = await _dbContext.Companies.FindAsync(id);
+            return company!;
+        }
+
+        public async Task UpdateAsync(Company company)
+        {
+            _dbContext.Entry(company).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public List<SelectListItem> GetDDLCountries()
+        {
+            var list = _dbContext.Countries.Where(m => m.IsActive && !m.IsDeleted)
+                .Select(m => new SelectListItem
+                {
+                    Text = m.Code,
+                    Value = m.Name
+                }).ToList();
+
+            return list;
+        }
+    }
+}

@@ -25,7 +25,7 @@ namespace WISSEN.EDA.Models.Entities
         public Country? Country { get; set; }
         [Required(ErrorMessage = "Country is required")]
         [StringLength(10)]
-        public string? zip { get; set; }
+        public string? Zip { get; set; }
         [StringLength(15)]
         public string? Phone { get; set; }
         [StringLength(15)]
