@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WISSEN.EDA.Data;
 
 namespace WISSEN.EDA.Models.Entities
@@ -6,7 +7,6 @@ namespace WISSEN.EDA.Models.Entities
     public class Company : BaseTable
     {
         [Key]
-        [StringLength(5)]
         public int Code { get; set; }
         [Required(ErrorMessage = "Company Name is required")]
         [StringLength(50)]
@@ -22,8 +22,11 @@ namespace WISSEN.EDA.Models.Entities
         [StringLength(50)]
         public string? State { get; set; }
         [Required(ErrorMessage = "Country is required")]
+        [StringLength(2)]
+        public string? CountryCode { get; set; }
+        [ForeignKey("CountryCode")]
         public Country? Country { get; set; }
-        [Required(ErrorMessage = "Country is required")]
+        [Required(ErrorMessage = "Zip is required")]
         [StringLength(10)]
         public string? Zip { get; set; }
         [StringLength(15)]
@@ -34,5 +37,7 @@ namespace WISSEN.EDA.Models.Entities
         [EmailAddress(ErrorMessage = "Invalid email")]
         public string? Email { get; set; }
         public string? Logo { get; set; }
+
+        //public ICollection<Plant>? Plants { get; set; }
     }
 }

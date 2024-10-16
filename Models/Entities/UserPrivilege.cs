@@ -16,10 +16,10 @@ namespace WISSEN.EDA.Models.Entities
         public string? Role { get; set; }
         [Required(ErrorMessage ="Application is required")]
         public AppCode Application { get; set; }
-        [Required(ErrorMessage = "Company is required")]
-        public Company? Company { get; set; }
-        [Required(ErrorMessage = "Plant is required")]
-        public Plant? Plant { get; set; }
+        //[Required(ErrorMessage = "Company is required")]
+        //public Company? Company { get; set; }
+        //[Required(ErrorMessage = "Plant is required")]
+        //public Plant? Plant { get; set; }
         [Required(ErrorMessage = "Menu is required")]
         public Menu? Menu { get; set; }
         public bool Create { get; set; } = false;

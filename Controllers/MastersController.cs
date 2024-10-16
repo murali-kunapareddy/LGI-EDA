@@ -73,7 +73,11 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("Consignee Type <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Consignee Type <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Consignee Type <b>" + model.Key + "</b> suspended successfully.");
+
         }
 
         [HttpPost]
@@ -157,7 +161,10 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("Incoterm <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Incoterm <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Incoterm <b>" + model.Key + "</b> suspended successfully.");
         }
         [HttpPost]
         public async Task<JsonResult> UpdateIncoterm(MasterItem model)
@@ -232,7 +239,10 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("PaperworkList <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Paper Work <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Paper Work <b>" + model.Key + "</b> suspended successfully.");
         }
         [HttpPost]
         public async Task<JsonResult> UpdatePaperworkList(MasterItem model)
@@ -306,7 +316,10 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("PaymentTerm <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Payment Term <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Payment Term <b>" + model.Key + "</b> suspended successfully.");
         }
         [HttpPost]
         public async Task<JsonResult> UpdatePaymentTerm(MasterItem model)
@@ -380,7 +393,10 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("Port <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Port <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Port <b>" + model.Key + "</b> suspended successfully.");
         }
         [HttpPost]
         public async Task<JsonResult> UpdatePort(MasterItem model)
@@ -454,7 +470,10 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("Product <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Product <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Product <b>" + model.Key + "</b> suspended successfully.");
         }
         [HttpPost]
         public async Task<JsonResult> UpdateProduct(MasterItem model)
@@ -528,7 +547,10 @@ namespace EDA.Controllers
             model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
-            return Json("ShipVia <b>" + model.Key + "</b> suspended successfully.");
+            if (model.IsActive)
+                return Json("Ship Via <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Ship Via <b>" + model.Key + "</b> suspended successfully.");
         }
         [HttpPost]
         public async Task<JsonResult> UpdateShipVia(MasterItem model)
@@ -550,6 +572,6 @@ namespace EDA.Controllers
             return Json("ShipVia " + model.Key + " updated successfully.");
         }
         #endregion
-       
+
     }
 }

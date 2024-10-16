@@ -3,7 +3,7 @@
     public interface IUnitOfWork
     {
         IMasterRepository MasterRepository { get; }
-        ICompanyRepository CompanyRepository { get; }
+        //ICompanyRepository CompanyRepository { get; }
         Task<int> SaveAsync();
     }
 }

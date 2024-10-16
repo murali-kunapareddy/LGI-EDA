@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Entities\Company.cs" />
+    <Compile Remove="Models\Entities\Plant.cs" />
+    <Compile Remove="Repositories\ICompanyRepository.cs" />
+    <Compile Remove="Repositories\Implementations\CompanyRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="jQuery" Version="3.7.1" />
     <PackageReference Include="jquery.ui.combined" Version="1.13.3" />

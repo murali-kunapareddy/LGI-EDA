@@ -22,15 +22,15 @@ namespace EDA.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<JsonResult> GetAllCompanies()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Json("Invalid Model: " + ModelState);
-            }
-            return Json(await _unitOfWork.CompanyRepository.GetAllAsync());
-        }
+        //[HttpGet]
+        //public async Task<JsonResult> GetAllCompanies()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Json("Invalid Model: " + ModelState);
+        //    }
+        //    return Json(await _unitOfWork.CompanyRepository.GetAllAsync());
+        //}
 
         public IActionResult Countries()
         {

@@ -1,6 +1,6 @@
 ﻿@using Newtonsoft.Json
 @using WISSEN.EDA.Models.Entities
-@model Company
+@* @model Company *@
 @{
     ViewData["Title"] = "Companies";
     var mi = new MasterItem();
@@ -105,7 +105,7 @@
 </div>
 
 @* popup modal *@
-<div class="modal" id="CompanyModal">
+@* <div class="modal" id="CompanyModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -126,11 +126,11 @@
                 <div class="row justify-content-around">
                     <div class="mb-2 col-md-6">
                         <label asp-for="AddressLine1"></label>
-                        <input type="number" asp-for="AddressLine1" placeholder="Address Line 1" class="form-control" />
+                        <input type="text" asp-for="AddressLine1" placeholder="Address Line 1" class="form-control" />
                     </div>
                     <div class="mb-2 col-md-6">
                         <label asp-for="AddressLine2"></label>
-                        <input type="number" asp-for="AddressLine2" placeholder="Address Line 2" class="form-control" />
+                        <input type="text" asp-for="AddressLine2" placeholder="Address Line 2" class="form-control" />
                     </div>
                 </div>
                 <div class="row justify-content-around">
@@ -145,8 +145,8 @@
                 </div>
                 <div class="row justify-content-around">
                     <div class="mb-2 col-md-6">
-                        <label asp-for="Country"></label>
-                        <select name="Country" asp-for="Country" id="Country" title="Country" class="form-control"></select>
+                        <label asp-for="CountryCode"></label>
+                        <select name="Country" asp-for="CountryCode" id="Country" title="Country" class="form-control"></select>
                     </div>
                     <div class="mb-2 col-md-6">
                         <label asp-for="Zip"></label>
@@ -181,7 +181,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
 
 @* list, edit & delete section *@
 <div class="text-center">

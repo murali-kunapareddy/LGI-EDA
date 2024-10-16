@@ -140,23 +140,43 @@ function UpdateShipVia() {
 function SuspendShipVia(id) {
     // without changing id & name suspend the record
     //
-    $.ajax({
-        type: 'get',
-        url: '/Masters/SuspendShipVia?id=' + id,
-        contentType: 'application/json;charset=utf-8',
-        dataType: 'json',
-        success: function (response) {
-            if (response == null || response == undefined) {
-                alert("Unable to read the data");
-            } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
-            } else {
-                GetAllShipVias();
-                alert(response);
-            }
+    $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
+        open: function () {
+            $(this).closest(".ui-dialog")
+                .find(".ui-dialog-titlebar-close")
+                .removeClass("ui-dialog-titlebar-close")
+                .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
         },
-        error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+            "Yes, Do this!": function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/Masters/SuspendShipVia?id=' + id,
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response == null || response == undefined) {
+                            alert("Unable to read the data");
+                        } else if (response.length == 0) {
+                            alert("Data not available for Id: " + id);
+                        } else {
+                            GetAllShipVias();
+                            $("<div title='Success'>" + response + "</div>").dialog();
+                        }
+                    },
+                    error: function (xhr) {
+                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+                    }
+                });
+                $(this).dialog("close");
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
         }
     });
 }
