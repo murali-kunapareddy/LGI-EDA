@@ -20,6 +20,8 @@ namespace WISSEN.EDA.Controllers
             return View();
         }
 
+        #region ====== Masters ======
+
         public IActionResult Masters()
         {
             return View();
@@ -124,5 +126,7 @@ namespace WISSEN.EDA.Controllers
             await _unitOfWork.SaveAsync();
             return Json($"A {model.Name} with <b>{model.Key}</b> is {status} successfully.");
         }
+
+        #endregion
     }
 }

@@ -7,13 +7,13 @@ namespace WISSEN.EDA.Repositories.Implementations
     {
         private readonly AppDBContext _dbContext;
         public IMasterRepository MasterRepository { get; private set; }
-        //public ICompanyRepository CompanyRepository { get; private set; }
+        public ICompanyRepository CompanyRepository { get; private set; }
 
         public UnitOfWork(AppDBContext dbContext)
         {
             _dbContext = dbContext;
             MasterRepository = new MasterRepository(_dbContext);
-            //CompanyRepository = new CompanyRepository(_dbContext);
+            CompanyRepository = new CompanyRepository(_dbContext);
         }
 
 

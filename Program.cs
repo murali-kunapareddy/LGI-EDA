@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // db context
 builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EDA-DEV-MK")), 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LGI-EDA-DB")),
     ServiceLifetime.Transient);
 // register repostories
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
