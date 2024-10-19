@@ -103,10 +103,86 @@ namespace EDA.Controllers
         #endregion
 
         #region ***** ContainerSizes *****
+
         public IActionResult ContainerSizes()
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetAllContainerSizes()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            return Json(await _unitOfWork.MasterRepository.GetAllAsync("CONTAINERSIZE"));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddContainerSize(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.SaveAsync();
+            return Json("Container size " + model.Key + " saved successfully.");
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> EditContainerSize(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            return Json(model);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> UpdateContainerSize(MasterItem model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+            ct.Key = model.Key;
+            ct.Value = model.Value;
+            ct.Sequence = model.Sequence;
+            ct.Notes = model.Notes;
+            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedOn = DateTime.Now;
+            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.SaveAsync();
+            return Json("Container size " + model.Key + " updated successfully.");
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> SuspendContainerSize(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+
+            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            model.IsActive = !model.IsActive;
+            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedOn = DateTime.Now;
+            await _unitOfWork.SaveAsync();
+            if (model.IsActive)
+                return Json("Container size <b>" + model.Key + "</b> reinstated successfully.");
+            else
+                return Json("Container size <b>" + model.Key + "</b> suspended successfully.");
+        }
+
         #endregion
 
         #region ***** Incoterms *****
@@ -215,6 +291,7 @@ namespace EDA.Controllers
             await _unitOfWork.SaveAsync();
             return Json("PaperworkList " + model.Key + " saved successfully.");
         }
+
         [HttpGet]
         public async Task<JsonResult> EditPaperworkList(int id)
         {
@@ -226,6 +303,7 @@ namespace EDA.Controllers
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             return Json(model);
         }
+
         [HttpGet]
         public async Task<JsonResult> SuspendPaperworkList(int id)
         {
@@ -244,6 +322,7 @@ namespace EDA.Controllers
             else
                 return Json("Paper Work <b>" + model.Key + "</b> suspended successfully.");
         }
+
         [HttpPost]
         public async Task<JsonResult> UpdatePaperworkList(MasterItem model)
         {

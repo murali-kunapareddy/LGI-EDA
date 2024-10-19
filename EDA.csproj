@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Entities\Company.cs" />
     <Compile Remove="Models\Entities\Plant.cs" />
-    <Compile Remove="Repositories\ICompanyRepository.cs" />
-    <Compile Remove="Repositories\Implementations\CompanyRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

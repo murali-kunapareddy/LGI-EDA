@@ -1,33 +1,33 @@
 ﻿// form load
 $(function () {
-    GetAllPaperworkLists();
+    GetAllContainerSizes();
 });
 
 // get all consignee types
-function GetAllPaperworkLists() {
+function GetAllContainerSizes() {
     $.ajax({
         type: 'get',
-        url: '/Masters/GetAllPaperworkLists',
+        url: '/Masters/GetAllContainerSizes',
         dataType: 'json',
         success: function (response) {
             gridApi.setGridOption("rowData", response);
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
 
 // show popup
-$("#btnAddPaperworkList").on("click", function () {
+$("#btnAddContainerSize").on("click", function () {
     $("#Save").css('display', 'block');
     $("#Update").css('display', 'none');
-    $("#PaperworkListModal").modal("show");
-    $("#modalTitle").text("Add PaperworkList");
+    $("#ContainerSizeModal").modal("show");
+    $("#modalTitle").text("Add Container Size");
 });
 
 // add consignee type
-function AddPaperworkList() {
+function AddContainerSize() {
     // do validation
     let result = Validate();
     if (!result) {
@@ -36,7 +36,7 @@ function AddPaperworkList() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
-    formData.name = "PAPERWORK";
+    formData.name = "CONTAINERSIZE";
     formData.key = $("#Key").val();
     formData.value = $("#Value").val();
     formData.sequence = $("#Sequence").val();
@@ -45,14 +45,14 @@ function AddPaperworkList() {
 
     $.ajax({
         type: 'post',
-        url: '/Masters/AddPaperworkList',
+        url: '/Masters/AddContainerSize',
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
                 alert("Unable to save " + formData.name);
             } else {
                 HideModal();
-                GetAllPaperworkLists();
+                GetAllContainerSizes();
                 displayStatus(response,"success");
             }
         },
@@ -63,21 +63,21 @@ function AddPaperworkList() {
 }
 
 // edit master item
-function EditPaperworkList(id) {
+function EditContainerSize(id) {
     //
     $.ajax({
-        url: '/Masters/EditPaperworkList?id=' + id,
+        url: '/Masters/EditContainerSize?id=' + id,
         type: 'get',
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
         success: function (response) {
             if (response == null || response == undefined) {
-                alert("Unable to read the data");
+                displayStatus("Unable to read the data","info");
             } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
+                displayStatus("Data not available for Id: " + id,"info");
             } else {
-                $("#PaperworkListModal").modal("show");
-                $("#modalTitle").text('Update Product');
+                $("#ContainerSizeModal").modal("show");
+                $("#modalTitle").text('Update Container Size');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
                 //
@@ -91,13 +91,13 @@ function EditPaperworkList(id) {
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText,"error");
         }
     });
 }
 
 // update Incoterm type
-function UpdatePaperworkList() {
+function UpdateContainerSize() {
     // without changing id & name update the record
     // get form data
     let result = Validate();
@@ -115,7 +115,7 @@ function UpdatePaperworkList() {
     formData.createdBy = $("#CreatedBy").val();
     formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
     // set url
-    let URL = '/Masters/UpdatePaperworkList';
+    let URL = '/Masters/UpdateContainerSize';
     //
     $.ajax({
         type: 'post',
@@ -126,18 +126,18 @@ function UpdatePaperworkList() {
                 alert("Unable to update " + formData.key);
             } else {
                 HideModal();
-                GetAllPaperworkLists();
-                alert(response);
+                GetAllContainerSizes();
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText,"error");
         }
     });
 }
 
 // suspend consignee type
-function SuspendPaperworkList(id) {
+function SuspendContainerSize(id) {
     // without changing id & name suspend the record
     //
     $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
@@ -155,7 +155,7 @@ function SuspendPaperworkList(id) {
             "Yes, Do this!": function () {
                 $.ajax({
                     type: 'get',
-                    url: '/Masters/SuspendPaperworkList?id=' + id,
+                    url: '/Masters/SuspendContainerSize?id=' + id,
                     contentType: 'application/json;charset=utf-8',
                     dataType: 'json',
                     success: function (response) {
@@ -164,12 +164,12 @@ function SuspendPaperworkList(id) {
                         } else if (response.length == 0) {
                             alert("Data not available for Id: " + id);
                         } else {
-                            GetAllPaperworkLists();
-                            $("<div title='Success'>" + response + "</div>").dialog();
+                            GetAllContainerSizes();
+                            displayStatus(response, "success");
                         }
                     },
                     error: function (xhr) {
-                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText,"error");
                     }
                 });
                 $(this).dialog("close");
@@ -196,7 +196,7 @@ function ClearModal() {
 // hide modal
 function HideModal() {
     ClearModal();
-    $("#PaperworkListModal").modal("hide");
+    $("#ContainerSizeModal").modal("hide");
 }
 
 // validation

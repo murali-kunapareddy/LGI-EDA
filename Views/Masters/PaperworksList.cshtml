@@ -40,6 +40,7 @@
 @section Scripts {
     <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <script src="~/js/PaperworkList.js"></script>
+    <script src="~/js/commons.js"></script>
     <script>
         // grid options
         const gridOptions = {
@@ -79,16 +80,15 @@
 
 <div class="text-center">
     <h1 class="display-5">PaperworkLists</h1>
-    <input type="hidden" id="miName" value="PAPERWORKLIST" />
+    <input type="hidden" id="miName" value="PAPERWORK" />
 </div>
 @* add section *@
-<div class="mb-4">
-    <div>
-        <div class="col-md-2 offset-10 d-flex justify-content-end">
-            <button id="btnAddPaperworkList" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#add">
-                <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD PAPERWORKLISTS
-            </button>
-        </div>
+<div class="mb-4 row">
+    <div class="col-md-10 d-flex" id="message-container"></div>
+    <div class="col-md-2 d-flex justify-content-end">
+        <button id="btnAddPaperworkList" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#add">
+            <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD PAPERWORKLISTS
+        </button>
     </div>
 </div>
 
@@ -100,7 +100,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" asp-for="Id" value="0" />
-                <input type="hidden" asp-for="Name" value="PAPERWORKLIST" />
+                <input type="hidden" asp-for="Name" value="PAPERWORK" />
                 <input type="hidden" asp-for="CreatedBy" />
                 <div class="mb-2">
                     <label asp-for="Key"></label>
