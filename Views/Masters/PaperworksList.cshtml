@@ -39,8 +39,8 @@
 
 @section Scripts {
     <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
-    <script src="~/js/PaperworkList.js"></script>
     <script src="~/js/commons.js"></script>
+    <script src="~/js/PaperworkList.js"></script>
     <script>
         // grid options
         const gridOptions = {
@@ -103,11 +103,11 @@
                 <input type="hidden" asp-for="Name" value="PAPERWORK" />
                 <input type="hidden" asp-for="CreatedBy" />
                 <div class="mb-2">
-                    <label asp-for="Key"></label>
+                    <label asp-for="Key">PaperworkList Name</label>
                     <input type="text" asp-for="Key" placeholder="PaperworkList Name" class="form-control" />
                 </div>
                 <div class="mb-2">
-                    <label asp-for="Value"></label>
+                    <label asp-for="Value">PaperworkList Value</label>
                     <input type="text" asp-for="Value" placeholder="PaperworkList Value" class="form-control" />
                 </div>
                 <div class="mb-2">

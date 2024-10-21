@@ -11,9 +11,10 @@ function GetAllConsigneeTypes() {
         dataType: 'json',
         success: function (response) {
             gridApi.setGridOption("rowData", response);
+            //displayStatus("Data retrieval completed", "success");
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText,"error");
         }
     });
 }
@@ -53,11 +54,11 @@ function AddConsigneeType() {
             } else {
                 HideModal();
                 GetAllConsigneeTypes();
-                alert(response);
+                displayStatus(response,"success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText,"error");
         }
     });
 }
@@ -72,9 +73,9 @@ function EditConsigneeType(id) {
         dataType: 'json',
         success: function (response) {
             if (response == null || response == undefined) {
-                alert("Unable to read the data");
+                displayStatus("Unable to read the data", "info");
             } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
+                displayStatus("Data not available for Id: " + id, "info");
             } else {
                 $("#ConsigneeTypeModal").modal("show");
                 $("#modalTitle").text('Update Consignee Type');
@@ -91,7 +92,7 @@ function EditConsigneeType(id) {
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -127,11 +128,11 @@ function UpdateConsigneeType() {
             } else {
                 HideModal();
                 GetAllConsigneeTypes();
-                alert(response);
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -160,16 +161,17 @@ function SuspendConsigneeType(id) {
                     dataType: 'json',
                     success: function (response) {
                         if (response == null || response == undefined) {
-                            alert("Unable to read the data");
+                            displayStatus("Unable to read the data","error");
                         } else if (response.length == 0) {
-                            alert("Data not available for Id: " + id);
+                            displayStatus("Data not available for Id: " + id,"error");
                         } else {
                             GetAllConsigneeTypes();
-                            $("<div title='Success'>" + response + "</div>").dialog();
+                            //$("<div title='Success'>" + response + "</div>").dialog();
+                            displayStatus(response, "success");
                         }
                     },
                     error: function (xhr) {
-                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText,"error");
                     }
                 });
                 $(this).dialog("close");

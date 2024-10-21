@@ -39,6 +39,7 @@
 
 @section Scripts {
     <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="~/js/commons.js"></script>
     <script src="~/js/ShipVia.js"></script>
     <script>
         // grid options
@@ -82,14 +83,13 @@
     <input type="hidden" id="miName" value="SHIPVIA" />
 </div>
 @* add section *@
-<div class="mb-4">
-    <div>
+<div class="mb-4 row">
+    <div class="col-md-10 d-flex" id="message-container"></div>
         <div class="col-md-2 offset-10 d-flex justify-content-end">
             <button id="btnAddShipVia" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addShipVia">
                 <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD SHIPVIAS
             </button>
         </div>
-    </div>
 </div>
 
 <div class="modal" id="ShipViaModal">
@@ -103,11 +103,11 @@
                 <input type="hidden" asp-for="Name" value="SHIPVIA" />
                 <input type="hidden" asp-for="CreatedBy" />
                 <div class="mb-2">
-                    <label asp-for="Key"></label>
+                    <label asp-for="Key">ShipVia Name</label>
                     <input type="text" asp-for="Key" placeholder="ShipVia Name" class="form-control" />
                 </div>
                 <div class="mb-2">
-                    <label asp-for="Value"></label>
+                    <label asp-for="Value">ShipVia Value</label>
                     <input type="text" asp-for="Value" placeholder="ShipVia Value" class="form-control" />
                 </div>
                 <div class="mb-2">

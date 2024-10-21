@@ -13,7 +13,7 @@ function GetAllPorts() {
             gridApi.setGridOption("rowData", response);
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -53,11 +53,11 @@ function AddPort() {
             } else {
                 HideModal();
                 GetAllPorts();
-                alert(response);
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -72,9 +72,9 @@ function EditPort(id) {
         dataType: 'json',
         success: function (response) {
             if (response == null || response == undefined) {
-                alert("Unable to read the data");
+                displayStatus("Unable to read the data", "info");
             } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
+                displayStatus("Data not available for Id: " + id, "info");
             } else {
                 $("#PortModal").modal("show");
                 $("#modalTitle").text('Update Product');
@@ -91,7 +91,7 @@ function EditPort(id) {
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -127,11 +127,11 @@ function UpdatePort() {
             } else {
                 HideModal();
                 GetAllPorts();
-                alert(response);
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -160,16 +160,17 @@ function SuspendPort(id) {
                     dataType: 'json',
                     success: function (response) {
                         if (response == null || response == undefined) {
-                            alert("Unable to read the data");
+                            displayStatus("Unable to read the data", "error");
                         } else if (response.length == 0) {
-                            alert("Data not available for Id: " + id);
+                            displayStatus("Data not available for Id: " + id, "error");
                         } else {
                             GetAllPorts();
-                            $("<div title='Success'>" + response + "</div>").dialog();
+                            // $("<div title='Success'>" + response + "</div>").dialog();
+                            displayStatus(response, "success");
                         }
                     },
                     error: function (xhr) {
-                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
                     }
                 });
                 $(this).dialog("close");
