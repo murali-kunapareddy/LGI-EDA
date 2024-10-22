@@ -13,7 +13,7 @@ function GetAllCompanies() {
             gridApi.setGridOption("rowData", response);
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -24,6 +24,21 @@ $("#btnAddCompany").on("click", function () {
     $("#Update").css('display', 'none');
     $("#CompanyModal").modal("show");
     $("#modalTitle").text("Add Company");
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCountriesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#CountryCode').empty();
+            $('#CountryCode').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#CountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
 });
 
 // add company
@@ -41,7 +56,7 @@ function AddCompany() {
     formData.addressLine2 = $("#AddressLine2").val();
     formData.city = $("#City").val();
     formData.state = $("#State").val();
-    formData.country = $("#Country").val();
+    formData.countryCode = $("#CountryCode").val();
     formData.zip = $("#Zip").val();
     formData.phone = $("#Phone").val();
     formData.fax = $("#Fax").val();
@@ -55,73 +70,100 @@ function AddCompany() {
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
-                alert("Unable to save " + formData.name);
+                displayStatus("Unable to save " + formData.name, "error");
             } else {
                 HideModal();
                 GetAllCompanies();
-                alert(response);
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
 
-// edit master item
-function EditConsigneeType(id) {
-    //
+// edit company
+function EditCompany(id) {
+    // get country codes
     $.ajax({
-        url: '/Masters/EditConsigneeType?id=' + id,
+        type: 'get',
+        url: '/BackOps/GetCountriesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#CountryCode').empty();
+            $('#CountryCode').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#CountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
+    // get company
+    $.ajax({
+        url: '/Settings/EditCompany?id=' + id,
         type: 'get',
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
         success: function (response) {
             if (response == null || response == undefined) {
-                alert("Unable to read the data");
+                displayStatus("Unable to read the data", "error");
             } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
+                displayStatus("Data not available for Id: " + id, "error");
             } else {
-                $("#ConsigneeTypeModal").modal("show");
-                $("#modalTitle").text('Update Consignee Type');
+                $("#CompanyModal ").modal("show");
+                $("#modalTitle").text('Update Company');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
                 //
-                $("#Id").val(response.id);
+                $("#Code").val(response.code);
                 $("#Name").val(response.name);
-                $("#Key").val(response.key);
-                $("#Value").val(response.value);
-                $("#Sequence").val(response.sequence);
-                $("#Notes").val(response.notes);
+                $("#AddressLine1").val(response.addressLine1);
+                $("#AddressLine2").val(response.addressLine2);
+                $("#City").val(response.city);
+                $("#State").val(response.state);
+                $("#CountryCode").find('option[value="' + response.countryCode + '"]').attr('selected', 'selected');
+                $("#Zip").val(response.zip);
+                $("#Phone").val(response.phone);
+                $("#Fax").val(response.fax);
+                $("#Email").val(response.email);
+                $("#Logo").val(response.logo);
                 $("#CreatedBy").val(response.createdBy);
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
 
-// update consignee type
-function UpdateConsigneeType() {
+// update company
+function UpdateCompany() {
     // without changing id & name update the record
-    // get form data
+    // validate
     let result = Validate();
     if (!result) {
         return false;
     }
     // get form data
     let formData = new Object();
-    formData.id = $("#Id").val();
+    formData.code = $("#Code").val();
     formData.name = $("#Name").val();
-    formData.key = $("#Key").val();
-    formData.value = $("#Value").val();
-    formData.sequence = $("#Sequence").val();
-    formData.notes = $("#Notes").val();
-    formData.createdBy = $("#CreatedBy").val();
-    formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.addressLine1 = $("#AddressLine1").val();
+    formData.addressLine2 = $("#AddressLine2").val();
+    formData.city = $("#City").val();
+    formData.state = $("#State").val();
+    formData.countryCode = $("#CountryCode").val();
+    formData.zip = $("#Zip").val();
+    formData.phone = $("#Phone").val();
+    formData.fax = $("#Fax").val();
+    formData.email = $("#Email").val();
+    formData.logo = $("#Logo").val();
+    formData.createdBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
     // set url
-    let URL = '/Masters/UpdateConsigneeType';
+    let URL = '/Settings/UpdateCompany';
     //
     $.ajax({
         type: 'post',
@@ -129,11 +171,11 @@ function UpdateConsigneeType() {
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
-                alert("Unable to update " + formData.key);
+                displayStatus("Unable to update " + formData.code + ", " + formData.name, "error");
             } else {
                 HideModal();
-                GetAllConsigneeTypes();
-                alert(response);
+                GetAllCompanies();
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
@@ -143,40 +185,64 @@ function UpdateConsigneeType() {
 }
 
 // suspend consignee type
-function SuspendConsigneeType(id) {
-    // without changing id & name suspend the record
-    //
-    $.ajax({
-        type: 'get',
-        url: '/Masters/SuspendConsigneeType?id=' + id,
-        contentType: 'application/json;charset=utf-8',
-        dataType: 'json',
-        success: function (response) {
-            if (response == null || response == undefined) {
-                alert("Unable to read the data");
-            } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
-            } else {
-                GetAllConsigneeTypes();
-                alert(response);
-            }
+function SuspendCompany(id) {
+    $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
+        open: function () {
+            $(this).closest(".ui-dialog")
+                .find(".ui-dialog-titlebar-close")
+                .removeClass("ui-dialog-titlebar-close")
+                .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
         },
-        error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+            "Yes, Do this!": function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/Settings/SuspendCompany?id=' + id,
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response == null || response == undefined) {
+                            displayStatus("Unable to read the data", "error");
+                        } else if (response.length == 0) {
+                            displayStatus("Data not available for Id: " + id, "error");
+                        } else {
+                            GetAllCompanies();
+                            displayStatus(response, "success");
+                        }
+                    },
+                    error: function (xhr) {
+                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+                    }
+                });
+                $(this).dialog("close");
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
         }
     });
 }
 
 // clear modal
 function ClearModal() {
-    $("#Key").val('');
-    $("#Key").css('border-color', 'lightgrey');
-    $("#Value").val('');
-    $("#Value").css('border-color', 'lightgrey');
-    $("#Sequence").val('');
-    $("#Sequence").css('border-color', 'lightgrey');
-    $("#Notes").val('');
-    $("#Notes").css('border-color', 'lightgrey');
+    $("#Code").val('');
+    $("#Code").css('border-color', 'lightgrey');
+    $("#Name").val('');
+    $("#Name").css('border-color', 'lightgrey');
+    $("#AddressLine1").val('');
+    $("#AddressLine1").css('border-color', 'lightgrey');
+    $("#City").val('');
+    $("#City").css('border-color', 'lightgrey');
+    $("#State").val('');
+    $("#State").css('border-color', 'lightgrey');
+    $("#CountryCode").val('');
+    $("#CountryCode").css('border-color', 'lightgrey');
+    $("#Phone").val('');
+    $("#Phone").css('border-color', 'lightgrey');
     $("#Save").css('display', 'none');
     $("#Update").css('display', 'block');
 }
@@ -184,54 +250,84 @@ function ClearModal() {
 // hide modal
 function HideModal() {
     ClearModal();
-    $("#ConsigneeTypeModal").modal("hide");
+    $("#CompanyModal").modal("hide");
 }
 
 // validation
 function Validate() {
     let isValid = true;
 
-    if ($("#Key").val().trim() == "") {
-        $("#Key").css('border-color', 'red');
+    if ($("#Code").val().trim() == "") {
+        $("#Code").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Key").css('border-color', 'lightgrey');
+        $("#Code").css('border-color', 'lightgrey');
     }
 
-    if ($("#Value").val().trim() == "") {
-        $("#Value").css('border-color', 'red');
+    if ($("#Name").val().trim() == "") {
+        $("#Name").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Value").css('border-color', 'lightgrey');
+        $("#Name").css('border-color', 'lightgrey');
     }
 
-    if ($("#Sequence").val().trim() == "") {
-        $("#Sequence").css('border-color', 'red');
+    if ($("#AddressLine1").val().trim() == "") {
+        $("#AddressLine1").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Sequence").css('border-color', 'lightgrey');
+        $("#AddressLine1").css('border-color', 'lightgrey');
     }
 
-    if ($("#Notes").val().trim() == "") {
-        $("#Notes").css('border-color', 'red');
+    if ($("#City").val().trim() == "") {
+        $("#City").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Notes").css('border-color', 'lightgrey');
+        $("#City").css('border-color', 'lightgrey');
+    }
+
+    if ($("#State").val().trim() == "") {
+        $("#State").css('border-color', 'red');
+        isValid = false;
+    } else {
+        $("#State").css('border-color', 'lightgrey');
+    }
+
+    if ($("#CountryCode").val().trim() == "") {
+        $("#CountryCode").css('border-color', 'red');
+        isValid = false;
+    } else {
+        $("#CountryCode").css('border-color', 'lightgrey');
+    }
+
+    if ($("#Phone").val().trim() == "") {
+        $("#Phone").css('border-color', 'red');
+        isValid = false;
+    } else {
+        $("#Phone").css('border-color', 'lightgrey');
     }
 
     return isValid;
 }
 
-$("#Key").on("change", function () {
+$("#Code").on("change", function () {
     Validate();
 });
-$("#Value").on("change", function () {
+$("#Name").on("change", function () {
     Validate();
 });
-$("#Sequence").on("change", function () {
+$("#AddressLine1").on("change", function () {
     Validate();
 });
-$("#Notes").on("change", function () {
+$("#City").on("change", function () {
+    Validate();
+});
+$("#State").on("change", function () {
+    Validate();
+});
+$("#CountryCode").on("change", function () {
+    Validate();
+});
+$("#Phone").on("change", function () {
     Validate();
 });
 

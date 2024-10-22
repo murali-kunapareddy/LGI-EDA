@@ -40,6 +40,7 @@
 
 @section Scripts {
     <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="~/js/commons.js"></script>
     <script src="~/js/Company.js"></script>
     <script>
         // grid options
@@ -71,7 +72,7 @@
                 { field: "city", headerName: "City", flex: 1 },
                 { field: "state", headerName: "State", flex: 1 },
                 { field: "zip", headerName: "Zip", maxWidth: 100 },
-                { field: "country", headerName: "Country", flex: 1 },
+                { field: "countryCode", headerName: "Country", flex: 1 },
                 { field: "phone", headerName: "Phone", maxWidth: 150 },
                 { field: "fax", headerName: "Fax", maxWidth: 150 },
                 { field: "email", headerName: "Email", flex: 2 },
@@ -96,9 +97,10 @@
 
 @* add section *@
 <div class="mb-4">
-    <div>
+    <div class="row">
+        <div class="col-md-10 d-flex" id="message-container"></div>
         <div class="col-md-2 offset-10 d-flex justify-content-end">
-            <button id="btnAddCompany" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnAddCompany">
+            <button id="btnAddCompany" class="btn btn-primary" >
                 <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD COMPANY
             </button>
         </div>
@@ -146,7 +148,7 @@
                 </div>
                 <div class="row justify-content-around">
                     <div class="mb-2 col-md-6">
-                        <label asp-for="CountryCode"></label>
+                        <label asp-for="CountryCode">Country</label>
                         <select name="Country" asp-for="CountryCode" id="CountryCode" title="Country" class="form-control"></select>
                     </div>
                     <div class="mb-2 col-md-6">

@@ -7,7 +7,6 @@ namespace WISSEN.EDA.Repositories
         Task<MasterItem> GetByIdAsync(int id);
         Task<List<MasterItem>> GetAllAsync(string masterItemName);
         Task<List<MasterItem>> GetAllAsync();
-        List<SelectListItem> GetDDLMasters();
         Task AddAsync(MasterItem masterItem);
         Task UpdateAsync(MasterItem masterItem);
         Task DeleteAsync(int id);

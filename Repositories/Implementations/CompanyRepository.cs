@@ -14,10 +14,18 @@ namespace WISSEN.EDA.Repositories.Implementations
             _dbContext = dbContext;
         }
 
-        public async Task AddAsync(Company company)
+        public async Task<string> AddAsync(Company company)
         {
-            await _dbContext.Companies.AddAsync(company);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.Companies.AddAsync(company);
+                await _dbContext.SaveChangesAsync();
+                return "success";
+            }
+            catch (Exception ex)
+            {
+                return $"error:{ex.Message}";
+            }
         }
 
         public async Task DeleteAsync(int id)
@@ -46,18 +54,6 @@ namespace WISSEN.EDA.Repositories.Implementations
         {
             _dbContext.Entry(company).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
-        }
-
-        public List<SelectListItem> GetDDLCountries()
-        {
-            var list = _dbContext.Countries.Where(m => m.IsActive && !m.IsDeleted)
-                .Select(m => new SelectListItem
-                {
-                    Text = m.Code,
-                    Value = m.Name
-                }).ToList();
-
-            return list;
         }
     }
 }

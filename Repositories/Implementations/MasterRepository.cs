@@ -53,17 +53,5 @@ namespace WISSEN.EDA.Repositories.Implementations
             _dbContext.Entry(masterItem).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
-
-        public List<SelectListItem> GetDDLMasters()
-        {
-            var list = _dbContext.ConfigurationItems.Where(m=>m.Name=="Masters")
-                .Select(m => new SelectListItem
-            {
-                Text = m.Key,
-                Value = m.Value
-            }).ToList();
-
-            return list;
-        }
     }
 }

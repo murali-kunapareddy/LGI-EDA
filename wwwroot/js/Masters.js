@@ -13,7 +13,7 @@ function GetAllMasterItems() {
             gridApi.setGridOption("rowData", response);
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using WISSEN.EDA.Models.Entities;
 using WISSEN.EDA.Repositories;
-using WISSEN.EDA.Repositories.Implementations;
 
 namespace WISSEN.EDA.Controllers
 {
@@ -34,17 +32,6 @@ namespace WISSEN.EDA.Controllers
                 return Json("Invalid Model: " + ModelState);
             }
             return Json(await _unitOfWork.MasterRepository.GetAllAsync());
-        }
-
-        [HttpGet]
-        public JsonResult GetMastersDDL()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Json("Invalid Model: " + ModelState);
-            }
-            var masters = _unitOfWork.MasterRepository.GetDDLMasters();
-            return Json(masters);
         }
 
         [HttpPost]
@@ -125,6 +112,32 @@ namespace WISSEN.EDA.Controllers
             var status = model.IsDeleted ? "DELETED" : "REINSTERED";
             await _unitOfWork.SaveAsync();
             return Json($"A {model.Name} with <b>{model.Key}</b> is {status} successfully.");
+        }
+
+        #endregion
+
+        #region ====== commons ======
+
+        [HttpGet]
+        public JsonResult GetMastersDDL()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            var masters = _unitOfWork.CommonRepository.GetDDLMasters();
+            return Json(masters);
+        }
+
+        [HttpGet]
+        public JsonResult GetCountriesDDL()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            var countries = _unitOfWork.CommonRepository.GetDDLCountries();
+            return Json(countries);
         }
 
         #endregion

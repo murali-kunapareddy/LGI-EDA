@@ -6,8 +6,7 @@ namespace WISSEN.EDA.Repositories
     {
         Task<Company> GetByIdAsync(int id);
         Task<List<Company>> GetAllAsync();
-        List<SelectListItem> GetDDLCountries();
-        Task AddAsync(Company company);
+        Task<string> AddAsync(Company company);
         Task UpdateAsync(Company company);
         Task DeleteAsync(int id);
     }
