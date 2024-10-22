@@ -72,9 +72,9 @@ function EditPaperworkList(id) {
         dataType: 'json',
         success: function (response) {
             if (response == null || response == undefined) {
-                alert("Unable to read the data");
+                displayStatus("Unable to read the data", "info");
             } else if (response.length == 0) {
-                alert("Data not available for Id: " + id);
+                displayStatus("Data not available for Id: " + id, "info");
             } else {
                 $("#PaperworkListModal").modal("show");
                 $("#modalTitle").text('Update Product');
@@ -91,7 +91,7 @@ function EditPaperworkList(id) {
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -127,11 +127,11 @@ function UpdatePaperworkList() {
             } else {
                 HideModal();
                 GetAllPaperworkLists();
-                alert(response);
+                displayStatus(response, "success");
             }
         },
         error: function (xhr) {
-            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
 }
@@ -160,16 +160,17 @@ function SuspendPaperworkList(id) {
                     dataType: 'json',
                     success: function (response) {
                         if (response == null || response == undefined) {
-                            alert("Unable to read the data");
+                            displayStatus("Unable to read the data", "error");
                         } else if (response.length == 0) {
-                            alert("Data not available for Id: " + id);
+                            displayStatus("Data not available for Id: " + id, "error");
                         } else {
                             GetAllPaperworkLists();
-                            $("<div title='Success'>" + response + "</div>").dialog();
+                            // $("<div title='Success'>" + response + "</div>").dialog();
+                            displayStatus(response, "success");
                         }
                     },
                     error: function (xhr) {
-                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
                     }
                 });
                 $(this).dialog("close");
