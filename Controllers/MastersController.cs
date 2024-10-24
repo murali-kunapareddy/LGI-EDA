@@ -18,7 +18,7 @@ namespace EDA.Controllers
             return View();
         }
 
-        #region ***** ConsigneeTypes *****
+        #region ========== ConsigneeTypes ==========
 
         public IActionResult ConsigneeTypes()
         {
@@ -70,7 +70,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -93,7 +93,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -102,7 +102,7 @@ namespace EDA.Controllers
 
         #endregion
 
-        #region ***** ContainerSizes *****
+        #region ========== ContainerSizes ==========
 
         public IActionResult ContainerSizes()
         {
@@ -157,7 +157,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -174,7 +174,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -185,7 +185,7 @@ namespace EDA.Controllers
 
         #endregion
 
-        #region ***** Incoterms *****
+        #region ========== Incoterms ==========
         public IActionResult Incoterms()
         {
             return View();
@@ -234,7 +234,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -255,7 +255,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -264,7 +264,7 @@ namespace EDA.Controllers
 
         #endregion
 
-        #region ***** PaperworksList *****
+        #region ========== PaperworksList ==========
         public IActionResult PaperworksList()
         {
             return View();
@@ -314,7 +314,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -336,7 +336,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -344,7 +344,7 @@ namespace EDA.Controllers
         }
         #endregion
 
-        #region ***** PaymentTerms *****
+        #region ========== PaymentTerms ==========
         public IActionResult PaymentTerms()
         {
             return View();
@@ -392,7 +392,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -413,7 +413,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -421,7 +421,7 @@ namespace EDA.Controllers
         }
         #endregion
 
-        #region ***** Ports *****
+        #region ========== Ports ==========
         public IActionResult Ports()
         {
             return View();
@@ -446,7 +446,7 @@ namespace EDA.Controllers
 
             await _unitOfWork.MasterRepository.AddAsync(model);
             await _unitOfWork.SaveAsync();
-            return Json("Port " + model.Key + " saved successfully.");
+            return Json("Port " + model.Value + " saved successfully.");
         }
         [HttpGet]
         public async Task<JsonResult> EditPort(int id)
@@ -469,7 +469,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -490,7 +490,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -498,7 +498,7 @@ namespace EDA.Controllers
         }
         #endregion
 
-        #region ***** Products *****
+        #region ========== Products ==========
         public IActionResult Products()
         {
             return View();
@@ -510,20 +510,20 @@ namespace EDA.Controllers
             {
                 return Json("Invalid Model: " + ModelState);
             }
-            return Json(await _unitOfWork.MasterRepository.GetAllAsync("PRODUCT"));
+            return Json(await _unitOfWork.ProductRepository.GetAllAsync());
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddProduct(MasterItem model)
+        public async Task<JsonResult> AddProduct(Product model)
         {
             if (!ModelState.IsValid)
             {
                 return Json("Invalid Model: " + ModelState);
             }
 
-            await _unitOfWork.MasterRepository.AddAsync(model);
+            await _unitOfWork.ProductRepository.AddAsync(model);
             await _unitOfWork.SaveAsync();
-            return Json("Product " + model.Key + " saved successfully.");
+            return Json("Product " + model.Name + " saved successfully.");
         }
         [HttpGet]
         public async Task<JsonResult> EditProduct(int id)
@@ -533,7 +533,7 @@ namespace EDA.Controllers
                 return Json("Invalid Model: " + ModelState);
             }
 
-            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            var model = await _unitOfWork.ProductRepository.GetByIdAsync(id);
             return Json(model);
         }
         [HttpGet]
@@ -544,38 +544,37 @@ namespace EDA.Controllers
                 return Json("Invalid Model: " + ModelState);
             }
 
-            var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+            var model = await _unitOfWork.ProductRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
-                return Json("Product <b>" + model.Key + "</b> reinstated successfully.");
+                return Json("Product <b>" + model.Name + "</b> reinstated successfully.");
             else
-                return Json("Product <b>" + model.Key + "</b> suspended successfully.");
+                return Json("Product <b>" + model.Name + "</b> suspended successfully.");
         }
         [HttpPost]
-        public async Task<JsonResult> UpdateProduct(MasterItem model)
+        public async Task<JsonResult> UpdateProduct(Product model)
         {
             if (!ModelState.IsValid)
             {
                 return Json("Invalid Model: " + ModelState);
             }
 
-            var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
-            ct.Key = model.Key;
-            ct.Value = model.Value;
-            ct.Sequence = model.Sequence;
-            ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            var ct = await _unitOfWork.ProductRepository.GetByIdAsync(model.Id);
+            ct.Code = model.Code;
+            ct.Name = model.Name;
+            ct.CompanyCode = model.CompanyCode;
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
-            await _unitOfWork.MasterRepository.UpdateAsync(ct);
+            await _unitOfWork.ProductRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
-            return Json("Product " + model.Key + " updated successfully.");
+            return Json("Product " + model.Name + " updated successfully.");
         }
         #endregion
 
-        #region ***** ShipVia *****
+        #region ========== ShipVia ==========
         public IActionResult ShipVia()
         {
             return View();
@@ -623,7 +622,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             await _unitOfWork.SaveAsync();
             if (model.IsActive)
@@ -644,7 +643,7 @@ namespace EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();

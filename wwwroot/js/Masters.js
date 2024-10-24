@@ -57,7 +57,7 @@ function AddMasterItem() {
     formData.value = $("#Value").val();
     formData.sequence = $("#Sequence").val();
     formData.notes = $("#Notes").val();
-    formData.createdBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.createdBy = "murali.kunapareddy@vendor.lgiglobal.com";
 
     $.ajax({
         type: 'post',
@@ -144,7 +144,7 @@ function UpdateMasterItem() {
     formData.sequence = $("#Sequence").val();
     formData.notes = $("#Notes").val();
     formData.createdBy = $("#CreatedBy").val();
-    formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.modifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";
     // set url
     let URL = '/BackOps/UpdateMasterItem';
     //

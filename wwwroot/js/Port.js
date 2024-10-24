@@ -24,6 +24,22 @@ $("#btnAddPort").on("click", function () {
     $("#Update").css('display', 'none');
     $("#PortModal").modal("show");
     $("#modalTitle").text("Add Port");
+    //
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCountriesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#Key').empty();
+            $('#Key').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#Key').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
 });
 
 // add port type
@@ -64,6 +80,21 @@ function AddPort() {
 
 // edit master item
 function EditPort(id) {
+    // get country codes
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCountriesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#Key').empty();
+            $.each(response, function (index, item) {
+                $('#Key').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
     //
     $.ajax({
         url: '/Masters/EditPort?id=' + id,
@@ -83,7 +114,7 @@ function EditPort(id) {
                 //
                 $("#Id").val(response.id);
                 $("#Name").val(response.name);
-                $("#Key").val(response.key);
+                $("#Key").find('option[value="' + response.key + '"]').attr('selected', 'selected');
                 $("#Value").val(response.value);
                 $("#Sequence").val(response.sequence);
                 $("#Notes").val(response.notes);
@@ -165,7 +196,6 @@ function SuspendPort(id) {
                             displayStatus("Data not available for Id: " + id, "error");
                         } else {
                             GetAllPorts();
-                            // $("<div title='Success'>" + response + "</div>").dialog();
                             displayStatus(response, "success");
                         }
                     },
@@ -236,9 +266,15 @@ function Validate() {
 }
 
 $("#Key").on("change", function () {
+    let enteredPort = $('#Value').val();
+    let selectedCountry = $('#Key option:selected').text();
+    $("#Notes").val(enteredPort + ", " + selectedCountry);
     Validate();
 });
 $("#Value").on("change", function () {
+    let enteredPort = $('#Value').val();
+    let selectedCountry = $('#Key option:selected').text();
+    $("#Notes").val(enteredPort + ", " + selectedCountry);
     Validate();
 });
 $("#Sequence").on("change", function () {

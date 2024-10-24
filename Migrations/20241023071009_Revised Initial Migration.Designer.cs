@@ -12,8 +12,8 @@ using WISSEN.EDA.Data;
 namespace WISSEN.EDA.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240711014535_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20241023071009_Revised Initial Migration")]
+    partial class RevisedInitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace WISSEN.EDA.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("MenuMenu", b =>
-                {
-                    b.Property<string>("ChildrenCode")
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ParentsCode")
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("ChildrenCode", "ParentsCode");
-
-                    b.HasIndex("ParentsCode");
-
-                    b.ToTable("MenuMenu");
-                });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
                 {
@@ -100,7 +85,6 @@ namespace WISSEN.EDA.Migrations
                 {
                     b.Property<int>("Code")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(5)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Code"));
@@ -120,7 +104,8 @@ namespace WISSEN.EDA.Migrations
 
                     b.Property<string>("CountryCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -167,7 +152,7 @@ namespace WISSEN.EDA.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("zip")
+                    b.Property<string>("Zip")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
@@ -179,10 +164,62 @@ namespace WISSEN.EDA.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.ConfigurationItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Sequence")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ConfigurationItems");
+                });
+
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Country", b =>
                 {
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -212,6 +249,62 @@ namespace WISSEN.EDA.Migrations
                     b.HasKey("Code");
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.MasterItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Sequence")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MasterItems");
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Menu", b =>
@@ -272,27 +365,22 @@ namespace WISSEN.EDA.Migrations
                     b.ToTable("Menus");
                 });
 
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Plant", b =>
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Product", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Code")
-                        .HasMaxLength(5)
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("CompanyCode")
+                        .HasMaxLength(100)
                         .HasColumnType("int");
-
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -316,30 +404,14 @@ namespace WISSEN.EDA.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("zip")
-                        .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyCode");
 
-                    b.HasIndex("CountryCode");
-
-                    b.ToTable("Plants");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.User", b =>
@@ -347,9 +419,6 @@ namespace WISSEN.EDA.Migrations
                     b.Property<string>("Email")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("CompanyCode")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -386,97 +455,7 @@ namespace WISSEN.EDA.Migrations
 
                     b.HasKey("Email");
 
-                    b.HasIndex("CompanyCode");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.UserPrivilege", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Application")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CompanyCode")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Create")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Delete")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MenuCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("PlantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<bool>("Update")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyCode");
-
-                    b.HasIndex("MenuCode");
-
-                    b.HasIndex("PlantId");
-
-                    b.HasIndex("UserEmail");
-
-                    b.ToTable("UserPrivileges");
-                });
-
-            modelBuilder.Entity("MenuMenu", b =>
-                {
-                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", null)
-                        .WithMany()
-                        .HasForeignKey("ChildrenCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", null)
-                        .WithMany()
-                        .HasForeignKey("ParentsCode")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
@@ -501,29 +480,10 @@ namespace WISSEN.EDA.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Plant", b =>
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Product", b =>
                 {
                     b.HasOne("WISSEN.EDA.Models.Entities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WISSEN.EDA.Models.Entities.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.User", b =>
-                {
-                    b.HasOne("WISSEN.EDA.Models.Entities.Company", "Company")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CompanyCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -531,39 +491,9 @@ namespace WISSEN.EDA.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("WISSEN.EDA.Models.Entities.UserPrivilege", b =>
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Company", b =>
                 {
-                    b.HasOne("WISSEN.EDA.Models.Entities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WISSEN.EDA.Models.Entities.Menu", "Menu")
-                        .WithMany()
-                        .HasForeignKey("MenuCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WISSEN.EDA.Models.Entities.Plant", "Plant")
-                        .WithMany()
-                        .HasForeignKey("PlantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WISSEN.EDA.Models.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserEmail")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Menu");
-
-                    b.Navigation("Plant");
-
-                    b.Navigation("User");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
