@@ -1,9 +1,8 @@
 ﻿@using Newtonsoft.Json
 @using WISSEN.EDA.Models.Entities
-@model MasterItem
+@model Product
 @{
 	ViewData["Title"] = "Products";
-	var mi = new MasterItem();
 }
 
 @section Styles {
@@ -49,8 +48,6 @@
 				type: "fitGridWidth",
 				defaultMinWidth: 100
 			},
-			// Row Data: The data to be displayed.
-			//rowData: @Html.Raw(JsonConvert.SerializeObject(Model)),
 			// Column Definitions: Defines the columns to be displayed.
 			columnDefs: [
 				{
@@ -65,11 +62,9 @@
 					}, maxWidth: 100
 				},
 				{ field: "id", headerName: "Id", hide: true },
-				{ field: "name", headerName: "Master Name", hide: true },
-				{ field: "key", headerName: "Product Code", flex: 1 },
-				{ field: "value", headerName: "Product Name", flex: 1 },
-				{ field: "sequence", headerName: "Company", flex: 1 },
-				{ field: "notes", headerName: "Notes", flex: 2 }
+				{ field: "code", headerName: "Product Code", flex: 1 },
+				{ field: "name", headerName: "Product Name", flex: 2 },
+				{ field: "companyCode", headerName: "Company Code", flex: 1 }
 			]
 		};
 		// get grid element and apply grid options
@@ -100,23 +95,18 @@
 			</div>
 			<div class="modal-body">
 				<input type="hidden" asp-for="Id" value="0" />
-				<input type="hidden" asp-for="Name" value="PRODUCT" />
 				<input type="hidden" asp-for="CreatedBy" />
 				<div class="mb-2">
-					<label asp-for="Key">Product Code</label>
-					<input type="text" asp-for="Key" placeholder="Product Code" class="form-control" />
+					<label asp-for="Code">Product Code</label>
+					<input type="text" asp-for="Code" placeholder="Product Code" class="form-control" />
 				</div>
 				<div class="mb-2">
-					<label asp-for="Value">Product Name</label>
-					<input type="text" asp-for="Value" placeholder="Product Name" class="form-control" />
+					<label asp-for="Name">Product Name</label>
+					<input type="text" asp-for="Name" placeholder="Product Name" class="form-control" />
 				</div>
 				<div class="mb-2">
-					<label asp-for="Sequence">Company</label>
-					<input type="number" asp-for="Sequence" placeholder="Company" class="form-control" />
-				</div>
-				<div class="mb-2">
-					<label asp-for="Notes">Notes</label>
-					<input type="text" asp-for="Notes" placeholder="Product Notes" class="form-control" />
+					<label asp-for="CompanyCode">Company Code</label>
+					<select name="Company" asp-for="CompanyCode" id="CompanyCode" title="Company" class="form-control"></select>
 				</div>
 			</div>
 			<div class="modal-footer">

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Remove="Models\Entities\Plant.cs" />
+    <Compile Remove="Models\Entities\UserPrivilege.cs" />
   </ItemGroup>
 
   <ItemGroup>

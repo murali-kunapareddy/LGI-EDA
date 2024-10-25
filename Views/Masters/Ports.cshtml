@@ -49,8 +49,6 @@
 				type: "fitGridWidth",
 				defaultMinWidth: 100
 			},
-			// Row Data: The data to be displayed.
-			//rowData: @Html.Raw(JsonConvert.SerializeObject(Model)),
 			// Column Definitions: Defines the columns to be displayed.
 			columnDefs: [
 				{
@@ -66,8 +64,8 @@
 				},
 				{ field: "id", headerName: "Id", hide: true },
 				{ field: "name", headerName: "Master Name", hide: true },
-				{ field: "key", headerName: "Port Name", flex: 1 },
-				{ field: "value", headerName: "Port Value", flex: 1 },
+				{ field: "key", headerName: "Country", flex: 1 },
+				{ field: "value", headerName: "Port Name", flex: 1 },
 				{ field: "sequence", headerName: "Sequence", flex: 1 },
 				{ field: "notes", headerName: "Notes", flex: 2 }
 			]
@@ -103,11 +101,11 @@
 				<input type="hidden" asp-for="Name" value="Port" />
 				<input type="hidden" asp-for="CreatedBy" />
 				<div class="mb-2">
-					<label asp-for="Key">Port Name</label>
-					<input type="text" asp-for="Key" placeholder="Port Name" class="form-control" />
+					<label asp-for="Key">Country</label>
+					<select name="Key" asp-for="Key" id="Key" title="Country" class="form-control"></select>
 				</div>
 				<div class="mb-2">
-					<label asp-for="Value">Port Value</label>
+					<label asp-for="Value">Port Name</label>
 					<input type="text" asp-for="Value" placeholder="Port Value" class="form-control" />
 				</div>
 				<div class="mb-2">
