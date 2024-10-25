@@ -37,5 +37,17 @@ namespace WISSEN.EDA.Repositories.Implementations
 
             return list;
         }
-    }
+
+		public List<SelectListItem> GetDDLCompanies()
+		{
+			var list = _dbContext.Companies.Where(m => m.IsActive && !m.IsDeleted)
+				.Select(m => new SelectListItem
+				{
+					Text = m.Code.ToString(),
+					Value = m.Name
+				}).ToList();
+
+			return list;
+		}
+	}
 }

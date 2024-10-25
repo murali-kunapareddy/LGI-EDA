@@ -86,7 +86,7 @@ namespace EDA.Controllers
             ct.Fax = model.Fax;
             ct.Email = model.Email;
             ct.Logo = model.Logo;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.CompanyRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -103,7 +103,7 @@ namespace EDA.Controllers
 
             var model = await _unitOfWork.CompanyRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             var status = model.IsActive ? "REINSTATED" : "SUSPENDED";
             await _unitOfWork.SaveAsync();

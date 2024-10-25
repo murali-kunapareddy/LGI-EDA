@@ -9,14 +9,21 @@ namespace WISSEN.EDA.Data
         {
             // comes something
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        //public DbSet<Plant> Plants { get; set; }
-        public DbSet<Menu> Menus { get; set; }
         public DbSet<Authentication> Authenticaions { get; set; }
-        public DbSet<UserPrivilege> UserPrivileges { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<ConfigurationItem> ConfigurationItems { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public DbSet<MasterItem> MasterItems { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
+        //public DbSet<UserPrivilege> UserPrivileges { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedCountries();
+            modelBuilder.SeedAdmins();
+            modelBuilder.SeedMenus();
+        }
     }
 }

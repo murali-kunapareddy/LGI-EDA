@@ -6,5 +6,6 @@ namespace WISSEN.EDA.Repositories
     {
         List<SelectListItem> GetDDLMasters();
         List<SelectListItem> GetDDLCountries();
+        List<SelectListItem> GetDDLCompanies();
     }
 }

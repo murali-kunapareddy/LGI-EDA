@@ -73,7 +73,7 @@ namespace WISSEN.EDA.Controllers
             ct.Value = model.Value;
             ct.Sequence = model.Sequence;
             ct.Notes = model.Notes;
-            ct.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             ct.ModifiedOn = DateTime.Now;
             await _unitOfWork.MasterRepository.UpdateAsync(ct);
             await _unitOfWork.SaveAsync();
@@ -90,7 +90,7 @@ namespace WISSEN.EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsActive = !model.IsActive;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             var status = model.IsActive ? "REINSTATED" : "SUSPENDED";
             await _unitOfWork.SaveAsync();
@@ -107,7 +107,7 @@ namespace WISSEN.EDA.Controllers
 
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             model.IsDeleted = !model.IsDeleted;
-            model.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";  // logged in user
+            model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
             model.ModifiedOn = DateTime.Now;
             var status = model.IsDeleted ? "DELETED" : "REINSTERED";
             await _unitOfWork.SaveAsync();
@@ -140,6 +140,17 @@ namespace WISSEN.EDA.Controllers
             return Json(countries);
         }
 
-        #endregion
-    }
+		[HttpGet]
+		public JsonResult GetCompaniesDDL()
+		{
+			if (!ModelState.IsValid)
+			{
+				return Json("Invalid Model: " + ModelState);
+			}
+			var countries = _unitOfWork.CommonRepository.GetDDLCompanies();
+			return Json(countries);
+		}
+
+		#endregion
+	}
 }

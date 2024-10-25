@@ -24,6 +24,22 @@ $("#btnAddProduct").on("click", function () {
     $("#Update").css('display', 'none');
     $("#ProductModal").modal("show");
     $("#modalTitle").text("Add Product");
+    //
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCompaniesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#CompanyCode').empty();
+            $('#CompanyCode').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#CompanyCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
 });
 
 // add consignee type
@@ -36,12 +52,10 @@ function AddProduct() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
-    formData.name = "PRODUCT";
-    formData.key = $("#Key").val();
-    formData.value = $("#Value").val();
-    formData.sequence = $("#Sequence").val();
-    formData.notes = $("#Notes").val();
-    formData.createdBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.code = $("#Code").val();
+    formData.name = $("#Name").val();
+    formData.companyCode = parseInt($("#CompanyCode").val());
+    formData.createdBy = "murali.kunapareddy@vendor.lgiglobal.com";
 
     $.ajax({
         type: 'post',
@@ -49,7 +63,7 @@ function AddProduct() {
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
-                alert("Unable to save " + formData.name);
+                displayStatus("Unable to save " + formData.name, "error");
             } else {
                 HideModal();
                 GetAllProducts();
@@ -82,11 +96,9 @@ function EditProduct(id) {
                 $("#Update").css('display', 'block');
                 //
                 $("#Id").val(response.id);
+                $("#Code").val(response.code);
                 $("#Name").val(response.name);
-                $("#Key").val(response.key);
-                $("#Value").val(response.value);
-                $("#Sequence").val(response.sequence);
-                $("#Notes").val(response.notes);
+                $("#CompanyCode").val(response.companyCode);
                 $("#CreatedBy").val(response.createdBy);
             }
         },
@@ -107,13 +119,11 @@ function UpdateProduct() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
+    formData.code = $("#Code").val();
     formData.name = $("#Name").val();
-    formData.key = $("#Key").val();
-    formData.value = $("#Value").val();
-    formData.sequence = $("#Sequence").val();
-    formData.notes = $("#Notes").val();
+    formData.companyCode = $("#CompanyCode").val();
     formData.createdBy = $("#CreatedBy").val();
-    formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.modifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";
     // set url
     let URL = '/Masters/UpdateProduct';
     //
@@ -165,12 +175,12 @@ function SuspendProduct(id) {
                             displayStatus("Data not available for Id: " + id, "error");
                         } else {
                             GetAllProducts();
-                            //$("<div title='Success'>" + response + "</div>").dialog();
                             displayStatus(response, "success");
                         }
                     },
                     error: function (xhr) {
-                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");                    }
+                        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+                    }
                 });
                 $(this).dialog("close");
             },
@@ -183,14 +193,12 @@ function SuspendProduct(id) {
 
 // clear modal
 function ClearModal() {
-    $("#Key").val('');
-    $("#Key").css('border-color', 'lightgrey');
-    $("#Value").val('');
-    $("#Value").css('border-color', 'lightgrey');
-    $("#Sequence").val('');
-    $("#Sequence").css('border-color', 'lightgrey');
-    $("#Notes").val('');
-    $("#Notes").css('border-color', 'lightgrey');
+    $("#Code").val('');
+    $("#Code").css('border-color', 'lightgrey');
+    $("#Name").val('');
+    $("#Name").css('border-color', 'lightgrey');
+    $("#CompanyCode").val('');
+    $("#CompanyCode").css('border-color', 'lightgrey');
 }
 
 // hide modal
@@ -203,47 +211,37 @@ function HideModal() {
 function Validate() {
     let isValid = true;
 
-    if ($("#Key").val().trim() == "") {
-        $("#Key").css('border-color', 'red');
+    if ($("#Code").val().trim() == "") {
+        $("#Code").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Key").css('border-color', 'lightgrey');
+        $("#Code").css('border-color', 'lightgrey');
     }
 
-    if ($("#Value").val().trim() == "") {
-        $("#Value").css('border-color', 'red');
+    if ($("#Name").val().trim() == "") {
+        $("#Name").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Value").css('border-color', 'lightgrey');
+        $("#Name").css('border-color', 'lightgrey');
     }
 
-    if ($("#Sequence").val().trim() == "") {
-        $("#Sequence").css('border-color', 'red');
+    if ($("#CompanyCode").val().trim() == "") {
+        $("#CompanyCode").css('border-color', 'red');
         isValid = false;
     } else {
-        $("#Sequence").css('border-color', 'lightgrey');
-    }
-
-    if ($("#Notes").val().trim() == "") {
-        $("#Notes").css('border-color', 'red');
-        isValid = false;
-    } else {
-        $("#Notes").css('border-color', 'lightgrey');
+        $("#CompanyCode").css('border-color', 'lightgrey');
     }
 
     return isValid;
 }
 
-$("#Key").on("change", function () {
+$("#Code").on("change", function () {
     Validate();
 });
-$("#Value").on("change", function () {
+$("#Name").on("change", function () {
     Validate();
 });
-$("#Sequence").on("change", function () {
-    Validate();
-});
-$("#Notes").on("change", function () {
+$("#CompanyCode").on("change", function () {
     Validate();
 });
 

@@ -62,7 +62,7 @@ function AddCompany() {
     formData.fax = $("#Fax").val();
     formData.email = $("#Email").val();
     formData.logo = $("#Logo").val();
-    formData.createdBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.createdBy = "murali.kunapareddy@vendor.lgiglobal.com";
 
     $.ajax({
         type: 'post',
@@ -161,7 +161,7 @@ function UpdateCompany() {
     formData.fax = $("#Fax").val();
     formData.email = $("#Email").val();
     formData.logo = $("#Logo").val();
-    formData.createdBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
+    formData.createdBy = "murali.kunapareddy@vendor.lgiglobal.com";
     // set url
     let URL = '/Settings/UpdateCompany';
     //
