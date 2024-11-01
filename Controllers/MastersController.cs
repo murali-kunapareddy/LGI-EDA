@@ -496,10 +496,87 @@ namespace EDA.Controllers
             await _unitOfWork.SaveAsync();
             return Json("Port " + model.Key + " updated successfully.");
         }
-        #endregion
+		#endregion
 
-        #region ========== Products ==========
-        public IActionResult Products()
+		#region ========== Plants ==========
+		public IActionResult Plants()
+		{
+			return View();
+		}
+		[HttpGet]
+		public async Task<JsonResult> GetAllPlants()
+		{
+			if (!ModelState.IsValid)
+			{
+				return Json("Invalid Model: " + ModelState);
+			}
+			return Json(await _unitOfWork.MasterRepository.GetAllAsync("PLANT"));
+		}
+
+		[HttpPost]
+		public async Task<JsonResult> AddPlant(MasterItem model)
+		{
+			if (!ModelState.IsValid)
+			{
+				return Json("Invalid Model: " + ModelState);
+			}
+
+			await _unitOfWork.MasterRepository.AddAsync(model);
+			await _unitOfWork.SaveAsync();
+			return Json("Plant " + model.Value + " saved successfully.");
+		}
+		[HttpGet]
+		public async Task<JsonResult> EditPlant(int id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return Json("Invalid Model: " + ModelState);
+			}
+
+			var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+			return Json(model);
+		}
+		[HttpGet]
+		public async Task<JsonResult> SuspendPlant(int id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return Json("Invalid Model: " + ModelState);
+			}
+
+			var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
+			model.IsActive = !model.IsActive;
+			model.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
+			model.ModifiedOn = DateTime.Now;
+			await _unitOfWork.SaveAsync();
+			if (model.IsActive)
+				return Json("Plant <b>" + model.Value + "</b> reinstated successfully.");
+			else
+				return Json("Plant <b>" + model.Value + "</b> suspended successfully.");
+		}
+		[HttpPost]
+		public async Task<JsonResult> UpdatePlant(MasterItem model)
+		{
+			if (!ModelState.IsValid)
+			{
+				return Json("Invalid Model: " + ModelState);
+			}
+
+			var ct = await _unitOfWork.MasterRepository.GetByIdAsync(model.Id);
+			ct.Key = model.Key;
+			ct.Value = model.Value;
+			ct.Sequence = model.Sequence;
+			ct.Notes = model.Notes;
+			ct.ModifiedBy = "murali.kunapareddy@vendor.lgiglobal.com";  // logged in user
+			ct.ModifiedOn = DateTime.Now;
+			await _unitOfWork.MasterRepository.UpdateAsync(ct);
+			await _unitOfWork.SaveAsync();
+			return Json("Plant " + model.Value + " updated successfully.");
+		}
+		#endregion
+
+		#region ========== Products ==========
+		public IActionResult Products()
         {
             return View();
         }

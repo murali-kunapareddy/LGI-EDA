@@ -1,13 +1,13 @@
 ﻿// form load
 $(function () {
-    GetAllPorts();
+    GetAllPlants();
 });
 
-// get all Ports types
-function GetAllPorts() {
+// get all plant types
+function GetAllPlants() {
     $.ajax({
         type: 'get',
-        url: '/Masters/GetAllPorts',
+        url: '/Masters/GetAllPlants',
         dataType: 'json',
         success: function (response) {
             gridApi.setGridOption("rowData", response);
@@ -19,15 +19,15 @@ function GetAllPorts() {
 }
 
 // show popup
-$("#btnAddPort").on("click", function () {
+$("#btnAddPlant").on("click", function () {
     $("#Save").css('display', 'block');
     $("#Update").css('display', 'none');
-    $("#PortModal").modal("show");
-    $("#modalTitle").text("Add Port");
+    $("#PlantModal").modal("show");
+    $("#modalTitle").text("Add Plant");
     //
     $.ajax({
         type: 'get',
-        url: '/BackOps/GetCountriesDDL',
+        url: '/BackOps/GetCompaniesDDL',
         dataType: 'json',
         success: function (response) {
             $('#Key').empty();
@@ -42,8 +42,8 @@ $("#btnAddPort").on("click", function () {
     });
 });
 
-// add port type
-function AddPort() {
+// add plant type
+function AddPlant() {
     // do validation
     let result = Validate();
     if (!result) {
@@ -52,7 +52,7 @@ function AddPort() {
     // get form data
     let formData = new Object();
     formData.id = $("#Id").val();
-    formData.name = "PORT";
+    formData.name = "PLANT";
     formData.key = $("#Key").val();
     formData.value = $("#Value").val();
     formData.sequence = $("#Sequence").val();
@@ -61,14 +61,14 @@ function AddPort() {
 
     $.ajax({
         type: 'post',
-        url: '/Masters/AddPort',
+        url: '/Masters/AddPlant',
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
-                displayStatus("Unable to save " + formData.name,"error");
+                displayStatus("Unable to save " + formData.name, "error");
             } else {
                 HideModal();
-                GetAllPorts();
+                GetAllPlants();
                 displayStatus(response, "success");
             }
         },
@@ -79,11 +79,11 @@ function AddPort() {
 }
 
 // edit master item
-function EditPort(id) {
+function EditPlant(id) {
     // get country codes
     $.ajax({
         type: 'get',
-        url: '/BackOps/GetCountriesDDL',
+        url: '/BackOps/GetCompaniesDDL',
         dataType: 'json',
         success: function (response) {
             $('#Key').empty();
@@ -97,7 +97,7 @@ function EditPort(id) {
     });
     //
     $.ajax({
-        url: '/Masters/EditPort?id=' + id,
+        url: '/Masters/EditPlant?id=' + id,
         type: 'get',
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
@@ -107,8 +107,8 @@ function EditPort(id) {
             } else if (response.length == 0) {
                 displayStatus("Data not available for Id: " + id, "info");
             } else {
-                $("#PortModal").modal("show");
-                $("#modalTitle").text('Update Product');
+                $("#PlantModal").modal("show");
+                $("#modalTitle").text('Update Plant');
                 $("#Save").css('display', 'none');
                 $("#Update").css('display', 'block');
                 //
@@ -128,7 +128,7 @@ function EditPort(id) {
 }
 
 // update Port type
-function UpdatePort() {
+function UpdatePlant() {
     // without changing id & name update the record
     // get form data
     let result = Validate();
@@ -146,7 +146,7 @@ function UpdatePort() {
     formData.createdBy = $("#CreatedBy").val();
     formData.modifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";
     // set url
-    let URL = '/Masters/UpdatePort';
+    let URL = '/Masters/UpdatePlant';
     //
     $.ajax({
         type: 'post',
@@ -157,7 +157,7 @@ function UpdatePort() {
                 alert("Unable to update " + formData.key);
             } else {
                 HideModal();
-                GetAllPorts();
+                GetAllPlants();
                 displayStatus(response, "success");
             }
         },
@@ -168,7 +168,7 @@ function UpdatePort() {
 }
 
 // suspend Port type
-function SuspendPort(id) {
+function SuspendPlant(id) {
     // without changing id & name suspend the record
     //
     $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
@@ -186,7 +186,7 @@ function SuspendPort(id) {
             "Yes, Do this!": function () {
                 $.ajax({
                     type: 'get',
-                    url: '/Masters/SuspendPort?id=' + id,
+                    url: '/Masters/SuspendPlant?id=' + id,
                     contentType: 'application/json;charset=utf-8',
                     dataType: 'json',
                     success: function (response) {
@@ -195,7 +195,7 @@ function SuspendPort(id) {
                         } else if (response.length == 0) {
                             displayStatus("Data not available for Id: " + id, "error");
                         } else {
-                            GetAllPorts();
+                            GetAllPlants();
                             displayStatus(response, "success");
                         }
                     },
@@ -227,7 +227,7 @@ function ClearModal() {
 // hide modal
 function HideModal() {
     ClearModal();
-    $("#PortModal").modal("hide");
+    $("#PlantModal").modal("hide");
 }
 
 // validation
@@ -267,14 +267,14 @@ function Validate() {
 
 $("#Key").on("change", function () {
     let enteredPort = $('#Value').val();
-    let selectedCountry = $('#Key option:selected').text();
-    $("#Notes").val(enteredPort + ", " + selectedCountry);
+    let selectedCompany = $('#Key option:selected').text();
+    $("#Notes").val(enteredPort + ", " + selectedCompany);
     Validate();
 });
 $("#Value").on("change", function () {
     let enteredPort = $('#Value').val();
-    let selectedCountry = $('#Key option:selected').text();
-    $("#Notes").val(enteredPort + ", " + selectedCountry);
+    let selectedCompany = $('#Key option:selected').text();
+    $("#Notes").val(enteredPort + ", " + selectedCompany);
     Validate();
 });
 $("#Sequence").on("change", function () {

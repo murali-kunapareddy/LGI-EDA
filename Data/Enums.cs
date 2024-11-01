@@ -8,5 +8,15 @@
             DA,
             ALL
         }
+
+        public enum CustomerStatus
+        {
+            Approved,
+            Completed,
+            Draft,
+            InProgress,
+            Rejected,
+            Submitted
+        }
     }
 }
