@@ -18,5 +18,17 @@
             Rejected,
             Submitted
         }
+
+        public enum AddressType
+        {
+            BillTo,
+            Bank,
+            Broker,
+            Company,
+            Document,
+            NotifyParty,
+            ShipTo,
+            User
+        }
     }
 }
