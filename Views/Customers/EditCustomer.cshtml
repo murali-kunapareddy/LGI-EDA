@@ -1,0 +1,38 @@
+﻿@using WISSEN.EDA.Models.Entities
+@model Customer
+
+@{
+	ViewData["Title"] = "Customers Page";
+	var id = ViewBag.Id;
+}
+
+@section Styles {
+	<style>
+
+	</style>
+}
+
+@section Scripts {
+	
+    <script src="~/js/commons.js"></script>
+    <script src="~/js/editcustomer.js"></script>
+}
+
+<div class="text-center">
+	<h1 class="display-5">Update Customer @id</h1>
+</div>
+
+@* add section *@
+<div class="mb-4 row">
+	<div class="col-md-10 d-flex" id="message-container"></div>
+	<div class="col-md-2 offset-10 d-flex justify-content-end">
+		<button id="btnSaveCustomer" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnSaveCustomer">
+			<i class="bi bg-success bi-plus-square"></i> &nbsp; SAVE CUSTOMER
+		</button> &nbsp;
+		<button id="btnCancel" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnCancel" onclick="CancelOperation()">
+			<i class="bi bg-danger bi-x-square"></i> &nbsp; CANCEL
+		</button>
+	</div>
+</div>
+
+@* form *@

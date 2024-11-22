@@ -14,6 +14,7 @@ namespace WISSEN.EDA.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<ConfigurationItem> ConfigurationItems { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerAttachment> CustomerAttachments { get; set; }
         public DbSet<CustomerPaperwork> CustomerPaperworks { get; set; }
         public DbSet<MasterItem> MasterItems { get; set; }

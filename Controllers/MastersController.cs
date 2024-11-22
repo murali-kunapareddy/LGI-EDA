@@ -224,6 +224,7 @@ namespace EDA.Controllers
             var model = await _unitOfWork.MasterRepository.GetByIdAsync(id);
             return Json(model);
         }
+
         [HttpGet]
         public async Task<JsonResult> SuspendIncoterm(int id)
         {
@@ -242,6 +243,7 @@ namespace EDA.Controllers
             else
                 return Json("Incoterm <b>" + model.Key + "</b> suspended successfully.");
         }
+
         [HttpPost]
         public async Task<JsonResult> UpdateIncoterm(MasterItem model)
         {
