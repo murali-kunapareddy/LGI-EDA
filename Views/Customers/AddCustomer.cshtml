@@ -6,6 +6,7 @@
 }
 
 @section Styles {
+    <link href="~/lib/mdb-ui-kit/mdb.min.css" rel="stylesheet" />
     <style>
         label {
             color: white;
@@ -41,6 +42,7 @@
 }
 
 @section Scripts {
+    <script src="~/lib/mdb-ui-kit/mdb.umd.min.js"></script>
     <script src="~/js/commons.js"></script>
     <script src="~/js/addcustomer.js"></script>
 }
@@ -51,8 +53,8 @@
 
 @* add action buttons *@
 <div class="mb-4 row">
-    <div class="col-md-5 d-flex" id="message-container"></div>
-    <div class="col-md-2 d-flex justify-content-center" id="page-navigation"><i class="bi bi-caret-left"></i> <i class="bi bi-1-circle"></i> <i class="bi bi-caret-right-fill"></i></div>
+    <div class="col-md-7 d-flex" id="message-container"></div>
+    @* <div class="col-md-2 d-flex justify-content-center" id="page-navigation"><i class="bi bi-caret-left"></i> <i class="bi bi-1-circle"></i> <i class="bi bi-caret-right-fill"></i></div> *@
     <div class="col-md-5 d-flex justify-content-end">
         <button id="btnSaveCustomer" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnSaveCustomer">
             <i class="bi bg-success bi-plus-square"></i> &nbsp; SAVE CUSTOMER
@@ -91,238 +93,498 @@
             <input type="text" asp-for="Company" placeholder="Company Name" class="form-control" />
         </div>
     </div>
-    <div class="row justify-content-around section">
-        <div class="mb-1 col-md-4 form-horizontal">
-            <div class="section-header bg-primary">Customer 'Bill To' Address</div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Contact Name</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Contact Name">
+
+    <div class="row">
+        <!-- Tabs navs -->
+        <ul class="nav nav-tabs nav-justified mb-3" id="customer-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a data-mdb-tab-init
+                   class="nav-link active"
+                   id="customer-page-1"
+                   href="#customer-pages-1"
+                   role="tab"
+                   aria-controls="customer-pages-1"
+                   aria-selected="true">Page 1</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a data-mdb-tab-init
+                   class="nav-link"
+                   id="customer-page-2"
+                   href="#customer-pages-2"
+                   role="tab"
+                   aria-controls="customer-pages-2"
+                   aria-selected="false">Page 2</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a data-mdb-tab-init
+                   class="nav-link"
+                   id="customer-page-3"
+                   href="#customer-pages-3"
+                   role="tab"
+                   aria-controls="customer-pages-3"
+                   aria-selected="false">Page 3</a>
+            </li>
+        </ul>
+        <!-- Tabs navs -->
+        <!-- Tabs content -->
+        <div class="tab-content" id="customer-tabs-content">
+            <div class="tab-pane fade show active"
+                 id="customer-pages-1"
+                 role="tabpanel"
+                 aria-labelledby="customer-page-1">
+                <div class="row justify-content-around section">
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Customer 'Bill To' Address</div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Contact Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToAddress" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="BillToAddress" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Website</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Website URL">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Tax Id</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Tax Id">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">VAT No</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="VAT No">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToAdditionalEmails" class="col-sm-4 control-label">Additional Emails</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="BillToAdditionalEmails" placeholder="Additional Emails"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Consignee 'Ship To' Address</div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToContactName" class="col-sm-4 control-label">Contact Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ShipToContactName" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ShipToName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToAddress" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="ShipToAddress" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Website</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Website URL">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Tax Id</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Tax Id">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">VAT No</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="VAT No">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToAdditionalEmails" class="col-sm-4 control-label">Additional Emails</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="ShipToAdditionalEmails" placeholder="Additional Emails"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Original Documents 'Send To' Address</div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Contact Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToAddress" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="notes" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Notes</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="4" id="notes" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Additional Emails</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="notes" placeholder="Additional Emails"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToName" class="col-sm-4 control-label">Name</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToName" placeholder="Name">
+            <div class="tab-pane fade"
+                 id="customer-pages-2"
+                 role="tabpanel"
+                 aria-labelledby="customer-page-2">
+                <div class="row justify-content-around section">
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Broker Information (if applicable)</div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Contact Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToAddress" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="BillToAddress" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToAdditionalEmails" class="col-sm-4 control-label">Additional Emails</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="BillToAdditionalEmails" rows="5" placeholder="Additional Emails"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Notify Party Address</div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToContactName" class="col-sm-4 control-label">Contact Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ShipToContactName" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ShipToName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToAddress" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="ShipToAddress" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToAdditionalEmails" class="col-sm-4 control-label">Additional Emails</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="ShipToAdditionalEmails" rows="5" placeholder="Additional Emails"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Bank Information (D/P Terms Only)</div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Contact Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Contact Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToName" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToName" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToAddress" class="col-sm-4 control-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="notes" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="section-header bg-primary">Document Email Distribution List</div>
+                        <div class="row mb-1 form-group">
+                            <label for="ShipToAdditionalEmails" class="col-sm-4 control-label">Distribution Emails</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" id="ShipToAdditionalEmails" placeholder="Distribution Emails"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToAddress" class="col-sm-4 control-label">Address</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="BillToAddress" placeholder="Address"></textarea>
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">City</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="City">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Website</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Website URL">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Tax Id</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Tax Id">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">VAT No</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="VAT No">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToAdditionalEmails" class="col-sm-4 control-label">Additional Emails</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="BillToAdditionalEmails" placeholder="Additional Emails"></textarea>
+            <div class="tab-pane fade"
+                 id="customer-pages-3"
+                 role="tabpanel"
+                 aria-labelledby="customer-page-3">
+                <div class="row justify-content-around section">
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">AES Notes/ Comments</div>
+                        <div class="section-header bg-primary">Customer Booking Email Address(es)</div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Import Permit Notes</div>
+                        <div class="section-header bg-primary">Export Comments</div>
+                        <div class="section-header bg-primary">Old Notes</div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Paperworks</div>
+                        <div class="section-header bg-primary">Attachments</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="mb-1 col-md-4 form-horizontal">
-            <div class="section-header bg-primary">Consignee 'Ship To' Address</div>
-            <div class="row mb-1 form-group">
-                <label for="ShipToContactName" class="col-sm-4 control-label">Contact Name</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="ShipToContactName" placeholder="Contact Name">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="ShipToName" class="col-sm-4 control-label">Name</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="ShipToName" placeholder="Name">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="ShipToAddress" class="col-sm-4 control-label">Address</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="ShipToAddress" placeholder="Address"></textarea>
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">City</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="City">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Website</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Website URL">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Tax Id</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Tax Id">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">VAT No</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="VAT No">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="ShipToAdditionalEmails" class="col-sm-4 control-label">Additional Emails</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="ShipToAdditionalEmails" placeholder="Additional Emails"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="mb-1 col-md-4 form-horizontal">
-            <div class="section-header bg-primary">Original Documents 'Send To' Address</div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Contact Name</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Contact Name">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToName" class="col-sm-4 control-label">Name</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToName" placeholder="Name">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToAddress" class="col-sm-4 control-label">Address</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="notes" placeholder="Address"></textarea>
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">City</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="City">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">State/Province</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="State/Province">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Country</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Country">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Zip</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Zip">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Phone</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Phone">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Email</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="BillToContactName" placeholder="Email">
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Notes</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" rows="4" id="notes" placeholder="Notes"></textarea>
-                </div>
-            </div>
-            <div class="row mb-1 form-group">
-                <label for="BillToContactName" class="col-sm-4 control-label">Additional Emails</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="notes" placeholder="Additional Emails"></textarea>
-                </div>
-            </div>
-        </div>
+        <!-- Tabs content -->
     </div>
 </div>
 
