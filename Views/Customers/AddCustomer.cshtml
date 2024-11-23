@@ -726,7 +726,35 @@
                                 <input type="text" asp-for="ExportInfoCode" placeholder="Export Info Code" class="form-control" />
                             </div>
                         </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="LicenseCode">LicenseCode</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" asp-for="LicenseCode" placeholder="LicenseCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="LicenseNo">LicenseNo</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" asp-for="LicenseNo" placeholder="LicenseNo" class="form-control" />
+                            </div>
+                        </div>
+
+                           
+
+
                         <div class="section-header bg-primary">Customer Booking Email Address(es)</div>
+                                        <div class="row mb-1 form-group">
+                                            <div class="col-sm-4 align-right">
+                                                <label asp-for="DocsSendToAddress.AdditionalEmails">Additional Email</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <textarea asp-for="DocsSendToAddress.AdditionalEmails" placeholder="Additional Email" class="form-control"></textarea>
+                                            </div>
+                                        </div>
                     </div>
                     <div class="mb-1 col-md-4 form-horizontal">
                         <div class="section-header bg-primary">Import Permit Notes</div>
@@ -735,11 +763,25 @@
                                 <textarea asp-for="ImportPermitNotes" placeholder="Import Permit Notes" class="form-control"></textarea>
                             </div>
                         </div>
+                        
                         <div class="section-header bg-primary">Export Comments</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-12">
+                                <textarea asp-for="ImportPermitNotes" placeholder="Import Permit Notes" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+
                         <div class="section-header bg-primary">Old Notes</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-12">
+                                <textarea asp-for="ImportPermitNotes" placeholder="Import Permit Notes" class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-1 col-md-4 form-horizontal">
                         <div class="section-header bg-primary">Paperworks</div>
+
                         <div class="section-header bg-primary">Attachments</div>
                     </div>
                 </div>

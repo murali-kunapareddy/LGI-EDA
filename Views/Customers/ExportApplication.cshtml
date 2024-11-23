@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #013a92;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 20px;
+            }
+
+        .container {
+            margin: 20px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            background-color: #e3f2fd;
+            padding: 10px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .form-section {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+            .form-section label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-section input, .form-section select, .form-section textarea {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .form-section .additional-emails {
+                border: 1px solid #ccc;
+                padding: 10px;
+                background: #fff;
+                max-height: 100px;
+                overflow-y: auto;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>EXPORT APPLICATION</h1>
+        <div>User: Murali Kunapareddy</div>
+    </div>
+
+    <div class="container">
+        <h2>EDIT CUSTOMER DETAILS: ADITMAQ ADITIVOS Y MAQUINARIAS S.A.S.</h2>
+
+        <div class="form-grid">
+            <!-- Customer 'Bill To' Address Section -->
+            <div class="form-section">
+                <div class="section-header">Customer 'Bill To' Address</div>
+                <label for="bill-contact">Contact Name</label>
+                <input type="text" id="bill-contact">
+                <label for="bill-name">Name</label>
+                <input type="text" id="bill-name" value="ADITMAQ ADITIVOS Y MAQUINARIAS S.A.S.">
+                <label for="bill-address">Address Line</label>
+                <input type="text" id="bill-address" value="Vicente Duque 73 85 y Jose de la Rea Sector Carcelen Alto">
+                <label for="bill-city">City</label>
+                <input type="text" id="bill-city" value="Quito">
+                <label for="bill-country">Country</label>
+                <select id="bill-country">
+                    <option value="EC" selected>EC</option>
+                </select>
+                <label for="bill-zip">ZIP Code</label>
+                <input type="text" id="bill-zip" value="170310">
+                <label for="bill-phone">Phone</label>
+                <input type="text" id="bill-phone" value="593-2247-7471">
+                <label for="bill-email">Email</label>
+                <input type="email" id="bill-email" value="Diego.Coronel@aditmaq.com">
+                <label for="bill-taxid">Tax ID</label>
+                <input type="text" id="bill-taxid" value="RUC 1791269489001">
+                <label for="bill-emails">Additional Emails</label>
+                <div class="additional-emails">
+                    <div>ana.pazmino@aditmaq.com</div>
+                    <div>carmen.zabala@aditmaq.com</div>
+                    <div>fernando.guerrero@aditmaq.com</div>
+                </div>
+            </div>
+
+            <!-- Consignee 'Ship To' Address Section -->
+            <div class="form-section">
+                <div class="section-header">Consignee 'Ship To' Address</div>
+                <!-- Similar fields as above -->
+                <label for="ship-contact">Contact Name</label>
+                <input type="text" id="ship-contact">
+                <!-- Add other inputs following the structure -->
+            </div>
+
+            <!-- Original Documents 'Send To' Address Section -->
+            <div class="form-section">
+                <div class="section-header">Original Documents 'Send To' Address</div>
+                <!-- Similar fields as above -->
+                <label for="send-contact">Contact Name</label>
+                <input type="text" id="send-contact" value="Ana Pazmiño">
+                <!-- Add other inputs following the structure -->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
