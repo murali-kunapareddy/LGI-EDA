@@ -65,7 +65,7 @@ function AddPort() {
         data: formData,
         success: function (response) {
             if (response == null || response == undefined || response.length == 0) {
-                alert("Unable to save " + formData.name);
+                displayStatus("Unable to save " + formData.name,"error");
             } else {
                 HideModal();
                 GetAllPorts();

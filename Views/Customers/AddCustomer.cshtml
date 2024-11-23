@@ -1,0 +1,751 @@
+﻿@using WISSEN.EDA.Models.Entities
+@model Customer
+
+@{
+    ViewData["Title"] = "Add Customers";
+}
+
+@section Styles {
+    <link href="~/lib/mdb-ui-kit/mdb.min.css" rel="stylesheet" />
+    <style>
+        .cust-head {
+            padding: 10px;
+        }
+
+        .section {
+            padding: 20px 0;
+            background-color: #e3f2fd
+        }
+
+        .section-header {
+            color: white;
+            padding: 6px 10px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .field-label {
+            text-align: right;
+            color: #363636;
+        }
+
+        .control-input {
+            display: inline-block;
+            width: 70%;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/lib/mdb-ui-kit/mdb.umd.min.js"></script>
+    <script src="~/js/commons.js"></script>
+    <script src="~/js/addcustomer.js"></script>
+}
+
+<div class="text-center">
+    <h1 class="display-5">Add Customer</h1>
+</div>
+
+@* add action buttons *@
+<div class="mb-4 row">
+    <div class="col-md-7 d-flex" id="message-container"></div>
+    @* <div class="col-md-2 d-flex justify-content-center" id="page-navigation"><i class="bi bi-caret-left"></i> <i class="bi bi-1-circle"></i> <i class="bi bi-caret-right-fill"></i></div> *@
+    <div class="col-md-5 d-flex justify-content-end">
+        <button id="btnSaveCustomer" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnSaveCustomer">
+            <i class="bi bg-success bi-plus-square"></i> &nbsp; SAVE CUSTOMER
+        </button> &nbsp;
+        <button id="btnCancel" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnCancel" onclick="CancelOperation()">
+            <i class="bi bg-danger bi-x-square"></i> &nbsp; CANCEL
+        </button>
+    </div>
+</div>
+@* add cusomter fields *@
+<div class="mb-4 row">
+    <input type="hidden" asp-for="CreatedBy" />
+    <div class="row justify-content-around bg-primary cust-head">
+        <div class="mb-2 col-md-1">
+            <label asp-for="BillToNo" class="text-white">Bill To #</label>
+            <input type="text" asp-for="BillToNo" placeholder="Bill To No" class="form-control" />
+        </div>
+        <div class="mb-2 col-md-3">
+            <label asp-for="BillToName" class="text-white">Bill To Name</label>
+            <input type="text" asp-for="BillToName" placeholder="Bill To Name" class="form-control" />
+        </div>
+        <div class="mb-2 col-md-1">
+            <label asp-for="ShipToNo" class="text-white">Ship To #</label>
+            <input type="text" asp-for="ShipToNo" placeholder="Ship To No" class="form-control" />
+        </div>
+        <div class="mb-2 col-md-3">
+            <label asp-for="ShipToName" class="text-white">Ship To Name</label>
+            <input type="text" asp-for="ShipToName" placeholder="Ship To Name" class="form-control" />
+        </div>
+        <div class="mb-2 col-md-1">
+            <label asp-for="CompanyCode" class="text-white">Company Code</label>
+            <input type="text" asp-for="CompanyCode" placeholder="Company Code" class="form-control" />
+        </div>
+        <div class="mb-2 col-md-3">
+            <label asp-for="Company.Name">Company Name</label>
+            <select name="CompanyName" asp-for="Company.Name" id="CompanyName" title="Choose company name" class="form-control"></select>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Tabs navs -->
+        <ul class="nav nav-tabs nav-justified mb-3" id="customer-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a data-mdb-tab-init
+                   class="nav-link active"
+                   id="customer-page-1"
+                   href="#customer-pages-1"
+                   role="tab"
+                   aria-controls="customer-pages-1"
+                   aria-selected="true">Page 1</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a data-mdb-tab-init
+                   class="nav-link"
+                   id="customer-page-2"
+                   href="#customer-pages-2"
+                   role="tab"
+                   aria-controls="customer-pages-2"
+                   aria-selected="false">Page 2</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a data-mdb-tab-init
+                   class="nav-link"
+                   id="customer-page-3"
+                   href="#customer-pages-3"
+                   role="tab"
+                   aria-controls="customer-pages-3"
+                   aria-selected="false">Page 3</a>
+            </li>
+        </ul>
+        <!-- Tabs navs -->
+        <!-- Tabs content -->
+        <div class="tab-content" id="customer-tabs-content">
+            <div class="tab-pane fade show active"
+                 id="customer-pages-1"
+                 role="tabpanel"
+                 aria-labelledby="customer-page-1">
+                <div class="row justify-content-around section">
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <input type="hidden" asp-for="BillToAddressId" />
+                        <div class="section-header bg-primary">Customer 'Bill To' Address</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.ContactName">Contact Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.ContactName" placeholder="Contact Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.Name">Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.Name" placeholder="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.AddressLine">Address</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="BillToAddress.AddressLine" placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.City">City</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.City" placeholder="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.State">State/Province</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.State" placeholder="State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.CountryCode">Country</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="BillToAddress.CountryCode" asp-for="BillToAddress.CountryCode" id="BillToAddress.CountryCode" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.Zip">Zip</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.Zip" placeholder="Zip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.Phone">Phone</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.Phone" placeholder="Phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.Email">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.Email" placeholder="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.Website">Website</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.Website" placeholder="Website URL" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.TaxId">Tax Id</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.TaxId" placeholder="Tax Id" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.VATNo">VAT No</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BillToAddress.VATNo" placeholder="VAT No" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BillToAddress.AdditionalEmails">Additional Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="BillToAddress.AdditionalEmails" placeholder="Additional Email" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <input type="hidden" asp-for="ShipToAddressId" />
+                        <div class="section-header bg-primary">Consignee 'Ship To' Address</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.ContactName">Contact Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.ContactName" placeholder="Contact Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.Name">Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.Name" placeholder="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.AddressLine">Address</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="ShipToAddress.AddressLine" placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.City">City</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.City" placeholder="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.State">State/Province</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.State" placeholder="State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.CountryCode">Country</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="ShipToAddressCountryName" asp-for="ShipToAddress.CountryCode" id="ShipToAddressCountryName" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.Zip">Zip</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.Zip" placeholder="Zip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.Phone">Phone</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.Phone" placeholder="Phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.Email">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.Email" placeholder="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.Website">Website</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.Website" placeholder="Website URL" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.TaxId">Tax Id</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.TaxId" placeholder="Tax Id" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.VATNo">VAT No</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="ShipToAddress.VATNo" placeholder="VAT No" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="ShipToAddress.AdditionalEmails">Additional Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="ShipToAddress.AdditionalEmails" placeholder="Additional Email" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <input type="hidden" asp-for="DocsSendToAddressId" />
+                        <div class="section-header bg-primary">Original Documents 'Send To' Address</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.ContactName">Contact Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.ContactName" placeholder="Contact Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.Name">Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.Name" placeholder="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.AddressLine">Address</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="DocsSendToAddress.AddressLine" placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.City">City</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.City" placeholder="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.State">State/Province</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.State" placeholder="State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.CountryCode">Country</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="DocsSendToAddressCountryName" asp-for="DocsSendToAddress.CountryCode" id="DocsSendToAddressCountryName" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.Zip">Zip</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.Zip" placeholder="Zip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.Phone">Phone</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.Phone" placeholder="Phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.Email">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="DocsSendToAddress.Email" placeholder="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocSendToNotes">Notes</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="DocSendToNotes" rows="5" placeholder="Notes" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsSendToAddress.AdditionalEmails">Additional Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="DocsSendToAddress.AdditionalEmails" placeholder="Additional Email" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade"
+                 id="customer-pages-2"
+                 role="tabpanel"
+                 aria-labelledby="customer-page-2">
+                <div class="row justify-content-around section">
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <input type="hidden" asp-for="BrokerAddressId" />
+                        <div class="section-header bg-primary">Broker Information (if applicable)</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.ContactName">Contact Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.ContactName" placeholder="Contact Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.Name">Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.Name" placeholder="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.AddressLine">Address</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="BrokerAddress.AddressLine" placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.City">City</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.City" placeholder="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.State">State/Province</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.State" placeholder="State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.CountryCode">Country</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="BrokerAddressCountryName" asp-for="BrokerAddress.CountryCode" id="BrokerAddressCountryName" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.Zip">Zip</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.Zip" placeholder="Zip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.Phone">Phone</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.Phone" placeholder="Phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.Email">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BrokerAddress.Email" placeholder="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BrokerAddress.AdditionalEmails">Additional Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="BrokerAddress.AdditionalEmails" rows="5" placeholder="Additional Email" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <input type="hidden" asp-for="NotifyPartyAddressId" />
+                        <div class="section-header bg-primary">Notify Party Address</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.ContactName">Contact Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.ContactName" placeholder="Contact Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.Name">Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.Name" placeholder="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.AddressLine">Address</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="NotifyPartyAddress.AddressLine" placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.City">City</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.City" placeholder="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.State">State/Province</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.State" placeholder="State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.CountryCode">Country</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="NotifyPartyAddressCountryName" asp-for="NotifyPartyAddress.CountryCode" id="NotifyPartyAddressCountryName" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.Zip">Zip</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.Zip" placeholder="Zip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.Phone">Phone</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.Phone" placeholder="Phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.Email">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="NotifyPartyAddress.Email" placeholder="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="NotifyPartyAddress.AdditionalEmails">Additional Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="NotifyPartyAddress.AdditionalEmails" rows="5" placeholder="Additional Email" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <input type="hidden" asp-for="BankAddressId" />
+                        <div class="section-header bg-primary">Bank Information (D/P Terms Only)</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.ContactName">Contact Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.ContactName" placeholder="Contact Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.Name">Name</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.Name" placeholder="Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.AddressLine">Address</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="BankAddress.AddressLine" placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.City">City</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.City" placeholder="City" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.State">State/Province</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.State" placeholder="State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.CountryCode">Country</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="BankAddressCountryName" asp-for="BankAddress.CountryCode" id="BankAddressCountryName" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.Zip">Zip</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.Zip" placeholder="Zip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.Phone">Phone</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.Phone" placeholder="Phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="BankAddress.Email">Email</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" asp-for="BankAddress.Email" placeholder="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="section-header bg-primary">Document Email Distribution List</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="DocsDistributionEmails">Email Distribution List</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="DocsDistributionEmails" placeholder="Email Distribution List" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade"
+                 id="customer-pages-3"
+                 role="tabpanel"
+                 aria-labelledby="customer-page-3">
+                <div class="row justify-content-around section">
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">AES Notes/ Comments</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="UltimateConsgineeTypeId">Ultimate Consignee Type</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <select name="UltimateConsgineeTypeId" asp-for="UltimateConsgineeTypeId" id="UltimateConsgineeTypeId" title="Choose Country" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="ExportInfoCode">Export Info Code</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" asp-for="ExportInfoCode" placeholder="Export Info Code" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="section-header bg-primary">Customer Booking Email Address(es)</div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Import Permit Notes</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-12">
+                                <textarea asp-for="ImportPermitNotes" placeholder="Import Permit Notes" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="section-header bg-primary">Export Comments</div>
+                        <div class="section-header bg-primary">Old Notes</div>
+                    </div>
+                    <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="section-header bg-primary">Paperworks</div>
+                        <div class="section-header bg-primary">Attachments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tabs content -->
+    </div>
+</div>
+

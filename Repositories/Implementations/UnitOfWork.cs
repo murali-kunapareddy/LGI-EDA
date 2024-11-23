@@ -9,6 +9,7 @@ namespace WISSEN.EDA.Repositories.Implementations
         public ICommonRepository CommonRepository { get; private set; }
         public IMasterRepository MasterRepository { get; private set; }
         public ICompanyRepository CompanyRepository { get; private set; }
+        public ICustomerRepository CustomerRepository { get; private set; }
         public IProductRepository ProductRepository { get; private set; }
 
         public UnitOfWork(AppDBContext dbContext)
@@ -17,6 +18,7 @@ namespace WISSEN.EDA.Repositories.Implementations
             CommonRepository = new CommonRepository(_dbContext);
             MasterRepository = new MasterRepository(_dbContext);
             CompanyRepository = new CompanyRepository(_dbContext);
+            CustomerRepository = new CustomerRepository(_dbContext);
             ProductRepository = new ProductRepository(_dbContext);
         }
 

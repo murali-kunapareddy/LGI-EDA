@@ -77,6 +77,10 @@
     {
       "library": "jqueryui@1.14.0",
       "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "mdb-ui-kit@8.1.0",
+      "destination": "wwwroot/lib/mdb-ui-kit/"
     }
   ]
 }

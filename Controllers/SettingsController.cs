@@ -121,15 +121,6 @@ namespace EDA.Controllers
 
         #endregion
 
-        #region ========== PLANTS ==========
-
-        public IActionResult PlantLocations()
-        {
-            return View();
-        }
-
-        #endregion
-
         #region ========== USERS ==========
 
         public IActionResult Users()

@@ -9,7 +9,9 @@
     --white-color: #F7F6FB;
     --body-font: 'Barlow Semi Condensed', sans-serif;
     --normal-font-size: 1.2rem;
-    --z-fixed: 100
+    --z-fixed: 100;
+    --mdb-body-font-family: 'Barlow Semi Condensed', sans-serif;
+    --mdb-font-roboto: "Barlow Semi Condensed", sans-serif;
 }
 
 ::after,
@@ -28,7 +30,7 @@ li {
 }
 
 body {
-    font-family: var(--body-font);
+    font-family: var(--mdb-body-font-family);
     font-size: var(--normal-font-size);
 }
 
