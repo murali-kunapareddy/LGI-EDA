@@ -55,6 +55,9 @@ namespace WISSEN.EDA.Models.Entities
         [ForeignKey("DocsSendToAddressId")]
         public Address? DocsSendToAddress { get; set; }
 
+        [StringLength(200)]
+        public string? DocSendToNotes { get; set; }
+
         //== broker
         [Required(ErrorMessage = "Broker address is required")]
         public int BrokerAddressId { get; set; }
