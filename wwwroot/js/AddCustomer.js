@@ -1,21 +1,110 @@
 ﻿// form load
 $(function () {
     // load dropdowns
+    // company
     $.ajax({
         type: 'get',
         url: '/BackOps/GetCompaniesDDL',
         dataType: 'json',
         success: function (response) {
-            $('#Company').empty();
-            $('#Company').append('<option value="">-Choose One-</option>');
+            $('#CompanyName').empty();
+            $('#CompanyName').append('<option value="">-Choose One-</option>');
             $.each(response, function (index, item) {
-                $('#Company').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#CompanyName').append('<option value="' + item.text + '">' + item.value + '</option>');
             });
         },
         error: function (xhr) {
             displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
+    // country
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCountriesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#BillToAddressCountryCode').empty();
+            $('#BillToAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#ShipToAddressCountryCode').empty();
+            $('#ShipToAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#DocsSendToAddressCountryCode').empty();
+            $('#DocsSendToAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#BrokerAddressCountryCode').empty();
+            $('#BrokerAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#NotifyPartyAddressCountryCode').empty();
+            $('#NotifyPartyAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#BankAddressCountryCode').empty();
+            $('#BankAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#BillToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#ShipToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#DocsSendToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#BrokerAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#NotifyPartyAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#BankAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
+    // consignee type
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetSelectedMasterDDL',
+        data: { masterName: "CONSIGNEETYPE" },
+        dataType: 'json',
+        success: function (response) {
+            $('#UltimateConsgineeTypeId').empty();
+            $('#UltimateConsgineeTypeId').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#UltimateConsgineeTypeId').append('<option value="' + item.value + '">' + item.text + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
+    // payment terms
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetSelectedMasterDDL',
+        data: { masterName: "PAYMENTTERM" },
+        dataType: 'json',
+        success: function (response) {
+            $('#PaymentTermId').empty();
+            $('#PaymentTermId').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#PaymentTermId').append('<option value="' + item.value + '">' + item.text + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
+    // incoterms
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetSelectedMasterDDL',
+        data: { masterName: "INCOTERM" },
+        dataType: 'json',
+        success: function (response) {
+            $('#Incoterm2020Id').empty();
+            $('#Incoterm2020Id').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#Incoterm2020Id').append('<option value="' + item.value + '">' + item.text + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
+    // paperworks
+});
+
+// company change event
+$("#CompanyName").on("change", function () {
+    $("#CompanyCode").val($(this).find("option:selected").val());
 });
 
 // save functionality

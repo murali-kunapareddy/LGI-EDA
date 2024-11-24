@@ -5,6 +5,7 @@ namespace WISSEN.EDA.Repositories
     public interface ICommonRepository
     {
         List<SelectListItem> GetDDLMasters();
+        List<SelectListItem> GetDDLSelectedMasters(string masterName);
         List<SelectListItem> GetDDLCountries();
         List<SelectListItem> GetDDLCompanies();
     }

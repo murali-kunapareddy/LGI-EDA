@@ -147,10 +147,21 @@ namespace WISSEN.EDA.Controllers
 			{
 				return Json("Invalid Model: " + ModelState);
 			}
-			var countries = _unitOfWork.CommonRepository.GetDDLCompanies();
-			return Json(countries);
+			var companies = _unitOfWork.CommonRepository.GetDDLCompanies();
+			return Json(companies);
 		}
 
-		#endregion
-	}
+        [HttpGet]
+        public JsonResult GetSelectedMasterDDL(string masterName)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            var masters = _unitOfWork.CommonRepository.GetDDLSelectedMasters(masterName);
+            return Json(masters);
+        }
+
+        #endregion
+    }
 }

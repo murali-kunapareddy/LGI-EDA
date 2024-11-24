@@ -38,6 +38,12 @@
             display: inline-block;
             width: 70%;
         }
+
+        .nav-tabs .nav-link.active {
+            background-color: #e3f2fd !important;
+            border-color: #e3f2fd !important;
+            font-weight: 600;
+        }
     </style>
 }
 
@@ -64,6 +70,7 @@
         </button>
     </div>
 </div>
+
 @* add cusomter fields *@
 <div class="mb-4 row">
     <input type="hidden" asp-for="CreatedBy" />
@@ -86,17 +93,17 @@
         </div>
         <div class="mb-2 col-md-1">
             <label asp-for="CompanyCode" class="text-white">Company Code</label>
-            <input type="text" asp-for="CompanyCode" placeholder="Company Code" class="form-control" />
+            <input type="text" asp-for="CompanyCode" placeholder="Company Code" class="form-control" disabled readonly />
         </div>
         <div class="mb-2 col-md-3">
-            <label asp-for="Company.Name">Company Name</label>
+            <label asp-for="Company.Name" class="text-white">Company Name</label>
             <select name="CompanyName" asp-for="Company.Name" id="CompanyName" title="Choose company name" class="form-control"></select>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row cust-head">
         <!-- Tabs navs -->
-        <ul class="nav nav-tabs nav-justified mb-3" id="customer-tabs" role="tablist">
+        <ul class="nav nav-tabs nav-justified" id="customer-tabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <a data-mdb-tab-init
                    class="nav-link active"
@@ -128,6 +135,8 @@
         <!-- Tabs navs -->
         <!-- Tabs content -->
         <div class="tab-content" id="customer-tabs-content">
+
+            @* Tab setup Page 1*@
             <div class="tab-pane fade show active"
                  id="customer-pages-1"
                  role="tabpanel"
@@ -181,7 +190,7 @@
                                 <label asp-for="BillToAddress.CountryCode">Country</label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="BillToAddress.CountryCode" asp-for="BillToAddress.CountryCode" id="BillToAddress.CountryCode" title="Choose Country" class="form-control"></select>
+                                <select name="BillToAddressCountryCode" asp-for="BillToAddress.CountryCode" id="BillToAddressCountryCode" title="Choose Country" class="form-control"></select>
                             </div>
                         </div>
                         <div class="row mb-1 form-group">
@@ -289,7 +298,7 @@
                                 <label asp-for="ShipToAddress.CountryCode">Country</label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="ShipToAddressCountryName" asp-for="ShipToAddress.CountryCode" id="ShipToAddressCountryName" title="Choose Country" class="form-control"></select>
+                                <select name="ShipToAddressCountryCode" asp-for="ShipToAddress.CountryCode" id="ShipToAddressCountryCode" title="Choose Country" class="form-control"></select>
                             </div>
                         </div>
                         <div class="row mb-1 form-group">
@@ -397,7 +406,7 @@
                                 <label asp-for="DocsSendToAddress.CountryCode">Country</label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="DocsSendToAddressCountryName" asp-for="DocsSendToAddress.CountryCode" id="DocsSendToAddressCountryName" title="Choose Country" class="form-control"></select>
+                                <select name="DocsSendToAddressCountryCode" asp-for="DocsSendToAddress.CountryCode" id="DocsSendToAddressCountryCode" title="Choose Country" class="form-control"></select>
                             </div>
                         </div>
                         <div class="row mb-1 form-group">
@@ -443,6 +452,8 @@
                     </div>
                 </div>
             </div>
+
+            @* Tab setup Page 2*@
             <div class="tab-pane fade"
                  id="customer-pages-2"
                  role="tabpanel"
@@ -496,7 +507,7 @@
                                 <label asp-for="BrokerAddress.CountryCode">Country</label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="BrokerAddressCountryName" asp-for="BrokerAddress.CountryCode" id="BrokerAddressCountryName" title="Choose Country" class="form-control"></select>
+                                <select name="BrokerAddressCountryCode" asp-for="BrokerAddress.CountryCode" id="BrokerAddressCountryCode" title="Choose Country" class="form-control"></select>
                             </div>
                         </div>
                         <div class="row mb-1 form-group">
@@ -580,7 +591,7 @@
                                 <label asp-for="NotifyPartyAddress.CountryCode">Country</label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="NotifyPartyAddressCountryName" asp-for="NotifyPartyAddress.CountryCode" id="NotifyPartyAddressCountryName" title="Choose Country" class="form-control"></select>
+                                <select name="NotifyPartyAddressCountryCode" asp-for="NotifyPartyAddress.CountryCode" id="NotifyPartyAddressCountryCode" title="Choose Country" class="form-control"></select>
                             </div>
                         </div>
                         <div class="row mb-1 form-group">
@@ -664,7 +675,7 @@
                                 <label asp-for="BankAddress.CountryCode">Country</label>
                             </div>
                             <div class="col-sm-8">
-                                <select name="BankAddressCountryName" asp-for="BankAddress.CountryCode" id="BankAddressCountryName" title="Choose Country" class="form-control"></select>
+                                <select name="BankAddressCountryCode" asp-for="BankAddress.CountryCode" id="BankAddressCountryCode" title="Choose Country" class="form-control"></select>
                             </div>
                         </div>
                         <div class="row mb-1 form-group">
@@ -703,6 +714,8 @@
                     </div>
                 </div>
             </div>
+
+            @* Tab setup Page 3*@
             <div class="tab-pane fade"
                  id="customer-pages-3"
                  role="tabpanel"
@@ -726,21 +739,139 @@
                                 <input type="text" asp-for="ExportInfoCode" placeholder="Export Info Code" class="form-control" />
                             </div>
                         </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="LicenseCode">License Code</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" asp-for="LicenseCode" placeholder="License Code" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="LicenseNo">License Code</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" asp-for="LicenseNo" placeholder="License No" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="RoutedTransaction">Routed Transaction (EAR99)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RoutedTransaction" id="RoutedTransactionYes" value="Yes">
+                                    <label class="form-check-label" for="RoutedTransactionYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RoutedTransaction" id="RoutedTransactionNo" value="No">
+                                    <label class="form-check-label" for="RoutedTransactionNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="PaymentTermId">Payment Terms</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <select name="PaymentTermId" asp-for="PaymentTermId" id="PaymentTermId" title="Choose Payment Term" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="Incoterm2020Id">Incoterms</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <select name="Incoterm2020Id" asp-for="Incoterm2020Id" id="Incoterm2020Id" title="Choose Incoterm" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="ProformaInvoiceRequired">Proforma Invoice Required?</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="ProformaInvoiceRequired" id="ProformaInvoiceRequiredYes" value="Yes">
+                                    <label class="form-check-label" for="ProformaInvoiceRequiredYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="ProformaInvoiceRequired" id="ProformaInvoiceRequiredNo" value="No">
+                                    <label class="form-check-label" for="ProformaInvoiceRequiredNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="PictureRequired">Picture Required?</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="PictureRequired" id="PictureRequiredYes" value="Yes">
+                                    <label class="form-check-label" for="PictureRequiredYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="PictureRequired" id="PictureRequiredNo" value="No">
+                                    <label class="form-check-label" for="PictureRequiredNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-5 align-right">
+                                <label asp-for="ImportPermitRequired">Import Permit Required?</br>(before shipping)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="ImportPermitRequired" id="ImportPermitRequiredYes" value="Yes">
+                                    <label class="form-check-label" for="ImportPermitRequiredYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="ImportPermitRequired" id="ImportPermitRequiredNo" value="No">
+                                    <label class="form-check-label" for="ImportPermitRequiredNo">No</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="section-header bg-primary">Customer Booking Email Address(es)</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-4 align-right">
+                                <label asp-for="CustomerBookingEmails">Customer Booking Emails</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea asp-for="CustomerBookingEmails" placeholder="Customer Booking Emails" class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-1 col-md-4 form-horizontal">
                         <div class="section-header bg-primary">Import Permit Notes</div>
                         <div class="row mb-1 form-group">
                             <div class="col-sm-12">
-                                <textarea asp-for="ImportPermitNotes" placeholder="Import Permit Notes" class="form-control"></textarea>
+                                <textarea asp-for="ImportPermitNotes" rows="4" placeholder="Import Permit Notes" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="section-header bg-primary">Export Comments</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-12">
+                                <textarea asp-for="ExportComments" rows="4" placeholder="Export Comments" class="form-control"></textarea>
+                            </div>
+                        </div>
                         <div class="section-header bg-primary">Old Notes</div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-12">
+                                <textarea asp-for="OldNotes" rows="8" placeholder="Old Notes" class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-1 col-md-4 form-horizontal">
                         <div class="section-header bg-primary">Paperworks</div>
                         <div class="section-header bg-primary">Attachments</div>
+                        <div class="mb-3">
+                            <input class="form-control" type="file" id="CustomerAttachments" multiple>
+                        </div>
+                        <div class="row mb-1 form-group">
+                            <div class="col-sm-12">
+                                <!-- show attached files -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

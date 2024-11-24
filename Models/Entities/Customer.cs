@@ -115,7 +115,7 @@ namespace WISSEN.EDA.Models.Entities
 
         public bool PictureRequired { get; set; }
 
-        public bool ImportPermitRequiredBeforeShipping { get; set; }
+        public bool ImportPermitRequired { get; set; }
 
         //== text comments
         [StringLength(500)]

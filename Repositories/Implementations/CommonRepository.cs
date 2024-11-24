@@ -49,5 +49,17 @@ namespace WISSEN.EDA.Repositories.Implementations
 
 			return list;
 		}
-	}
+
+        public List<SelectListItem> GetDDLSelectedMasters(string masterName)
+        {
+            var list = _dbContext.MasterItems.Where(m => m.Name == masterName && m.IsActive && !m.IsDeleted)
+                .Select(m => new SelectListItem
+                {
+                    Text = m.Key,
+                    Value = m.Id.ToString()
+                }).ToList();
+
+            return list;
+        }
+    }
 }
