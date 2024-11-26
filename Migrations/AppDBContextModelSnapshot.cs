@@ -22,6 +22,103 @@ namespace WISSEN.EDA.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdditionalEmails")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("AddressLine")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ContactName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Fax")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TaxId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("VATNo")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Zip")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryCode");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
                 {
                     b.Property<Guid>("Id")
@@ -246,6 +343,2478 @@ namespace WISSEN.EDA.Migrations
                     b.HasKey("Code");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "AF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8915),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Afghanistan"
+                        },
+                        new
+                        {
+                            Code = "AX",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8917),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Åland Islands"
+                        },
+                        new
+                        {
+                            Code = "AL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8919),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Albania"
+                        },
+                        new
+                        {
+                            Code = "DZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8922),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Algeria"
+                        },
+                        new
+                        {
+                            Code = "AS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8924),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "American Samoa"
+                        },
+                        new
+                        {
+                            Code = "AD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8926),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Andorra"
+                        },
+                        new
+                        {
+                            Code = "AO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8928),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Angola"
+                        },
+                        new
+                        {
+                            Code = "AQ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8930),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Antarctica"
+                        },
+                        new
+                        {
+                            Code = "AG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8932),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Antigua and Barbuda"
+                        },
+                        new
+                        {
+                            Code = "AR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8935),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Argentina"
+                        },
+                        new
+                        {
+                            Code = "AM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8937),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Armenia"
+                        },
+                        new
+                        {
+                            Code = "AW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8939),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Aruba"
+                        },
+                        new
+                        {
+                            Code = "AU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8941),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Australia"
+                        },
+                        new
+                        {
+                            Code = "AT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8943),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Austria"
+                        },
+                        new
+                        {
+                            Code = "AZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8945),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Azerbaijan"
+                        },
+                        new
+                        {
+                            Code = "BS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8947),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bahamas"
+                        },
+                        new
+                        {
+                            Code = "BH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8949),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bahrain"
+                        },
+                        new
+                        {
+                            Code = "BD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8952),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bangladesh"
+                        },
+                        new
+                        {
+                            Code = "BB",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8954),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Barbados"
+                        },
+                        new
+                        {
+                            Code = "BY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8956),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Belarus"
+                        },
+                        new
+                        {
+                            Code = "BE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8958),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Belgium"
+                        },
+                        new
+                        {
+                            Code = "BZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8960),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Belize"
+                        },
+                        new
+                        {
+                            Code = "BJ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8963),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Benin"
+                        },
+                        new
+                        {
+                            Code = "BM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8965),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bermuda"
+                        },
+                        new
+                        {
+                            Code = "BT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8967),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bhutan"
+                        },
+                        new
+                        {
+                            Code = "BO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8969),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bolivia"
+                        },
+                        new
+                        {
+                            Code = "BQ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8971),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bonaire"
+                        },
+                        new
+                        {
+                            Code = "BA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8973),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bosnia and Herzegovina"
+                        },
+                        new
+                        {
+                            Code = "BW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8975),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Botswana"
+                        },
+                        new
+                        {
+                            Code = "BV",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8978),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bouvet Island"
+                        },
+                        new
+                        {
+                            Code = "BR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8980),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Brazil"
+                        },
+                        new
+                        {
+                            Code = "IO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8982),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "British Indian Ocean Territory"
+                        },
+                        new
+                        {
+                            Code = "VG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8984),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "British Virgin Islands"
+                        },
+                        new
+                        {
+                            Code = "BN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8986),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Brunei"
+                        },
+                        new
+                        {
+                            Code = "BG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8988),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bulgaria"
+                        },
+                        new
+                        {
+                            Code = "BF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8990),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Burkina Faso"
+                        },
+                        new
+                        {
+                            Code = "BI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8993),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Burundi"
+                        },
+                        new
+                        {
+                            Code = "CV",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8995),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cabo Verde"
+                        },
+                        new
+                        {
+                            Code = "KH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8997),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cambodia"
+                        },
+                        new
+                        {
+                            Code = "CM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(8999),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cameroon"
+                        },
+                        new
+                        {
+                            Code = "CA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9001),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Canada"
+                        },
+                        new
+                        {
+                            Code = "KY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9003),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cayman Islands"
+                        },
+                        new
+                        {
+                            Code = "CF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9005),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Central African Republic"
+                        },
+                        new
+                        {
+                            Code = "TD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9008),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Chad"
+                        },
+                        new
+                        {
+                            Code = "CZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9010),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Czechia"
+                        },
+                        new
+                        {
+                            Code = "CL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9012),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Chile"
+                        },
+                        new
+                        {
+                            Code = "CN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9014),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "China"
+                        },
+                        new
+                        {
+                            Code = "CX",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9016),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Christmas Island"
+                        },
+                        new
+                        {
+                            Code = "CC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9018),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cocos (Keeling) Islands"
+                        },
+                        new
+                        {
+                            Code = "CO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9020),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Colombia"
+                        },
+                        new
+                        {
+                            Code = "KM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9023),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Comoros"
+                        },
+                        new
+                        {
+                            Code = "CG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9025),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Congo"
+                        },
+                        new
+                        {
+                            Code = "CD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9027),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Congo (DRC)"
+                        },
+                        new
+                        {
+                            Code = "CK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9029),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cook Islands"
+                        },
+                        new
+                        {
+                            Code = "CR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9031),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Costa Rica"
+                        },
+                        new
+                        {
+                            Code = "CI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9033),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Côte d'Ivoire"
+                        },
+                        new
+                        {
+                            Code = "HR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9035),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Croatia"
+                        },
+                        new
+                        {
+                            Code = "CU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9037),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cuba"
+                        },
+                        new
+                        {
+                            Code = "CW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9040),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Curaçao"
+                        },
+                        new
+                        {
+                            Code = "CY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9042),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Cyprus"
+                        },
+                        new
+                        {
+                            Code = "DK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9167),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Denmark"
+                        },
+                        new
+                        {
+                            Code = "DJ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9169),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Djibouti"
+                        },
+                        new
+                        {
+                            Code = "DM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9171),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Dominica"
+                        },
+                        new
+                        {
+                            Code = "DO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9173),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Dominican Republic"
+                        },
+                        new
+                        {
+                            Code = "EC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9175),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Ecuador"
+                        },
+                        new
+                        {
+                            Code = "EG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9178),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Egypt"
+                        },
+                        new
+                        {
+                            Code = "SV",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9180),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "El Salvador"
+                        },
+                        new
+                        {
+                            Code = "GQ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9182),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Equatorial Guinea"
+                        },
+                        new
+                        {
+                            Code = "ER",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9184),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Eritrea"
+                        },
+                        new
+                        {
+                            Code = "EE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9186),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Estonia"
+                        },
+                        new
+                        {
+                            Code = "SZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9188),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "eSwatini"
+                        },
+                        new
+                        {
+                            Code = "ET",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9190),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Ethiopia"
+                        },
+                        new
+                        {
+                            Code = "FO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9192),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Faroe Islands"
+                        },
+                        new
+                        {
+                            Code = "FJ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9195),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Fiji"
+                        },
+                        new
+                        {
+                            Code = "FI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9197),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Finland"
+                        },
+                        new
+                        {
+                            Code = "FR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9199),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "France"
+                        },
+                        new
+                        {
+                            Code = "GF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9201),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "French Guiana"
+                        },
+                        new
+                        {
+                            Code = "PF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9203),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "French Polynesia"
+                        },
+                        new
+                        {
+                            Code = "TF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9205),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "French Southern Territories"
+                        },
+                        new
+                        {
+                            Code = "GA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9207),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Gabon"
+                        },
+                        new
+                        {
+                            Code = "GM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9209),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Gambia"
+                        },
+                        new
+                        {
+                            Code = "GE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9212),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Georgia"
+                        },
+                        new
+                        {
+                            Code = "DE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9214),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Germany"
+                        },
+                        new
+                        {
+                            Code = "GH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9216),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Ghana"
+                        },
+                        new
+                        {
+                            Code = "GI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9218),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Gibraltar"
+                        },
+                        new
+                        {
+                            Code = "GR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9220),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Greece"
+                        },
+                        new
+                        {
+                            Code = "GL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9222),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Greenland"
+                        },
+                        new
+                        {
+                            Code = "GD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9224),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Grenada"
+                        },
+                        new
+                        {
+                            Code = "GP",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9227),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guadeloupe"
+                        },
+                        new
+                        {
+                            Code = "GU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9229),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guam"
+                        },
+                        new
+                        {
+                            Code = "GT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9231),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guatemala"
+                        },
+                        new
+                        {
+                            Code = "GG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9233),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guernsey"
+                        },
+                        new
+                        {
+                            Code = "GN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9235),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guinea"
+                        },
+                        new
+                        {
+                            Code = "GW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9237),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guinea-Bissau"
+                        },
+                        new
+                        {
+                            Code = "GY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9239),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Guyana"
+                        },
+                        new
+                        {
+                            Code = "HT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9242),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Haiti"
+                        },
+                        new
+                        {
+                            Code = "HM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9244),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Heard Island and McDonald Islands"
+                        },
+                        new
+                        {
+                            Code = "HN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9246),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Honduras"
+                        },
+                        new
+                        {
+                            Code = "HK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9248),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Hong Kong SAR"
+                        },
+                        new
+                        {
+                            Code = "HU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9250),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Hungary"
+                        },
+                        new
+                        {
+                            Code = "IS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9252),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Iceland"
+                        },
+                        new
+                        {
+                            Code = "IN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9254),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "India"
+                        },
+                        new
+                        {
+                            Code = "ID",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9257),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Indonesia"
+                        },
+                        new
+                        {
+                            Code = "IR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9259),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Iran"
+                        },
+                        new
+                        {
+                            Code = "IQ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9261),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Iraq"
+                        },
+                        new
+                        {
+                            Code = "IE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9263),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Ireland"
+                        },
+                        new
+                        {
+                            Code = "IM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9265),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Isle of Man"
+                        },
+                        new
+                        {
+                            Code = "IL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9267),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Israel"
+                        },
+                        new
+                        {
+                            Code = "IT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9269),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Italy"
+                        },
+                        new
+                        {
+                            Code = "JM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9271),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Jamaica"
+                        },
+                        new
+                        {
+                            Code = "JP",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9274),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Japan"
+                        },
+                        new
+                        {
+                            Code = "JE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9276),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Jersey"
+                        },
+                        new
+                        {
+                            Code = "JO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9278),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Jordan"
+                        },
+                        new
+                        {
+                            Code = "KZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9280),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kazakhstan"
+                        },
+                        new
+                        {
+                            Code = "KE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9282),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kenya"
+                        },
+                        new
+                        {
+                            Code = "KI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9284),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kiribati"
+                        },
+                        new
+                        {
+                            Code = "KR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9286),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Korea (South)"
+                        },
+                        new
+                        {
+                            Code = "KW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9288),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kuwait"
+                        },
+                        new
+                        {
+                            Code = "KG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9291),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kyrgyzstan"
+                        },
+                        new
+                        {
+                            Code = "LA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9293),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Laos"
+                        },
+                        new
+                        {
+                            Code = "LV",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9295),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Latvia"
+                        },
+                        new
+                        {
+                            Code = "LB",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9297),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Lebanon"
+                        },
+                        new
+                        {
+                            Code = "LS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9299),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Lesotho"
+                        },
+                        new
+                        {
+                            Code = "LR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9301),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Liberia"
+                        },
+                        new
+                        {
+                            Code = "LY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9303),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Libya"
+                        },
+                        new
+                        {
+                            Code = "LI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9305),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Liechtenstein"
+                        },
+                        new
+                        {
+                            Code = "LT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9307),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Lithuania"
+                        },
+                        new
+                        {
+                            Code = "LU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9310),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Luxembourg"
+                        },
+                        new
+                        {
+                            Code = "MO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9312),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Macao SAR"
+                        },
+                        new
+                        {
+                            Code = "MG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9314),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Madagascar"
+                        },
+                        new
+                        {
+                            Code = "MW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9316),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Malawi"
+                        },
+                        new
+                        {
+                            Code = "MY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9318),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Malaysia"
+                        },
+                        new
+                        {
+                            Code = "MV",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9320),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Maldives"
+                        },
+                        new
+                        {
+                            Code = "ML",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9322),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mali"
+                        },
+                        new
+                        {
+                            Code = "MT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9324),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Malta"
+                        },
+                        new
+                        {
+                            Code = "MH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9327),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Marshall Islands"
+                        },
+                        new
+                        {
+                            Code = "MQ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9329),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Martinique"
+                        },
+                        new
+                        {
+                            Code = "MR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9331),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mauritania"
+                        },
+                        new
+                        {
+                            Code = "MU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9333),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mauritius"
+                        },
+                        new
+                        {
+                            Code = "YT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9335),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mayotte"
+                        },
+                        new
+                        {
+                            Code = "MX",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9337),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mexico"
+                        },
+                        new
+                        {
+                            Code = "FM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9340),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Micronesia"
+                        },
+                        new
+                        {
+                            Code = "MD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9342),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Moldova"
+                        },
+                        new
+                        {
+                            Code = "MC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9344),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Monaco"
+                        },
+                        new
+                        {
+                            Code = "MN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9346),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mongolia"
+                        },
+                        new
+                        {
+                            Code = "ME",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9348),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Montenegro"
+                        },
+                        new
+                        {
+                            Code = "MS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9350),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Montserrat"
+                        },
+                        new
+                        {
+                            Code = "MA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9352),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Morocco"
+                        },
+                        new
+                        {
+                            Code = "MZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9355),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mozambique"
+                        },
+                        new
+                        {
+                            Code = "MM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9357),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Myanmar"
+                        },
+                        new
+                        {
+                            Code = "NA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9359),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Namibia"
+                        },
+                        new
+                        {
+                            Code = "NR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9361),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Nauru"
+                        },
+                        new
+                        {
+                            Code = "NP",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9363),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Nepal"
+                        },
+                        new
+                        {
+                            Code = "NL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9393),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Netherlands"
+                        },
+                        new
+                        {
+                            Code = "NC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9395),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "New Caledonia"
+                        },
+                        new
+                        {
+                            Code = "NZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9397),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "New Zealand"
+                        },
+                        new
+                        {
+                            Code = "NI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9399),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Nicaragua"
+                        },
+                        new
+                        {
+                            Code = "NE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9402),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Niger"
+                        },
+                        new
+                        {
+                            Code = "NG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9404),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Nigeria"
+                        },
+                        new
+                        {
+                            Code = "NU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9406),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Niue"
+                        },
+                        new
+                        {
+                            Code = "NF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9408),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Norfolk Island"
+                        },
+                        new
+                        {
+                            Code = "KP",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9410),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "North Korea"
+                        },
+                        new
+                        {
+                            Code = "MP",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9412),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Northern Mariana Islands"
+                        },
+                        new
+                        {
+                            Code = "MK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9414),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "North Macedonia"
+                        },
+                        new
+                        {
+                            Code = "NO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9417),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Norway"
+                        },
+                        new
+                        {
+                            Code = "OM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9419),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Oman"
+                        },
+                        new
+                        {
+                            Code = "PK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9421),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Pakistan"
+                        },
+                        new
+                        {
+                            Code = "PW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9423),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Palau"
+                        },
+                        new
+                        {
+                            Code = "PS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9425),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Palestinian Authority"
+                        },
+                        new
+                        {
+                            Code = "PA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9427),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Panama"
+                        },
+                        new
+                        {
+                            Code = "PG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9429),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Papua New Guinea"
+                        },
+                        new
+                        {
+                            Code = "PY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9431),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Paraguay"
+                        },
+                        new
+                        {
+                            Code = "PE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9434),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Peru"
+                        },
+                        new
+                        {
+                            Code = "PH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9436),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Philippines"
+                        },
+                        new
+                        {
+                            Code = "PN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9438),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Pitcairn Islands"
+                        },
+                        new
+                        {
+                            Code = "PL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9440),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Poland"
+                        },
+                        new
+                        {
+                            Code = "PT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9442),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Portugal"
+                        },
+                        new
+                        {
+                            Code = "PR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9444),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Puerto Rico"
+                        },
+                        new
+                        {
+                            Code = "QA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9446),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Qatar"
+                        },
+                        new
+                        {
+                            Code = "RE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9449),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Réunion"
+                        },
+                        new
+                        {
+                            Code = "RO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9451),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Romania"
+                        },
+                        new
+                        {
+                            Code = "RU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9453),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Russia"
+                        },
+                        new
+                        {
+                            Code = "RW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9455),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Rwanda"
+                        },
+                        new
+                        {
+                            Code = "BL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9457),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saint Barthélemy"
+                        },
+                        new
+                        {
+                            Code = "KN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9459),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saint Kitts and Nevis"
+                        },
+                        new
+                        {
+                            Code = "LC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9461),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saint Lucia"
+                        },
+                        new
+                        {
+                            Code = "MF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9463),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saint Martin"
+                        },
+                        new
+                        {
+                            Code = "PM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9465),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saint Pierre and Miquelon"
+                        },
+                        new
+                        {
+                            Code = "VC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9468),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saint Vincent and the Grenadines"
+                        },
+                        new
+                        {
+                            Code = "WS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9470),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Samoa"
+                        },
+                        new
+                        {
+                            Code = "SM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9472),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "San Marino"
+                        },
+                        new
+                        {
+                            Code = "ST",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9474),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "São Tomé and Príncipe"
+                        },
+                        new
+                        {
+                            Code = "SA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9476),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Saudi Arabia"
+                        },
+                        new
+                        {
+                            Code = "SN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9478),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Senegal"
+                        },
+                        new
+                        {
+                            Code = "RS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9480),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Serbia"
+                        },
+                        new
+                        {
+                            Code = "SC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9483),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Seychelles"
+                        },
+                        new
+                        {
+                            Code = "SL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9485),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Sierra Leone"
+                        },
+                        new
+                        {
+                            Code = "SG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9487),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Singapore"
+                        },
+                        new
+                        {
+                            Code = "SX",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9489),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Sint Maarten"
+                        },
+                        new
+                        {
+                            Code = "SK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9491),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Slovakia"
+                        },
+                        new
+                        {
+                            Code = "SI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9493),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Slovenia"
+                        },
+                        new
+                        {
+                            Code = "SB",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9495),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Solomon Islands"
+                        },
+                        new
+                        {
+                            Code = "SO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9498),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Somalia"
+                        },
+                        new
+                        {
+                            Code = "ZA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9500),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "South Africa"
+                        },
+                        new
+                        {
+                            Code = "GS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9502),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "South Georgia and South Sandwich Islands"
+                        },
+                        new
+                        {
+                            Code = "SS",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9504),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "South Sudan"
+                        },
+                        new
+                        {
+                            Code = "ES",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9506),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Spain"
+                        },
+                        new
+                        {
+                            Code = "LK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9508),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Sri Lanka"
+                        },
+                        new
+                        {
+                            Code = "SH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9510),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "St Helena, Ascension, Tristan da Cunha"
+                        },
+                        new
+                        {
+                            Code = "SD",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9512),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Sudan"
+                        },
+                        new
+                        {
+                            Code = "SR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9515),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Suriname"
+                        },
+                        new
+                        {
+                            Code = "SJ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9517),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Svalbard"
+                        },
+                        new
+                        {
+                            Code = "SE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9519),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Sweden"
+                        },
+                        new
+                        {
+                            Code = "CH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9521),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Switzerland"
+                        },
+                        new
+                        {
+                            Code = "SY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9523),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Syria"
+                        },
+                        new
+                        {
+                            Code = "TW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9525),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Taiwan"
+                        },
+                        new
+                        {
+                            Code = "TJ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9527),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tajikistan"
+                        },
+                        new
+                        {
+                            Code = "TZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9529),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tanzania"
+                        },
+                        new
+                        {
+                            Code = "TH",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9532),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Thailand"
+                        },
+                        new
+                        {
+                            Code = "TL",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9534),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Timor-Leste"
+                        },
+                        new
+                        {
+                            Code = "TG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9536),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Togo"
+                        },
+                        new
+                        {
+                            Code = "TK",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9538),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tokelau"
+                        },
+                        new
+                        {
+                            Code = "TO",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9540),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tonga"
+                        },
+                        new
+                        {
+                            Code = "TT",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9542),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Trinidad and Tobago"
+                        },
+                        new
+                        {
+                            Code = "TN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9545),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tunisia"
+                        },
+                        new
+                        {
+                            Code = "TR",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9547),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Türkiye"
+                        },
+                        new
+                        {
+                            Code = "TM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9549),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Turkmenistan"
+                        },
+                        new
+                        {
+                            Code = "TC",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9551),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Turks and Caicos Islands"
+                        },
+                        new
+                        {
+                            Code = "TV",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9553),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tuvalu"
+                        },
+                        new
+                        {
+                            Code = "UG",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9555),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Uganda"
+                        },
+                        new
+                        {
+                            Code = "UA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9557),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Ukraine"
+                        },
+                        new
+                        {
+                            Code = "AE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9559),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "United Arab Emirates"
+                        },
+                        new
+                        {
+                            Code = "GB",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9562),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "United Kingdom"
+                        },
+                        new
+                        {
+                            Code = "US",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9564),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "United States"
+                        },
+                        new
+                        {
+                            Code = "UY",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9566),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Uruguay"
+                        },
+                        new
+                        {
+                            Code = "UM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9568),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "U.S. Outlying Islands"
+                        },
+                        new
+                        {
+                            Code = "VI",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9570),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "U.S. Virgin Islands"
+                        },
+                        new
+                        {
+                            Code = "UZ",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9572),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Uzbekistan"
+                        },
+                        new
+                        {
+                            Code = "VU",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9574),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Vanuatu"
+                        },
+                        new
+                        {
+                            Code = "VA",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9577),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Vatican City"
+                        },
+                        new
+                        {
+                            Code = "VE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9579),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Venezuela"
+                        },
+                        new
+                        {
+                            Code = "VN",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9581),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Vietnam"
+                        },
+                        new
+                        {
+                            Code = "WF",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9583),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Wallis and Futuna"
+                        },
+                        new
+                        {
+                            Code = "YE",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9585),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Yemen"
+                        },
+                        new
+                        {
+                            Code = "ZM",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9587),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Zambia"
+                        },
+                        new
+                        {
+                            Code = "ZW",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9590),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Zimbabwe"
+                        });
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BankAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BillToAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BillToName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("BillToNo")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<int>("BrokerAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyCode")
+                        .HasMaxLength(100)
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerBookingEmails")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("DocSendToNotes")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("DocsDistributionEmails")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("DocsSendToAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExportComments")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ExportInfoCode")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ImportPermitNotes")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("ImportPermitRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Incoterm2020Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LicenseCode")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("LicenseNo")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NotifyPartyAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OldNotes")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("PaymentTermId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("PictureRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ProformaInvoiceRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("RoutedTransaction")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ShipToAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShipToName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ShipToNo")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<int>("UltimateConsgineeTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BankAddressId");
+
+                    b.HasIndex("BillToAddressId");
+
+                    b.HasIndex("BrokerAddressId");
+
+                    b.HasIndex("CompanyCode");
+
+                    b.HasIndex("DocsSendToAddressId");
+
+                    b.HasIndex("Incoterm2020Id");
+
+                    b.HasIndex("NotifyPartyAddressId");
+
+                    b.HasIndex("PaymentTermId");
+
+                    b.HasIndex("ShipToAddressId");
+
+                    b.HasIndex("UltimateConsgineeTypeId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.CustomerAttachment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileHash")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("FileSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CustomerAttachments");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.CustomerPaperwork", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CopyQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OriginalQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaperworkId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("PaperworkId");
+
+                    b.ToTable("CustomerPaperworks");
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.MasterItem", b =>
@@ -263,6 +2832,9 @@ namespace WISSEN.EDA.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .IsRequired()
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -300,6 +2872,8 @@ namespace WISSEN.EDA.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("MasterItems");
                 });
@@ -360,6 +2934,92 @@ namespace WISSEN.EDA.Migrations
                     b.HasKey("Code");
 
                     b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            Code = "DASHBOARD",
+                            Action = "Index",
+                            AppCode = 2,
+                            Controller = "Home",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9954),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Dashboard",
+                            Parent = "",
+                            Sequence = 10
+                        },
+                        new
+                        {
+                            Code = "ORDERS",
+                            Action = "Index",
+                            AppCode = 2,
+                            Controller = "Orders",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9957),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Orders",
+                            Parent = "",
+                            Sequence = 20
+                        },
+                        new
+                        {
+                            Code = "CUSTOMERS",
+                            Action = "Index",
+                            AppCode = 2,
+                            Controller = "Customers",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9959),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Customers",
+                            Parent = "",
+                            Sequence = 30
+                        },
+                        new
+                        {
+                            Code = "MASTERS",
+                            Action = "Index",
+                            AppCode = 2,
+                            Controller = "Masters",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9962),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Masters",
+                            Parent = "",
+                            Sequence = 40
+                        },
+                        new
+                        {
+                            Code = "SETTINGS",
+                            Action = "Index",
+                            AppCode = 2,
+                            Controller = "Settings",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9965),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Settings",
+                            Parent = "",
+                            Sequence = 50
+                        },
+                        new
+                        {
+                            Code = "BACKOPS",
+                            Action = "Index",
+                            AppCode = 2,
+                            Controller = "BackOps",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9967),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Back Ops",
+                            Parent = "",
+                            Sequence = 60
+                        });
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Product", b =>
@@ -376,7 +3036,6 @@ namespace WISSEN.EDA.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("CompanyCode")
-                        .HasMaxLength(100)
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -453,6 +3112,30 @@ namespace WISSEN.EDA.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Email = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedBy = "murali.kunapareddy@vendor.lgiglobal.com",
+                            CreatedOn = new DateTime(2024, 11, 24, 18, 59, 52, 964, DateTimeKind.Local).AddTicks(9923),
+                            FirstName = "Murali Krishna",
+                            IsActive = true,
+                            IsDeleted = false,
+                            LastName = "KUNAPAREDDY",
+                            Mobile = "+919916140646"
+                        });
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Address", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Authentication", b =>
@@ -477,6 +3160,126 @@ namespace WISSEN.EDA.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Customer", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Address", "BankAddress")
+                        .WithMany()
+                        .HasForeignKey("BankAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Address", "BillToAddress")
+                        .WithMany()
+                        .HasForeignKey("BillToAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Address", "BrokerAddress")
+                        .WithMany()
+                        .HasForeignKey("BrokerAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Address", "DocsSendToAddress")
+                        .WithMany()
+                        .HasForeignKey("DocsSendToAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.MasterItem", "Incoterm2020")
+                        .WithMany()
+                        .HasForeignKey("Incoterm2020Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Address", "NotifyPartyAddress")
+                        .WithMany()
+                        .HasForeignKey("NotifyPartyAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.MasterItem", "PaymentTerm")
+                        .WithMany()
+                        .HasForeignKey("PaymentTermId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.Address", "ShipToAddress")
+                        .WithMany()
+                        .HasForeignKey("ShipToAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.MasterItem", "UltimateConsgineeType")
+                        .WithMany()
+                        .HasForeignKey("UltimateConsgineeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BankAddress");
+
+                    b.Navigation("BillToAddress");
+
+                    b.Navigation("BrokerAddress");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("DocsSendToAddress");
+
+                    b.Navigation("Incoterm2020");
+
+                    b.Navigation("NotifyPartyAddress");
+
+                    b.Navigation("PaymentTerm");
+
+                    b.Navigation("ShipToAddress");
+
+                    b.Navigation("UltimateConsgineeType");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.CustomerAttachment", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Customer", "Customer")
+                        .WithMany("CustomerAttachments")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.CustomerPaperwork", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WISSEN.EDA.Models.Entities.MasterItem", "Paperwork")
+                        .WithMany()
+                        .HasForeignKey("PaperworkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Paperwork");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.MasterItem", b =>
+                {
+                    b.HasOne("WISSEN.EDA.Models.Entities.Customer", null)
+                        .WithMany("Paperworks")
+                        .HasForeignKey("CustomerId");
+                });
+
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Product", b =>
                 {
                     b.HasOne("WISSEN.EDA.Models.Entities.Company", "Company")
@@ -491,6 +3294,13 @@ namespace WISSEN.EDA.Migrations
             modelBuilder.Entity("WISSEN.EDA.Models.Entities.Company", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WISSEN.EDA.Models.Entities.Customer", b =>
+                {
+                    b.Navigation("CustomerAttachments");
+
+                    b.Navigation("Paperworks");
                 });
 #pragma warning restore 612, 618
         }
