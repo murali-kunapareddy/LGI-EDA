@@ -100,6 +100,22 @@ $(function () {
         }
     });
     // paperworks
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetSelectedMasterDDL',
+        data: { masterName: "PAPERWORK" },
+        dataType: 'json',
+        success: function (response) {
+            $('#Incoterm2020Id').empty();
+            $('#Incoterm2020Id').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#Incoterm2020Id').append('<option value="' + item.value + '">' + item.text + '</option>');
+            });
+        },
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
 });
 
 // company change event

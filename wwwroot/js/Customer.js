@@ -19,10 +19,10 @@ function GetAllCustomers() {
 }
 
 // redirect to customer add page
-$("#btnAddCustomer").on("click", function () {
-    //displayStatus("New page to be opened for new customer entry", "info");
-    window.location.href = "/Customers/AddCustomer";
-});
+//$("#btnAddCustomer").on("click", function () {
+//    //displayStatus("New page to be opened for new customer entry", "info");
+//    window.location.href = "/Customers/AddCustomer";
+//});
 
 
 // edit master item

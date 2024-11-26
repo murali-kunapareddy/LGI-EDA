@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WISSEN.EDA.Models.Entities;
+using WISSEN.EDA.Models.ViewModels;
 using WISSEN.EDA.Repositories;
 
 namespace EDA.Controllers
@@ -37,7 +39,13 @@ namespace EDA.Controllers
 
 		public IActionResult AddCustomer()
 		{
-            return View();
+            // pass paperworks
+            // var paperworks = _unitOfWork.CommonRepository.GetDDLSelectedMasters("PAPERWORK");
+            var paperworks = _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK").Result;
+            //var customer = new Customer();
+            var addCustomer = new AddCustomerViewModel();
+            addCustomer.Paperworks = paperworks;
+            return View(addCustomer);
 		}
 
         #endregion

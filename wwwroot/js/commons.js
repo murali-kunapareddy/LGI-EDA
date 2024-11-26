@@ -1,7 +1,7 @@
 ﻿// common js functionalities
 // Initialization for ES Users
-import { Input, initMDB } from "mdb-ui-kit";
-initMDB({ Input });
+//import { Input, initMDB } from "mdb-ui-kit";
+//initMDB({ Input });
 
 function displayStatus(message, type) {
     const messageContainer = document.getElementById("message-container");
