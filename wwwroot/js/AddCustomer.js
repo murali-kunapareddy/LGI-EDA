@@ -49,78 +49,78 @@ $(function () {
         }
     });
     // consignee type
-    $.ajax({
-        type: 'get',
-        url: '/BackOps/GetSelectedMasterDDL',
-        data: { masterName: "CONSIGNEETYPE" },
-        dataType: 'json',
-        success: function (response) {
-            $('#UltimateConsgineeTypeId').empty();
-            $('#UltimateConsgineeTypeId').append('<option value="">-Choose One-</option>');
-            $.each(response, function (index, item) {
-                $('#UltimateConsgineeTypeId').append('<option value="' + item.value + '">' + item.text + '</option>');
-            });
-        },
-        error: function (xhr) {
-            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
-        }
-    });
+    //$.ajax({
+    //    type: 'get',
+    //    url: '/BackOps/GetSelectedMasterDDL',
+    //    data: { masterName: "CONSIGNEETYPE" },
+    //    dataType: 'json',
+    //    success: function (response) {
+    //        $('#UltimateConsgineeTypeId').empty();
+    //        $('#UltimateConsgineeTypeId').append('<option value="">-Choose One-</option>');
+    //        $.each(response, function (index, item) {
+    //            $('#UltimateConsgineeTypeId').append('<option value="' + item.value + '">' + item.text + '</option>');
+    //        });
+    //    },
+    //    error: function (xhr) {
+    //        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+    //    }
+    //});
     // payment terms
-    $.ajax({
-        type: 'get',
-        url: '/BackOps/GetSelectedMasterDDL',
-        data: { masterName: "PAYMENTTERM" },
-        dataType: 'json',
-        success: function (response) {
-            $('#PaymentTermId').empty();
-            $('#PaymentTermId').append('<option value="">-Choose One-</option>');
-            $.each(response, function (index, item) {
-                $('#PaymentTermId').append('<option value="' + item.value + '">' + item.text + '</option>');
-            });
-        },
-        error: function (xhr) {
-            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
-        }
-    });
+    //$.ajax({
+    //    type: 'get',
+    //    url: '/BackOps/GetSelectedMasterDDL',
+    //    data: { masterName: "PAYMENTTERM" },
+    //    dataType: 'json',
+    //    success: function (response) {
+    //        $('#PaymentTermId').empty();
+    //        $('#PaymentTermId').append('<option value="">-Choose One-</option>');
+    //        $.each(response, function (index, item) {
+    //            $('#PaymentTermId').append('<option value="' + item.value + '">' + item.text + '</option>');
+    //        });
+    //    },
+    //    error: function (xhr) {
+    //        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+    //    }
+    //});
     // incoterms
-    $.ajax({
-        type: 'get',
-        url: '/BackOps/GetSelectedMasterDDL',
-        data: { masterName: "INCOTERM" },
-        dataType: 'json',
-        success: function (response) {
-            $('#Incoterm2020Id').empty();
-            $('#Incoterm2020Id').append('<option value="">-Choose One-</option>');
-            $.each(response, function (index, item) {
-                $('#Incoterm2020Id').append('<option value="' + item.value + '">' + item.text + '</option>');
-            });
-        },
-        error: function (xhr) {
-            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
-        }
-    });
+    //$.ajax({
+    //    type: 'get',
+    //    url: '/BackOps/GetSelectedMasterDDL',
+    //    data: { masterName: "INCOTERM" },
+    //    dataType: 'json',
+    //    success: function (response) {
+    //        $('#Incoterm2020Id').empty();
+    //        $('#Incoterm2020Id').append('<option value="">-Choose One-</option>');
+    //        $.each(response, function (index, item) {
+    //            $('#Incoterm2020Id').append('<option value="' + item.value + '">' + item.text + '</option>');
+    //        });
+    //    },
+    //    error: function (xhr) {
+    //        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+    //    }
+    //});
     // paperworks
-    $.ajax({
-        type: 'get',
-        url: '/BackOps/GetSelectedMasterDDL',
-        data: { masterName: "PAPERWORK" },
-        dataType: 'json',
-        success: function (response) {
-            $('#Incoterm2020Id').empty();
-            $('#Incoterm2020Id').append('<option value="">-Choose One-</option>');
-            $.each(response, function (index, item) {
-                $('#Incoterm2020Id').append('<option value="' + item.value + '">' + item.text + '</option>');
-            });
-        },
-        error: function (xhr) {
-            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
-        }
-    });
+    //$.ajax({
+    //    type: 'get',
+    //    url: '/BackOps/GetSelectedMasterDDL',
+    //    data: { masterName: "PAPERWORK" },
+    //    dataType: 'json',
+    //    success: function (response) {
+    //        $('#Incoterm2020Id').empty();
+    //        $('#Incoterm2020Id').append('<option value="">-Choose One-</option>');
+    //        $.each(response, function (index, item) {
+    //            $('#Incoterm2020Id').append('<option value="' + item.value + '">' + item.text + '</option>');
+    //        });
+    //    },
+    //    error: function (xhr) {
+    //        displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+    //    }
+    //});
 });
 
 // company change event
-$("#CompanyName").on("change", function () {
-    $("#CompanyCode").val($(this).find("option:selected").val());
+$("#Customer_Company_Name").on("change", function () {
+    $("#Customer_CompanyCode").val($(this).find("option:selected").val());
 });
 
 // save functionality

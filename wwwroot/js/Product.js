@@ -78,6 +78,22 @@ function AddProduct() {
 
 // edit master item
 function EditProduct(id) {
+    // load ddl companies to company(code)
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCompaniesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#CompanyCode').empty();
+            $('#CompanyCode').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#CompanyCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
+        },
+        error: function (xhr) {
+            alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
+        }
+    });
     //
     $.ajax({
         url: '/Masters/EditProduct?id=' + id,

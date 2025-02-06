@@ -31,7 +31,7 @@ function EditCustomer(id) {
     window.location.href = "/Customers/EditCustomer/"+id;
 }
 
-// suspend consignee type
+// suspend customer type
 function SuspendCustomer(id) {
     //
     $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
@@ -58,7 +58,7 @@ function SuspendCustomer(id) {
                         } else if (response.length == 0) {
                             alert("Data not available for Id: " + id);
                         } else {
-                            GetAllMasterItems();
+                            GetAllCustomers();
                             $("<div title='Success'>" + response + "</div>").dialog();
                         }
                     },

@@ -77,7 +77,7 @@ namespace WISSEN.EDA.Models.Entities
         [ForeignKey("BankAddressId")]
         public Address? BankAddress { get; set; }
 
-        //==
+        //== emails
         [StringLength(1000)]
         public string? DocsDistributionEmails { get; set; }
 
@@ -104,7 +104,7 @@ namespace WISSEN.EDA.Models.Entities
         public int PaymentTermId {  get; set; }
 
         [ForeignKey("PaymentTermId")]
-        public MasterItem PaymentTerm { get; set; }
+        public MasterItem? PaymentTerm { get; set; }
 
         public int Incoterm2020Id { get; set; }
 

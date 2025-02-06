@@ -7,5 +7,8 @@ namespace WISSEN.EDA.Models.ViewModels
 	{
 		public Customer? Customer { get; set; }
         public List<MasterItem>? Paperworks { get; set; }
+        public List<MasterItem>? ConsigneeTypes { get; set; }
+        public List<MasterItem>? PaymentTerms { get; set; }
+        public List<MasterItem>? Incoterms { get; set; }
     }
 }
