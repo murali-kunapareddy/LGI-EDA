@@ -1,9 +1,9 @@
 ﻿@using WISSEN.EDA.Models.ViewModels
 
-@model AddCustomerViewModel
+@model CustomerViewModel
 
 @{
-    ViewData["Title"] = "Add Customers";
+    ViewData["Title"] = "Add Customer";
 }
 
 @section Styles {
@@ -51,23 +51,23 @@
 @section Scripts {
     <script src="~/lib/mdb-ui-kit/mdb.umd.min.js"></script>
     <script src="~/js/commons.js"></script>
-    <script src="~/js/addcustomer.js"></script>
+    <script src="~/js/customer.js"></script>
 }
 
 <div class="text-center">
     <h1 class="display-5">Add Customer</h1>
 </div>
 
-<form method="post" asp-action="SaveCustomer" asp-controller="Customers">
+<form method="post">
     @* add action buttons *@
     <div class="mb-4 row">
         <div class="col-md-7 d-flex" id="message-container"></div>
         @* <div class="col-md-2 d-flex justify-content-center" id="page-navigation"><i class="bi bi-caret-left"></i> <i class="bi bi-1-circle"></i> <i class="bi bi-caret-right-fill"></i></div> *@
         <div class="col-md-5 d-flex justify-content-end">
-            <button id="btnSaveCustomer" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnSaveCustomer" type="submit">
+            <button id="btnSaveCustomer" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnSaveCustomer" type="submit" asp-action="SaveCustomer" asp-controller="Customers">
                 <i class="bi bg-success bi-plus-square"></i> &nbsp; SAVE CUSTOMER
             </button> &nbsp;
-            <button id="btnCancel" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnCancel" onclick="CancelOperation()">
+            <button id="btnCancel" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnCancel" type="submit" asp-action="ClearCustomer" asp-controller="Customers">
                 <i class="bi bg-danger bi-x-square"></i> &nbsp; CANCEL
             </button>
         </div>
@@ -100,7 +100,7 @@
             </div>
             <div class="mb-2 col-md-3">
                 <label asp-for="Customer!.Company!.Name" class="text-white">Company Name</label>
-                <select name="CompanyName" asp-for="Customer!.Company!.Name" id="CompanyName" title="Choose company name" class="form-control"></select>
+                <select name="Customer!.Company!.Name" asp-for="Customer!.Company!.Name" id="CompanyName" title="Choose company name" class="form-control"></select>
             </div>
         </div>
 
@@ -886,12 +886,12 @@
                                     </thead>
                                     <tbody>
                                         @foreach (var paperwork in Model.Paperworks!)
-                                        {
+                                        {   
                                             <tr>
                                                 <td>@paperwork.Value</td>
-                                                <td><input class="form-check-input" type="checkbox" id="requred" value="No"></td>
-                                                <td><input class="form-control form-control-sm" type="number" id="org_qty" placeholder="" /></td>
-                                                <td><input class="form-control form-control-sm" type="number" id="cpy_qty" placeholder="" /></td>
+                                                <td><input class="form-check-input" type="checkbox" id="requred+@paperwork.Id" value="No"></td>
+                                                <td><input class="form-control form-control-sm" type="number" id="org_qty+@paperwork.Id" placeholder="" /></td>
+                                                <td><input class="form-control form-control-sm" type="number" id="cpy_qty+@paperwork.Id" placeholder="" /></td>
                                             </tr>
                                         }
                                     </tbody>

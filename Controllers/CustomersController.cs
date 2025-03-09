@@ -49,7 +49,7 @@ namespace EDA.Controllers
             paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
             incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
 
-            var addCustomer = new AddCustomerViewModel
+            var addCustomer = new CustomerViewModel
             {
                 Paperworks = paperworks,
                 ConsigneeTypes = consigneeTypes,
@@ -64,16 +64,43 @@ namespace EDA.Controllers
         #region ========== Customer Edit ==========
 
         [HttpGet]
-        public IActionResult EditCustomer(int id)
+        public async Task<IActionResult> EditCustomerAsync(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return Json("Invalid Model: " + ModelState);
+            }
+            // pass required master items
+            var paperworks = _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK").Result;
+            var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
+            var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
+            var incoterms = _unitOfWork.MasterRepository.GetAllAsync("INCOTERM").Result;
+
+            consigneeTypes = consigneeTypes.Prepend(new MasterItem() { Id = 0, Name = "CONSIGNEETYPE", Key = "-Choose One-", Value = "0" }).ToList();
+            paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
+            incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
+
             // get customer from id
-            ViewBag.Id = id;
-            return View();
+            var model = await _unitOfWork.CustomerRepository.GetByIdAsync(id);
+            var customerVM = new CustomerViewModel
+            {
+                Customer = model,
+                Paperworks = paperworks,
+                ConsigneeTypes = consigneeTypes,
+                PaymentTerms = paymentTerms,
+                Incoterms = incoterms
+            };
+            return View(customerVM);
         }
 
         #endregion
 
-        #region ========== Customer Delete ==========
+        #region ========== Customer Clear / Delete ==========
+        [HttpPost]
+        public IActionResult ClearCustomer(CustomerViewModel model)
+        {
+            return RedirectToAction("Index","Customers");
+        }
 
         [HttpGet]
         public async Task<JsonResult> SuspendCustomer(int id)
@@ -99,7 +126,7 @@ namespace EDA.Controllers
         #region ========== Customer Save ==========
 
         [HttpPost]
-        public async Task<JsonResult> SaveCustomer(AddCustomerViewModel model)
+        public async Task<JsonResult> SaveCustomer(CustomerViewModel model)
         {
             if (!ModelState.IsValid)
             {

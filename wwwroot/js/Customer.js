@@ -1,76 +1,69 @@
 ﻿// form load
 $(function () {
-    GetAllCustomers();
-});
-
-// get all customers
-function GetAllCustomers() {
+    // load dropdowns
+    // company
     $.ajax({
         type: 'get',
-        url: '/Customers/GetAllCustomers',
+        url: '/BackOps/GetCompaniesDDL',
         dataType: 'json',
         success: function (response) {
-            gridApi.setGridOption("rowData", response);
+            $('#CompanyName').empty();
+            $('#CompanyName').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#CompanyName').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
         },
         error: function (xhr) {
             displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
-}
-
-// redirect to customer add page
-//$("#btnAddCustomer").on("click", function () {
-//    //displayStatus("New page to be opened for new customer entry", "info");
-//    window.location.href = "/Customers/AddCustomer";
-//});
-
-
-// edit master item
-function EditCustomer(id) {
-    //displayStatus("Open separate page for customer information in edit mode", "info");
-    window.location.href = "/Customers/EditCustomer/"+id;
-}
-
-// suspend customer type
-function SuspendCustomer(id) {
-    //
-    $("<div title='Action Confirmation'>Are you sure to do this?</div>").dialog({
-        open: function () {
-            $(this).closest(".ui-dialog")
-                .find(".ui-dialog-titlebar-close")
-                .removeClass("ui-dialog-titlebar-close")
-                .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
+    // country
+    $.ajax({
+        type: 'get',
+        url: '/BackOps/GetCountriesDDL',
+        dataType: 'json',
+        success: function (response) {
+            $('#BillToAddressCountryCode').empty();
+            $('#BillToAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#ShipToAddressCountryCode').empty();
+            $('#ShipToAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#DocsSendToAddressCountryCode').empty();
+            $('#DocsSendToAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#BrokerAddressCountryCode').empty();
+            $('#BrokerAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#NotifyPartyAddressCountryCode').empty();
+            $('#NotifyPartyAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $('#BankAddressCountryCode').empty();
+            $('#BankAddressCountryCode').append('<option value="">-Choose One-</option>');
+            $.each(response, function (index, item) {
+                $('#BillToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#ShipToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#DocsSendToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#BrokerAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#NotifyPartyAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#BankAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+            });
         },
-        resizable: false,
-        height: "auto",
-        width: 400,
-        modal: true,
-        buttons: {
-            "Yes, Do this!": function () {
-                $.ajax({
-                    type: 'get',
-                    url: '/Customers/SuspendCustomer?id=' + id,
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response == null || response == undefined) {
-                            alert("Unable to read the data");
-                        } else if (response.length == 0) {
-                            alert("Data not available for Id: " + id);
-                        } else {
-                            GetAllCustomers();
-                            $("<div title='Success'>" + response + "</div>").dialog();
-                        }
-                    },
-                    error: function (xhr) {
-                        alert("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText);
-                    }
-                });
-                $(this).dialog("close");
-            },
-            Cancel: function () {
-                $(this).dialog("close");
-            }
+        error: function (xhr) {
+            displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
-    });
+    });    
+});
+
+// company change event
+$("#CompanyName").on("change", function () {
+    $("#Customer_CompanyCode").val($(this).find("option:selected").val());
+});
+
+// save functionality
+$("#btnSaveCustomer").on("click", function () {
+    displayStatus("Saving customer information", "info");
+    // TODO call controller to save
+});
+
+
+// edit customer 
+function EditCustomer(id) {
+    displayStatus("Open separate page for customer information in edit mode", "info");
+    window.location.href = "/Customers/EditCustomer/" + id;
 }
