@@ -58,7 +58,7 @@
     <h1 class="display-5">Add Customer</h1>
 </div>
 
-<form method="post">
+<form method="post" asp-action="SaveCustomer" asp-controller="Customers">
     @* add action buttons *@
     <div class="mb-4 row">
         <div class="col-md-7 d-flex" id="message-container"></div>
@@ -67,7 +67,7 @@
             <button id="btnSaveCustomer" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnSaveCustomer" type="submit" asp-action="SaveCustomer" asp-controller="Customers">
                 <i class="bi bg-success bi-plus-square"></i> &nbsp; SAVE CUSTOMER
             </button> &nbsp;
-            <button id="btnCancel" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#btnCancel" type="submit" asp-action="ClearCustomer" asp-controller="Customers">
+            <button id="btnCancel" class="btn btn-primary" type="button" onclick="window.location.href='@Url.Action("Index", "Customers")'">
                 <i class="bi bg-danger bi-x-square"></i> &nbsp; CANCEL
             </button>
         </div>
@@ -103,7 +103,6 @@
                 <select name="Customer!.Company!.Name" asp-for="Customer!.Company!.Name" id="CompanyName" title="Choose company name" class="form-control"></select>
             </div>
         </div>
-
 
         @* define cusomter tab fields *@
         <div class="row cust-head">
@@ -885,13 +884,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var paperwork in Model.Paperworks!)
-                                        {   
+                                        @for (int i = 0; i < Model.Paperworks.Count; i++)
+                                        {
                                             <tr>
-                                                <td>@paperwork.Value</td>
-                                                <td><input class="form-check-input" type="checkbox" id="requred+@paperwork.Id" value="No"></td>
-                                                <td><input class="form-control form-control-sm" type="number" id="org_qty+@paperwork.Id" placeholder="" /></td>
-                                                <td><input class="form-control form-control-sm" type="number" id="cpy_qty+@paperwork.Id" placeholder="" /></td>
+                                                <td>
+                                                    @Model.Paperworks[i].Paperwork!.Value
+                                                    <input type="hidden" asp-for="Paperworks[i].PaperworkId" value="@Model.Paperworks[i].PaperworkId" />
+                                                </td>
+                                                <td>
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           asp-for="Paperworks[i].Required" />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-control-sm"
+                                                           type="number"
+                                                           asp-for="Paperworks[i].OriginalQuantity" />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-control-sm"
+                                                           type="number"
+                                                           asp-for="Paperworks[i].CopyQuantity" />
+                                                </td>
                                             </tr>
                                         }
                                     </tbody>

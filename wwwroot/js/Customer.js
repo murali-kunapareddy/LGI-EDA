@@ -56,9 +56,29 @@ $("#CompanyName").on("change", function () {
 });
 
 // save functionality
-$("#btnSaveCustomer").on("click", function () {
+$("#btnSaveCustomer").on("click", function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
     displayStatus("Saving customer information", "info");
-    // TODO call controller to save
+    let formData = $("form").serialize(); // Serialize the form data
+
+    // send the data via ajax
+    $.ajax({
+        type: 'POST',
+        url: '/Customers/SaveCustomer',
+        data: formData,
+        success: function (response) {
+            if (response.success) {
+                displayStatus("Customer saved successfully", "success");
+                window.location.href = "/Customers/Index"; // Redirect to the customer list page
+            } else {
+                displayStatus("Failed to save customer: " + response.message, "error");
+            }
+        },
+        error: function (xhr) {
+            displayStatus("Unable to save the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
+        }
+    });
 });
 
 

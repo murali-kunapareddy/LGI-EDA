@@ -15,7 +15,8 @@ namespace WISSEN.EDA.Repositories.Implementations
 			_dbContext = dbContext;
 		}
 
-		public async Task<string> AddAsync(Customer customer)
+        #region ================== Customer ==================
+        public async Task<string> AddAsync(Customer customer)
 		{
 			try
 			{
@@ -77,5 +78,49 @@ namespace WISSEN.EDA.Repositories.Implementations
 			_dbContext.Entry(customer).State = EntityState.Modified;
 			await _dbContext.SaveChangesAsync();
 		}
-	}
+
+        #endregion
+
+        #region ================== Address ==================
+        public async Task<int> AddAddressAsync(Address address)
+        {
+            try
+            {
+                await _dbContext.Addresses.AddAsync(address);
+                await _dbContext.SaveChangesAsync();
+                return address.Id;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+        Task ICustomerRepository.DeleteAddressAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Address> ICustomerRepository.GetAddressByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task ICustomerRepository.UpdateAddressAsync(Address address)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region ================== CustomerPaperwork ==================
+
+        public async Task AddPaperworkAsync(CustomerPaperwork paperwork)
+        {
+            await _dbContext.CustomerPaperworks.AddAsync(paperwork);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        #endregion
+    }
 }

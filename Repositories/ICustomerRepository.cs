@@ -9,5 +9,12 @@ namespace WISSEN.EDA.Repositories
         Task<string> AddAsync(Customer customer);
         Task UpdateAsync(Customer customer);
         Task DeleteAsync(int id);
+
+        Task<Address> GetAddressByIdAsync(int id);
+        Task<int> AddAddressAsync(Address address);
+        Task UpdateAddressAsync(Address address);
+        Task DeleteAddressAsync(int id);
+
+        Task AddPaperworkAsync(CustomerPaperwork paperwork);
     }
 }

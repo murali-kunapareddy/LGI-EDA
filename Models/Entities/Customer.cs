@@ -42,7 +42,6 @@ namespace WISSEN.EDA.Models.Entities
 
         //== associated company
         [Required(ErrorMessage = "Associated company is requried")]
-        [StringLength(100)]
         public int CompanyCode { get; set; }
 
         [ForeignKey("CompanyCode")]

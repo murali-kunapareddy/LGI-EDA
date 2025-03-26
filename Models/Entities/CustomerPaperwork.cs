@@ -20,9 +20,11 @@ namespace WISSEN.EDA.Models.Entities
 
         [ForeignKey("PaperworkId")]
         public virtual MasterItem? Paperwork { get; set; }
-
+        
+        public bool Required { get; set; }
+        
         public int OriginalQuantity { get; set; }
-
+        
         public int CopyQuantity { get; set; }
     }
 }
