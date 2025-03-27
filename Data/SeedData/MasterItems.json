@@ -1,0 +1,1064 @@
+[
+  {
+    "Name": "CONSIGNEETYPE",
+    "Key": "DIRECTCUSTOMER",
+    "Value": "DIRECT CUSTOMER",
+    "Notes": "Direct Customer",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONSIGNEETYPE",
+    "Key": "RESELLER",
+    "Value": "RESELLER",
+    "Notes": "Reseller",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONSIGNEETYPE",
+    "Key": "OTHER",
+    "Value": "OTHER",
+    "Notes": "Other Consignee Type",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONSIGNEETYPE",
+    "Key": "NA",
+    "Value": "N/A",
+    "Notes": "Not Applicable",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Air",
+    "Value": "Air Freight",
+    "Notes": "",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "20' Std (10 Pallets)",
+    "Notes": "",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "20' Std (10 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "20' Std (10 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "20' Tri-Axle (20 Floor Load)",
+    "Notes": "",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (18 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (18 Totes)",
+    "Notes": "",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (19 Pallets)",
+    "Notes": "",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (19 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 9,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (19 Totes)",
+    "Notes": "",
+    "Sequence": 10,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (20 Pallets)",
+    "Notes": "",
+    "Sequence": 11,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (20 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 12,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (20 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 13,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (20 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 14,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' (20 Totes)",
+    "Notes": "",
+    "Sequence": 15,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "40' Std (20 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 16,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (18 Pallets)",
+    "Notes": "",
+    "Sequence": 17,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (18 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 18,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (18 Totes)",
+    "Notes": "",
+    "Sequence": 19,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (19 Pallets)",
+    "Notes": "",
+    "Sequence": 20,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (19 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 21,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (19 Pallets) - Plastic Bags (MEXICO)",
+    "Notes": "",
+    "Sequence": 22,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (19 Totes)",
+    "Notes": "",
+    "Sequence": 23,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (20 Pallets)",
+    "Notes": "",
+    "Sequence": 24,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (20 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 25,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (20 Pallets) - Plastic Bags (MEXICO)",
+    "Notes": "",
+    "Sequence": 26,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (20 Totes)",
+    "Notes": "",
+    "Sequence": 27,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (23 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 28,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Buyer's Truck",
+    "Value": "Truck (23 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 29,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "20' Std (10 Pallets)",
+    "Notes": "",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "20' Std (10 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "20' Std (10 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "20' Tri-Axle (20 Floor Load)",
+    "Notes": "",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (18 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (18 Totes)",
+    "Notes": "",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (19 Pallets)",
+    "Notes": "",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (19 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (19 Totes)",
+    "Notes": "",
+    "Sequence": 9,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (20 Pallets)",
+    "Notes": "",
+    "Sequence": 10,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (20 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 11,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (20 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 12,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (20 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 13,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Ocean",
+    "Value": "40' (20 Totes)",
+    "Notes": "",
+    "Sequence": 14,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "20' Std (10 Pallets)",
+    "Notes": "",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "20' Std (10 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "40' (20 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (18 Pallets)",
+    "Notes": "",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (18 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (18 Totes)",
+    "Notes": "",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (19 Pallets)",
+    "Notes": "",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (19 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (19 Pallets) - Plastic Bags (MEXICO)",
+    "Notes": "",
+    "Sequence": 9,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (19 Totes)",
+    "Notes": "",
+    "Sequence": 10,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (20 Pallets)",
+    "Notes": "",
+    "Sequence": 11,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (20 Pallets) - Plastic Bags",
+    "Notes": "",
+    "Sequence": 12,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (20 Pallets) - Plastic Bags (MEXICO)",
+    "Notes": "",
+    "Sequence": 13,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (20 Totes)",
+    "Notes": "",
+    "Sequence": 14,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (23 Pallets) - BIO",
+    "Notes": "",
+    "Sequence": 15,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "CONTAINERSIZE",
+    "Key": "Truck",
+    "Value": "Truck (23 Pallets) - ESSENTIA",
+    "Notes": "",
+    "Sequence": 16,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "CFR",
+    "Value": "Cost and Freight",
+    "Notes": "",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "CIF",
+    "Value": "Cost, Insurance, and Freight",
+    "Notes": "",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "CIP",
+    "Value": "Carriage and Paid To",
+    "Notes": "",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "CPT",
+    "Value": "Carriage Paid To",
+    "Notes": "",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "DAP",
+    "Value": "Delivered at Place",
+    "Notes": "",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "DDP",
+    "Value": "Delivered Duty Paid",
+    "Notes": "",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "DPU",
+    "Value": "Delivered at Place Unloaded",
+    "Notes": "",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "EXW",
+    "Value": "Ex Works",
+    "Notes": "",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "FAS",
+    "Value": "Free Alongside Ship",
+    "Notes": "",
+    "Sequence": 9,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "FCA",
+    "Value": "Free Carrier",
+    "Notes": "",
+    "Sequence": 10,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "INCOTERM",
+    "Key": "FOB",
+    "Value": "Free on Board",
+    "Notes": "",
+    "Sequence": 11,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Affidavit",
+    "Value": "Affidavit",
+    "Notes": "",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Bank Drafts for LC",
+    "Value": "Bank Drafts for LC",
+    "Notes": "",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Bank Negotiation Letter",
+    "Value": "Bank Negotiation Letter",
+    "Notes": "",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Beneficiary Certificate",
+    "Value": "Beneficiary Certificate",
+    "Notes": "",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "C of A (Automated)",
+    "Value": "C of A (Automated)",
+    "Notes": "",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "C of A (Manual)",
+    "Value": "C of A (Manual)",
+    "Notes": "",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Certificate of Analysis",
+    "Value": "Certificate of Analysis",
+    "Notes": "",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Certificate of Origin",
+    "Value": "Certificate of Origin",
+    "Notes": "",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Certificate of Quality",
+    "Value": "Certificate of Quality",
+    "Notes": "",
+    "Sequence": 9,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Certificate of Weight",
+    "Value": "Certificate of Weight",
+    "Notes": "",
+    "Sequence": 10,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Commercial Invoice",
+    "Value": "Commercial Invoice",
+    "Notes": "",
+    "Sequence": 11,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "D/P Form",
+    "Value": "D/P Form",
+    "Notes": "",
+    "Sequence": 12,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Export Certificate 2(A)",
+    "Value": "Export Certificate 2(A)",
+    "Notes": "",
+    "Sequence": 13,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Export Certificate 3(E)",
+    "Value": "Export Certificate 3(E)",
+    "Notes": "",
+    "Sequence": 14,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Halal Certificate",
+    "Value": "Halal Certificate",
+    "Notes": "",
+    "Sequence": 15,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Halal Certificate Copy - Notary",
+    "Value": "Halal Certificate Copy - Notary",
+    "Notes": "",
+    "Sequence": 16,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Insurance Certificate",
+    "Value": "Insurance Certificate",
+    "Notes": "",
+    "Sequence": 17,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Invoice",
+    "Value": "Invoice",
+    "Notes": "",
+    "Sequence": 18,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Nutrition Label",
+    "Value": "Nutrition Label",
+    "Notes": "",
+    "Sequence": 19,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Packing List",
+    "Value": "Packing List",
+    "Notes": "",
+    "Sequence": 20,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "PCR Results",
+    "Value": "PCR Results",
+    "Notes": "",
+    "Sequence": 21,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "PIB",
+    "Value": "PIB",
+    "Notes": "",
+    "Sequence": 22,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "Proforma Invoice",
+    "Value": "Proforma Invoice",
+    "Notes": "",
+    "Sequence": 23,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "SLI",
+    "Value": "SLI",
+    "Notes": "",
+    "Sequence": 24,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "SLI/VGM",
+    "Value": "SLI/VGM",
+    "Notes": "",
+    "Sequence": 25,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "SQF Certificate",
+    "Value": "SQF Certificate",
+    "Notes": "",
+    "Sequence": 26,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAPERWORK",
+    "Key": "TBD",
+    "Value": "TBD",
+    "Notes": "",
+    "Sequence": 27,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "50% in Advance & 50% Against Docs",
+    "Value": "50% in Advance & 50% Against Docs",
+    "Notes": "",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "D/P at Sight",
+    "Value": "D/P at Sight",
+    "Notes": "",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "L/C",
+    "Value": "L/C",
+    "Notes": "",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 14 Days Plat Ship Date",
+    "Value": "Net 14 Days Plat Ship Date",
+    "Notes": "",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 30 Days BL Date",
+    "Value": "Net 30 Days BL Date",
+    "Notes": "",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 30 Days Plat Ship Date",
+    "Value": "Net 30 Days Plat Ship Date",
+    "Notes": "",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 45 Days BL Date",
+    "Value": "Net 45 Days BL Date",
+    "Notes": "",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 45 Days Plat Ship Date",
+    "Value": "Net 45 Days Plat Ship Date",
+    "Notes": "",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 60 Days BL Date",
+    "Value": "Net 60 Days BL Date",
+    "Notes": "",
+    "Sequence": 9,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 60 Days Plat Ship Date",
+    "Value": "Net 60 Days Plat Ship Date",
+    "Notes": "",
+    "Sequence": 10,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 90 Days After Arrival",
+    "Value": "Net 90 Days After Arrival",
+    "Notes": "",
+    "Sequence": 11,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 90 Days BL Date",
+    "Value": "Net 90 Days BL Date",
+    "Notes": "",
+    "Sequence": 12,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 90 Days Invoice Date",
+    "Value": "Net 90 Days Invoice Date",
+    "Notes": "",
+    "Sequence": 13,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Net 90 Days Plant Ship Date",
+    "Value": "Net 90 Days Plant Ship Date",
+    "Notes": "",
+    "Sequence": 14,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Other",
+    "Value": "Other",
+    "Notes": "",
+    "Sequence": 15,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "Payment in Advance",
+    "Value": "Payment in Advance",
+    "Notes": "",
+    "Sequence": 16,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "PAYMENTTERM",
+    "Key": "T/T Against Copies of Docs",
+    "Value": "T/T Against Copies of Docs",
+    "Notes": "",
+    "Sequence": 17,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  }
+]

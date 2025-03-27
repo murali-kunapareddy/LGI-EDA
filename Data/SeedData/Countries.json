@@ -1,0 +1,1496 @@
+[
+  {
+    "Code": "AF",
+    "Name": "Afghanistan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AX",
+    "Name": "Åland Islands",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AL",
+    "Name": "Albania",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "DZ",
+    "Name": "Algeria",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AS",
+    "Name": "American Samoa",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AD",
+    "Name": "Andorra",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AO",
+    "Name": "Angola",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AI",
+    "Name": "Anguilla",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AQ",
+    "Name": "Antarctica",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AG",
+    "Name": "Antigua and Barbuda",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AR",
+    "Name": "Argentina",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AM",
+    "Name": "Armenia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AW",
+    "Name": "Aruba",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AU",
+    "Name": "Australia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AT",
+    "Name": "Austria",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AZ",
+    "Name": "Azerbaijan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BS",
+    "Name": "Bahamas (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BH",
+    "Name": "Bahrain",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BD",
+    "Name": "Bangladesh",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BB",
+    "Name": "Barbados",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BY",
+    "Name": "Belarus",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BE",
+    "Name": "Belgium",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BZ",
+    "Name": "Belize",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BJ",
+    "Name": "Benin",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BM",
+    "Name": "Bermuda",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BT",
+    "Name": "Bhutan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BO",
+    "Name": "Bolivia (Plurinational State of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BQ",
+    "Name": "Bonaire, Sint Eustatius and Saba",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BA",
+    "Name": "Bosnia and Herzegovina",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BW",
+    "Name": "Botswana",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BV",
+    "Name": "Bouvet Island",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BR",
+    "Name": "Brazil",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IO",
+    "Name": "British Indian Ocean Territory (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BN",
+    "Name": "Brunei Darussalam",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BG",
+    "Name": "Bulgaria",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BF",
+    "Name": "Burkina Faso",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BI",
+    "Name": "Burundi",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CV",
+    "Name": "Cabo Verde",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KH",
+    "Name": "Cambodia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CM",
+    "Name": "Cameroon",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CA",
+    "Name": "Canada",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KY",
+    "Name": "Cayman Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CF",
+    "Name": "Central African Republic (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TD",
+    "Name": "Chad",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CL",
+    "Name": "Chile",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CN",
+    "Name": "China",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CX",
+    "Name": "Christmas Island",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CC",
+    "Name": "Cocos (Keeling) Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CO",
+    "Name": "Colombia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KM",
+    "Name": "Comoros (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CD",
+    "Name": "Congo (the Democratic Republic of the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CG",
+    "Name": "Congo (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CK",
+    "Name": "Cook Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CR",
+    "Name": "Costa Rica",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CI",
+    "Name": "Côte d'Ivoire",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "HR",
+    "Name": "Croatia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CU",
+    "Name": "Cuba",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CW",
+    "Name": "Curaçao",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CY",
+    "Name": "Cyprus",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CZ",
+    "Name": "Czechia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "DK",
+    "Name": "Denmark",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "DJ",
+    "Name": "Djibouti",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "DM",
+    "Name": "Dominica",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "DO",
+    "Name": "Dominican Republic (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "EC",
+    "Name": "Ecuador",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "EG",
+    "Name": "Egypt",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SV",
+    "Name": "El Salvador",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GQ",
+    "Name": "Equatorial Guinea",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ER",
+    "Name": "Eritrea",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "EE",
+    "Name": "Estonia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SZ",
+    "Name": "Eswatini",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ET",
+    "Name": "Ethiopia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "FK",
+    "Name": "Falkland Islands (the) [Malvinas]",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "FO",
+    "Name": "Faroe Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "FJ",
+    "Name": "Fiji",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "FI",
+    "Name": "Finland",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "FR",
+    "Name": "France",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GF",
+    "Name": "French Guiana",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PF",
+    "Name": "French Polynesia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TF",
+    "Name": "French Southern Territories (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GA",
+    "Name": "Gabon",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GM",
+    "Name": "Gambia (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GE",
+    "Name": "Georgia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "DE",
+    "Name": "Germany",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GH",
+    "Name": "Ghana",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GI",
+    "Name": "Gibraltar",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GR",
+    "Name": "Greece",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GL",
+    "Name": "Greenland",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GD",
+    "Name": "Grenada",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GP",
+    "Name": "Guadeloupe",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GU",
+    "Name": "Guam",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GT",
+    "Name": "Guatemala",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GG",
+    "Name": "Guernsey",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GN",
+    "Name": "Guinea",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GW",
+    "Name": "Guinea-Bissau",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GY",
+    "Name": "Guyana",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "HT",
+    "Name": "Haiti",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "HM",
+    "Name": "Heard Island and McDonald Islands",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VA",
+    "Name": "Holy See (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "HN",
+    "Name": "Honduras",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "HK",
+    "Name": "Hong Kong",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "HU",
+    "Name": "Hungary",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IS",
+    "Name": "Iceland",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IN",
+    "Name": "India",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ID",
+    "Name": "Indonesia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IR",
+    "Name": "Iran (Islamic Republic of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IQ",
+    "Name": "Iraq",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IE",
+    "Name": "Ireland",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IM",
+    "Name": "Isle of Man",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IL",
+    "Name": "Israel",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "IT",
+    "Name": "Italy",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "JM",
+    "Name": "Jamaica",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "JP",
+    "Name": "Japan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "JE",
+    "Name": "Jersey",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "JO",
+    "Name": "Jordan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KZ",
+    "Name": "Kazakhstan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KE",
+    "Name": "Kenya",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KI",
+    "Name": "Kiribati",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KP",
+    "Name": "Korea (the Democratic People's Republic of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KR",
+    "Name": "Korea (the Republic of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KW",
+    "Name": "Kuwait",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KG",
+    "Name": "Kyrgyzstan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LA",
+    "Name": "Lao People's Democratic Republic (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LV",
+    "Name": "Latvia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LB",
+    "Name": "Lebanon",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LS",
+    "Name": "Lesotho",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LR",
+    "Name": "Liberia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LY",
+    "Name": "Libya",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LI",
+    "Name": "Liechtenstein",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LT",
+    "Name": "Lithuania",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LU",
+    "Name": "Luxembourg",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MO",
+    "Name": "Macao",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MG",
+    "Name": "Madagascar",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MW",
+    "Name": "Malawi",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MY",
+    "Name": "Malaysia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MV",
+    "Name": "Maldives",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ML",
+    "Name": "Mali",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MT",
+    "Name": "Malta",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MH",
+    "Name": "Marshall Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MQ",
+    "Name": "Martinique",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MR",
+    "Name": "Mauritania",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MU",
+    "Name": "Mauritius",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "YT",
+    "Name": "Mayotte",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MX",
+    "Name": "Mexico",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "FM",
+    "Name": "Micronesia (Federated States of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MD",
+    "Name": "Moldova (the Republic of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MC",
+    "Name": "Monaco",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MN",
+    "Name": "Mongolia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ME",
+    "Name": "Montenegro",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MS",
+    "Name": "Montserrat",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MA",
+    "Name": "Morocco",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MZ",
+    "Name": "Mozambique",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MM",
+    "Name": "Myanmar",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NA",
+    "Name": "Namibia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NR",
+    "Name": "Nauru",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NP",
+    "Name": "Nepal",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NL",
+    "Name": "Netherlands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NC",
+    "Name": "New Caledonia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NZ",
+    "Name": "New Zealand",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NI",
+    "Name": "Nicaragua",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NE",
+    "Name": "Niger (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NG",
+    "Name": "Nigeria",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NU",
+    "Name": "Niue",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NF",
+    "Name": "Norfolk Island",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MP",
+    "Name": "Northern Mariana Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "NO",
+    "Name": "Norway",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "OM",
+    "Name": "Oman",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PK",
+    "Name": "Pakistan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PW",
+    "Name": "Palau",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PS",
+    "Name": "Palestine, State of",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PA",
+    "Name": "Panama",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PG",
+    "Name": "Papua New Guinea",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PY",
+    "Name": "Paraguay",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PE",
+    "Name": "Peru",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PH",
+    "Name": "Philippines (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PN",
+    "Name": "Pitcairn",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PL",
+    "Name": "Poland",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PT",
+    "Name": "Portugal",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PR",
+    "Name": "Puerto Rico",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "QA",
+    "Name": "Qatar",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MK",
+    "Name": "Republic of North Macedonia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "RE",
+    "Name": "Réunion",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "RO",
+    "Name": "Romania",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "RU",
+    "Name": "Russian Federation (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "RW",
+    "Name": "Rwanda",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "BL",
+    "Name": "Saint Barthélemy",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SH",
+    "Name": "Saint Helena, Ascension and Tristan da Cunha",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "KN",
+    "Name": "Saint Kitts and Nevis",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LC",
+    "Name": "Saint Lucia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "MF",
+    "Name": "Saint Martin (French part)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "PM",
+    "Name": "Saint Pierre and Miquelon",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VC",
+    "Name": "Saint Vincent and the Grenadines",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "WS",
+    "Name": "Samoa",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SM",
+    "Name": "San Marino",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ST",
+    "Name": "Sao Tome and Principe",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SA",
+    "Name": "Saudi Arabia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SN",
+    "Name": "Senegal",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "RS",
+    "Name": "Serbia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SC",
+    "Name": "Seychelles",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SL",
+    "Name": "Sierra Leone",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SG",
+    "Name": "Singapore",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SX",
+    "Name": "Sint Maarten (Dutch part)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SK",
+    "Name": "Slovakia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SI",
+    "Name": "Slovenia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SB",
+    "Name": "Solomon Islands",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SO",
+    "Name": "Somalia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ZA",
+    "Name": "South Africa",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GS",
+    "Name": "South Georgia and the South Sandwich Islands",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SS",
+    "Name": "South Sudan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ES",
+    "Name": "Spain",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "LK",
+    "Name": "Sri Lanka",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SD",
+    "Name": "Sudan (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SR",
+    "Name": "Suriname",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SJ",
+    "Name": "Svalbard and Jan Mayen",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SE",
+    "Name": "Sweden",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CH",
+    "Name": "Switzerland",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "SY",
+    "Name": "Syrian Arab Republic",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TW",
+    "Name": "Taiwan (Province of China)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TJ",
+    "Name": "Tajikistan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TZ",
+    "Name": "Tanzania, United Republic of",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TH",
+    "Name": "Thailand",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TL",
+    "Name": "Timor-Leste",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TG",
+    "Name": "Togo",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TK",
+    "Name": "Tokelau",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TO",
+    "Name": "Tonga",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TT",
+    "Name": "Trinidad and Tobago",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TN",
+    "Name": "Tunisia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TR",
+    "Name": "Turkey",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TM",
+    "Name": "Turkmenistan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TC",
+    "Name": "Turks and Caicos Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "TV",
+    "Name": "Tuvalu",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "UG",
+    "Name": "Uganda",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "UA",
+    "Name": "Ukraine",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "AE",
+    "Name": "United Arab Emirates (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "GB",
+    "Name": "United Kingdom of Great Britain and Northern Ireland (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "UM",
+    "Name": "United States Minor Outlying Islands (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "US",
+    "Name": "United States of America (the)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "UY",
+    "Name": "Uruguay",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "UZ",
+    "Name": "Uzbekistan",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VU",
+    "Name": "Vanuatu",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VE",
+    "Name": "Venezuela (Bolivarian Republic of)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VN",
+    "Name": "Viet Nam",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VG",
+    "Name": "Virgin Islands (British)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "VI",
+    "Name": "Virgin Islands (U.S.)",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "WF",
+    "Name": "Wallis and Futuna",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "EH",
+    "Name": "Western Sahara",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "YE",
+    "Name": "Yemen",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ZM",
+    "Name": "Zambia",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "ZW",
+    "Name": "Zimbabwe",
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  }
+]

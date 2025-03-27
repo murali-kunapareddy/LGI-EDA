@@ -1,0 +1,66 @@
+[
+  {
+    "Name": "Masters",
+    "Key": "CONSIGNEETYPE",
+    "Value": "Consignee Types",
+    "Sequence": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "CONTAINERSIZE",
+    "Value": "Container Sizes",
+    "Sequence": 2,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "INCOTERM",
+    "Value": "Incoterms",
+    "Sequence": 3,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "PAPERWORK",
+    "Value": "Paperworks",
+    "Sequence": 4,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "PAYMENTTERM",
+    "Value": "Payment Terms",
+    "Sequence": 5,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "PLANT",
+    "Value": "Plants",
+    "Sequence": 6,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "PORT",
+    "Value": "Ports",
+    "Sequence": 7,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Name": "Masters",
+    "Key": "SHIPVIA",
+    "Value": "Ship Via",
+    "Sequence": 8,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "Code": "DASH",
+    "Name": "Dashboard",
+    "Controller": "Home",
+    "Action": "Index",
+    "Sequence": 10,
+    "AppCode": 2,
+    "Parent": "",
+    "CreatedBy": "System",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CUST",
+    "Name": "Customers",
+    "Controller": "Customer",
+    "Action": "Index",
+    "Sequence": 20,
+    "AppCode": 1,
+    "Parent": "",
+    "CreatedBy": "System",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "CUST_ADD",
+    "Name": "Add Customer",
+    "Controller": "Customer",
+    "Action": "Create",
+    "Sequence": 10,
+    "AppCode": 1,
+    "Parent": "CUST",
+    "CreatedBy": "System",
+    "CreatedOn": "2025-01-01T00:00:00"
+  },
+  {
+    "Code": "REPORTS",
+    "Name": "Reports",
+    "Controller": "Report",
+    "Action": "Index",
+    "Sequence": 30,
+    "AppCode": 1,
+    "Parent": "",
+    "CreatedBy": "System",
+    "CreatedOn": "2025-01-01T00:00:00"
+  }
+]
