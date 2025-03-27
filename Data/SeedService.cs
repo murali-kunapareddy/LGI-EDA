@@ -15,6 +15,7 @@ namespace WISSEN.EDA.Data
                 await SeedMenusAsync(context, logger);
                 await SeedConfigurationItemsAsync(context, logger);
                 await SeedMasterItemsAsync(context, logger);
+                await SeedCompaniesAsync(context, logger);
             }
             catch (Exception ex)
             {
@@ -112,6 +113,36 @@ namespace WISSEN.EDA.Data
             else
             {
                 logger.LogWarning("No master items found in seed data");
+            }
+        }
+
+        private static async Task SeedCompaniesAsync(AppDBContext context, ILogger logger)
+        {
+
+            try
+            {
+                if (await context.Companies.AnyAsync())
+                {
+                    logger.LogInformation("Companies table already has data - skipping seeding");
+                    return;
+                }
+
+                List<Company>? companies = JsonSeedLoader.LoadFromJson<Company>("Data/SeedData/Companies.json");
+                if (companies?.Any() == true)
+                {
+                    await context.Companies.AddRangeAsync(companies);
+                    await context.SaveChangesAsync();
+                    logger.LogInformation("Seeded {Count} companies", companies.Count);
+                }
+                else
+                {
+                    logger.LogWarning("No companies found in seed data");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error seeding companies");
+                throw;
             }
         }
     }

@@ -25,10 +25,6 @@ namespace WISSEN.EDA.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.SeedCountries();
-            //modelBuilder.SeedAdmins();
-            //modelBuilder.SeedMenus();
-
             base.OnModelCreating(modelBuilder);
         }
     }
