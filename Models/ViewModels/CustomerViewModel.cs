@@ -6,7 +6,7 @@ namespace WISSEN.EDA.Models.ViewModels
     public class CustomerViewModel : BaseTable
     {
         public Customer? Customer { get; set; }
-        public List<CustomerPaperwork> Paperworks { get; set; } = new(); // Changed to CustomerPaperwork
+        public List<CustomerPaperwork> Paperworks { get; set; } = new();
         public List<MasterItem>? ConsigneeTypes { get; set; }
         public List<MasterItem>? PaymentTerms { get; set; }
         public List<MasterItem>? Incoterms { get; set; }

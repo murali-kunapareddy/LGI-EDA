@@ -153,9 +153,10 @@ namespace EDA.Controllers
         [HttpPost]
         public async Task<JsonResult> SaveCustomer(CustomerViewModel model)
         {
-            // start populating model
-            await ValidateCustomerModelAsync(model.Customer!);
+            // TEST - start populating model
+            model.Customer = await ValidateCustomerModelAsync(model.Customer!);
             // end populating model
+
             if (!ModelState.IsValid)
             {
                 return Json(new { success = false, message = "Invalid Model: " + ModelState });
@@ -173,6 +174,8 @@ namespace EDA.Controllers
                 foreach (var paperwork in model.Paperworks)
                 {
                     paperwork.CustomerId = model.Customer!.Id; // Link to the saved customer
+                    paperwork.CreatedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com";    //TODO: logged in user
+                    paperwork.CreatedOn = DateTime.Now;
                     await _unitOfWork.CustomerRepository.AddPaperworkAsync(paperwork);
                 }
                 await _unitOfWork.SaveAsync();
@@ -188,7 +191,7 @@ namespace EDA.Controllers
 
         #region ========== Temp Functions ==========
 
-        private async Task ValidateCustomerModelAsync(Customer customer)
+        private async Task<Customer> ValidateCustomerModelAsync(Customer customer)
         {
             try
             {
@@ -227,19 +230,23 @@ namespace EDA.Controllers
                 customer.ExportInfoCode = string.IsNullOrEmpty(customer.ExportInfoCode) ? "CUSTOM" : customer.ExportInfoCode;
                 customer.LicenseCode = string.IsNullOrEmpty(customer.LicenseCode) ? "CUSTOM" : customer.LicenseCode;
                 customer.LicenseNo = string.IsNullOrEmpty(customer.LicenseNo) ? "CUSTOM" : customer.LicenseNo;
-                customer.PaymentTermId = (customer.PaymentTermId != 0) ? customer.PaymentTermId : 1; // DEFAULTS TO PAY IN ADVANCE
+                customer.PaymentTermId = (customer.PaymentTermId != 0) ? customer.PaymentTermId : 117; // DEFAULTS TO PAY IN ADVANCE
                 customer.PaymentTerm = await _unitOfWork.MasterRepository.GetByIdAsync(customer.PaymentTermId);
-                customer.Incoterm2020Id = (customer.Incoterm2020Id != 0) ? customer.Incoterm2020Id : 10; // DEFAULTS TO 10 - FCA
+                customer.Incoterm2020Id = (customer.Incoterm2020Id != 0) ? customer.Incoterm2020Id : 71; // DEFAULTS TO 10 - FCA
                 customer.Incoterm2020 = await _unitOfWork.MasterRepository.GetByIdAsync(customer.Incoterm2020Id);
                 //== text comments
                 customer.ImportPermitNotes = string.IsNullOrEmpty(customer.ImportPermitNotes) ? "CUSTOM" : customer.ImportPermitNotes;
                 customer.ExportComments = string.IsNullOrEmpty(customer.ExportComments) ? "CUSTOM" : customer.ExportComments;
                 customer.OldNotes = string.IsNullOrEmpty(customer.OldNotes) ? "CUSTOM" : customer.OldNotes;
-                //== paperwork list + attachments
+                //== created by
+                customer.CreatedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com"; // TODO: logged in user
+                customer.CreatedOn = DateTime.Now;
+                return customer;
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("Error", "Error in validating customer model: " + ex.Message);
+                return new Customer();
             }
         }
 
@@ -277,23 +284,6 @@ namespace EDA.Controllers
             {
                 ModelState.AddModelError("Error", "Error in building address: " + ex.Message);
                 return new Address();
-            }
-        }
-
-        private async Task<CustomerPaperwork> BuildPaperworkAsync(CustomerPaperwork customerPaperwork)
-        {
-            try
-            {
-                // save to database
-                await _unitOfWork.CustomerRepository.AddPaperworkAsync(customerPaperwork);
-                await _unitOfWork.SaveAsync();
-
-                return customerPaperwork;
-            }
-            catch(Exception ex)
-            {
-                ModelState.AddModelError("Error", "Error in building address: " + ex.Message);
-                return new CustomerPaperwork();
             }
         }
 
