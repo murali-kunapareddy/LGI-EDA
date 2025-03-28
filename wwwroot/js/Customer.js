@@ -23,6 +23,7 @@ $(function () {
         url: '/BackOps/GetCountriesDDL',
         dataType: 'json',
         success: function (response) {
+            // add default -Choose One- option
             $('#BillToAddressCountryCode').empty();
             $('#BillToAddressCountryCode').append('<option value="">-Choose One-</option>');
             $('#ShipToAddressCountryCode').empty();
@@ -35,19 +36,21 @@ $(function () {
             $('#NotifyPartyAddressCountryCode').append('<option value="">-Choose One-</option>');
             $('#BankAddressCountryCode').empty();
             $('#BankAddressCountryCode').append('<option value="">-Choose One-</option>');
+            // append full country code list
             $.each(response, function (index, item) {
-                $('#BillToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#ShipToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#DocsSendToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#BrokerAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#NotifyPartyAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#BankAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                //$('#BillToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
+                $('#BillToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#BillToAddressCountryCode').data('selected') }));
+                $('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#ShipToAddressCountryCode').data('selected') }));
+                $('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#DocsSendToAddressCountryCode').data('selected') }));
+                $('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#BrokerAddressCountryCode').data('selected') }));
+                $('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#NotifyPartyAddressCountryCode').data('selected') }));
+                $('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#BankAddressCountryCode').data('selected') }));
             });
         },
         error: function (xhr) {
             displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
-    });    
+    });
 });
 
 // company change event
@@ -59,13 +62,16 @@ $("#CompanyName").on("change", function () {
 $("#btnSaveCustomer").on("click", function (e) {
     e.preventDefault(); // Prevent the default form submission
 
+    const customerId = $("#Customer_Id").val();
+    const url = customerId === "0" ? '/Customers/SaveCustomer' : '/Customers/UpdateCustomer';
+
     displayStatus("Saving customer information", "info");
     let formData = $("form").serialize(); // Serialize the form data
 
     // send the data via ajax
     $.ajax({
         type: 'POST',
-        url: '/Customers/SaveCustomer',
+        url: url,
         data: formData,
         success: function (response) {
             if (response.success) {

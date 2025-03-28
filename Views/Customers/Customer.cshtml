@@ -3,7 +3,7 @@
 @model CustomerViewModel
 
 @{
-    ViewData["Title"] = "Add Customer";
+    ViewData["Title"] = Model.Customer?.Id == 0 ? "Add Customer" : "Edit Customer";
 }
 
 @section Styles {
@@ -54,11 +54,17 @@
     <script src="~/js/customer.js"></script>
 }
 
+@* Update the heading to reflect the mode *@
 <div class="text-center">
-    <h1 class="display-5">Add Customer</h1>
+    <h1 class="display-5">@(Model.Customer?.Id == 0 ? "Add Customer" : "Edit Customer")</h1>
 </div>
 
-<form method="post" asp-action="SaveCustomer" asp-controller="Customers">
+<form method="post"
+      asp-action="@(Model.Customer?.Id == 0 ? "SaveCustomer" : "UpdateCustomer")" asp-controller="Customers">
+
+    @* Add hidden field for Customer ID *@
+    <input type="hidden" asp-for="Customer!.Id" />
+
     @* add action buttons *@
     <div class="mb-4 row">
         <div class="col-md-7 d-flex" id="message-container"></div>

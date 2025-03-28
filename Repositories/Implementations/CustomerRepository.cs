@@ -8,11 +8,11 @@ namespace WISSEN.EDA.Repositories.Implementations
 {
 	public class CustomerRepository : ICustomerRepository
 	{
-		private readonly AppDBContext _dbContext;
+		private readonly AppDBContext _context;
 
-		public CustomerRepository(AppDBContext dbContext)
+		public CustomerRepository(AppDBContext Context)
 		{
-			_dbContext = dbContext;
+			_context = Context;
 		}
 
         #region ================== Customer ==================
@@ -20,8 +20,8 @@ namespace WISSEN.EDA.Repositories.Implementations
 		{
 			try
 			{
-				await _dbContext.Customers.AddAsync(customer);
-				await _dbContext.SaveChangesAsync();
+				await _context.Customers.AddAsync(customer);
+				await _context.SaveChangesAsync();
 				return "success";
 			}
 			catch (Exception ex)
@@ -32,83 +32,81 @@ namespace WISSEN.EDA.Repositories.Implementations
 
 		public async Task DeleteAsync(int id)
 		{
-			var customer = await _dbContext.Customers.FindAsync(id, false);
+			var customer = await _context.Customers.FindAsync(id, false);
 			if (customer != null)
 			{
-				_dbContext.Customers.Remove(customer);
-				await _dbContext.SaveChangesAsync();
+				_context.Customers.Remove(customer);
+				await _context.SaveChangesAsync();
 			}
 		}
 
-		public async Task<List<CustomerListViewModel>> GetAllAsync()
-		{
-			try
-			{
-				var customers = await _dbContext.Customers.ToListAsync();
-				var companies = await _dbContext.Companies.ToListAsync();
-				//TODO return required fields for list page only
-				var customerListViewModel = (from cust in customers
-											 join comp in companies on cust.CompanyCode equals comp.Code
-											 select new CustomerListViewModel
-											 {
-												 Id = cust.Id,
-												 BillToNo = cust.BillToNo,
-												 BillToName = cust.BillToName,
-												 ShipToNo = cust.ShipToNo,
-												 ShipToName = cust.ShipToName,
-												 CompanyCode = cust.CompanyCode,
-												 CompanyName = comp.Name
-											 }).ToList();
-				return customerListViewModel!;
-			}
-			catch (Exception ex)
-			{
-				return new List<CustomerListViewModel>();
-			}
-		}
+        public async Task<List<CustomerListViewModel>> GetAllAsync()
+        {
+            try
+            {
+                return await _context.Customers
+                    .Include(c => c.Company)
+                    .Select(c => new CustomerListViewModel
+                    {
+                        Id = c.Id,
+                        BillToNo = c.BillToNo,
+                        BillToName = c.BillToName,
+                        ShipToNo = c.ShipToNo,
+                        ShipToName = c.ShipToName,
+                        CompanyCode = c.CompanyCode,
+                        CompanyName = c.Company != null ? c.Company.Name : string.Empty,
+                        IsActive = c.IsActive
+                    })
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                return new List<CustomerListViewModel>();
+            }
+        }
 
 		public async Task<Customer> GetByIdAsync(int id)
 		{
-			var customer = await _dbContext.Customers.FindAsync(id);
+			var customer = await _context.Customers.FindAsync(id);
 			return customer!;
 		}
 
 		public async Task UpdateAsync(Customer customer)
 		{
-			_dbContext.Entry(customer).State = EntityState.Modified;
-			await _dbContext.SaveChangesAsync();
+			_context.Entry(customer).State = EntityState.Modified;
+			await _context.SaveChangesAsync();
 		}
 
         #endregion
 
         #region ================== Address ==================
+
         public async Task<int> AddAddressAsync(Address address)
         {
-            try
+            await _context.Addresses.AddAsync(address);
+            await _context.SaveChangesAsync();
+            return address.Id;
+        }
+
+        public async Task DeleteAddressAsync(int id)
+        {
+            var address = await GetAddressByIdAsync(id);
+            if (address != null)
             {
-                await _dbContext.Addresses.AddAsync(address);
-                await _dbContext.SaveChangesAsync();
-                return address.Id;
-            }
-            catch (Exception ex)
-            {
-                return -1;
+                _context.Addresses.Remove(address);
+                await _context.SaveChangesAsync();
             }
         }
 
-        Task ICustomerRepository.DeleteAddressAsync(int id)
+        public async Task<Address> GetAddressByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Addresses.FindAsync(id);
         }
 
-        Task<Address> ICustomerRepository.GetAddressByIdAsync(int id)
+        public async Task UpdateAddressAsync(Address address)
         {
-            throw new NotImplementedException();
-        }
-
-        Task ICustomerRepository.UpdateAddressAsync(Address address)
-        {
-            throw new NotImplementedException();
+            _context.Addresses.Update(address);
+            await _context.SaveChangesAsync();
         }
 
         #endregion
@@ -117,8 +115,28 @@ namespace WISSEN.EDA.Repositories.Implementations
 
         public async Task AddPaperworkAsync(CustomerPaperwork paperwork)
         {
-            await _dbContext.CustomerPaperworks.AddAsync(paperwork);
-            await _dbContext.SaveChangesAsync();
+            await _context.CustomerPaperworks.AddAsync(paperwork);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<CustomerPaperwork>> GetPaperworksByCustomerIdAsync(int customerId)
+        {
+            return await _context.CustomerPaperworks
+                .Include(p => p.Paperwork) // Include the related MasterItem
+                .Where(p => p.CustomerId == customerId)
+                .ToListAsync();
+        }
+
+        public async Task<CustomerPaperwork?> GetPaperworkAsync(int customerId, int paperworkId)
+        {
+            return await _context.CustomerPaperworks
+                .FirstOrDefaultAsync(p => p.CustomerId == customerId && p.PaperworkId == paperworkId);
+        }
+
+        public async Task UpdatePaperworkAsync(CustomerPaperwork paperwork)
+        {
+            _context.CustomerPaperworks.Update(paperwork);
+            await _context.SaveChangesAsync();
         }
 
         #endregion

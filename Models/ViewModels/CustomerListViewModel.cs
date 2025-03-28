@@ -11,5 +11,6 @@ namespace WISSEN.EDA.Models.ViewModels
 		public string? ShipToName { get; set; }
 		public int CompanyCode { get; set; }
 		public string? CompanyName { get; set; }
+		public bool IsActive { get; set; }
 	}
 }

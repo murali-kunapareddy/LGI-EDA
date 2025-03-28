@@ -54,9 +54,9 @@
                     field: "action", headerName: "Actions", cellRenderer: function (params) {
                         if (params.data != null) {
                             if (params.data.isActive) {
-                                return '<a onclick="EditCustomer(' + params.data.id + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendCustomer(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
+                                return '<a href="/Customers/EditCustomer/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendCustomer(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
                             } else {
-                                return '<a onclick="EditCustomer(' + params.data.id + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendCustomer(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
+                                return '<a href="/Customers/EditCustomer/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendCustomer(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
                             }
                         }
                     }, maxWidth: 100

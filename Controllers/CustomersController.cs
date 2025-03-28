@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+
 using WISSEN.EDA.Models.Entities;
 using WISSEN.EDA.Models.ViewModels;
 using WISSEN.EDA.Repositories;
@@ -40,40 +41,8 @@ namespace EDA.Controllers
 
         public IActionResult AddCustomer()
         {
-            var paperworksMaster = _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK").Result;
-            // Initialize CustomerPaperwork for each MasterItem
-            var paperworks = paperworksMaster.Select(p => new CustomerPaperwork
-            {
-                PaperworkId = p.Id,
-                Paperwork = p  // Assign the MasterItem
-            }).ToList();
-
-            // pass required master items
-            var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
-            var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
-            var incoterms = _unitOfWork.MasterRepository.GetAllAsync("INCOTERM").Result;
-
-            consigneeTypes = consigneeTypes.Prepend(new MasterItem() { Id = 0, Name = "CONSIGNEETYPE", Key = "-Choose One-", Value = "0" }).ToList();
-            paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
-            incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
-
-            var addCustomer = new CustomerViewModel
-            {
-                Customer = new Customer
-                {
-                    BillToAddress = new Address(),
-                    ShipToAddress = new Address(),
-                    DocsSendToAddress = new Address(),
-                    BrokerAddress = new Address(),
-                    NotifyPartyAddress = new Address(),
-                    BankAddress = new Address()
-                },
-                Paperworks = paperworks,
-                ConsigneeTypes = consigneeTypes,
-                PaymentTerms = paymentTerms,
-                Incoterms = incoterms
-            };
-            return View(addCustomer);
+            var viewModel = InitializeCustomerViewModel();
+            return View("Customer", viewModel);
         }
 
         #endregion
@@ -83,19 +52,40 @@ namespace EDA.Controllers
         [HttpGet]
         public async Task<IActionResult> EditCustomerAsync(int id)
         {
-            if (!ModelState.IsValid)
+            var customer = await _unitOfWork.CustomerRepository.GetByIdAsync(id);
+            if (customer == null)
             {
-                return Json("Invalid Model: " + ModelState);
+                return NotFound();
             }
 
+            // load company details
+            customer.Company = await _unitOfWork.CompanyRepository.GetByIdAsync(customer.CompanyCode);
+            // load billto address
+            customer.BillToAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) ?? new Address();
+            // load shipto address
+            customer.ShipToAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) ?? new Address();
+            // load docssendto address
+            customer.DocsSendToAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) ?? new Address();
+            // load broker address
+            customer.BrokerAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) ?? new Address();
+            // load notify party address
+            customer.NotifyPartyAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) ?? new Address();
+            // bank address
+            customer.BankAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) ?? new Address();
+            // master paper works
             var paperworksMaster = _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK").Result;
-            // Initialize CustomerPaperwork for each MasterItem
+            // Load existing paperwork for the customer
+            var existingPaperworks = await _unitOfWork.CustomerRepository.GetPaperworksByCustomerIdAsync(id);
+            // Merge with master paperwork list
             var paperworks = paperworksMaster.Select(p => new CustomerPaperwork
             {
+                CustomerId = id,
                 PaperworkId = p.Id,
-                Paperwork = p  // Assign the MasterItem
+                Paperwork = p,
+                Required = existingPaperworks.FirstOrDefault(ep => ep.PaperworkId == p.Id)?.Required ?? false,
+                OriginalQuantity = existingPaperworks.FirstOrDefault(ep => ep.PaperworkId == p.Id)?.OriginalQuantity ?? 0,
+                CopyQuantity = existingPaperworks.FirstOrDefault(ep => ep.PaperworkId == p.Id)?.CopyQuantity ?? 0
             }).ToList();
-
             // pass required master items
             var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
             var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
@@ -105,17 +95,16 @@ namespace EDA.Controllers
             paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
             incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
 
-            // get customer from id
-            var model = await _unitOfWork.CustomerRepository.GetByIdAsync(id);
             var customerVM = new CustomerViewModel
             {
-                Customer = model,
+                Customer = customer,
                 Paperworks = paperworks,
                 ConsigneeTypes = consigneeTypes,
                 PaymentTerms = paymentTerms,
                 Incoterms = incoterms
             };
-            return View(customerVM);
+
+            return View("Customer", customerVM);
         }
 
         #endregion
@@ -157,10 +146,11 @@ namespace EDA.Controllers
             model.Customer = await ValidateCustomerModelAsync(model.Customer!);
             // end populating model
 
-            if (!ModelState.IsValid)
-            {
-                return Json(new { success = false, message = "Invalid Model: " + ModelState });
-            }
+            // skip model validation
+            //if (!ModelState.IsValid)
+            //{
+            //    return Json(new { success = false, message = "Invalid Model: " + ModelState });
+            //}
 
             var customer = model.Customer!;
 
@@ -189,7 +179,96 @@ namespace EDA.Controllers
         }
         #endregion
 
+        #region ========== Customer Update ==========
+
+        [HttpPost]
+        public async Task<JsonResult> UpdateCustomer(CustomerViewModel model)
+        {
+            // skip model validation
+            //if (!ModelState.IsValid)
+            //{
+            //    return Json(new { success = false, message = "Invalid Model: " + ModelState });
+            //}
+
+            try
+            {
+                // Update customer
+                var customer = await ValidateCustomerModelAsync(model.Customer!);
+                await _unitOfWork.CustomerRepository.UpdateAsync(customer);
+
+                // Update paperwork
+                foreach (var paperwork in model.Paperworks)
+                {
+                    paperwork.CustomerId = customer.Id;
+                    var existing = await _unitOfWork.CustomerRepository.GetPaperworkAsync(customer.Id, paperwork.PaperworkId);
+
+                    if (existing != null)
+                    {
+                        // Update existing
+                        existing.Required = paperwork.Required;
+                        existing.OriginalQuantity = paperwork.OriginalQuantity;
+                        existing.CopyQuantity = paperwork.CopyQuantity;
+                        existing.ModifiedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com"; // TODO: Set current user
+                        existing.ModifiedOn = DateTime.Now;
+                        await _unitOfWork.CustomerRepository.UpdatePaperworkAsync(existing);
+                    }
+                    else
+                    {
+                        // Add new
+                        paperwork.CreatedBy = "murali.kunapareddy@bhjgroup.onmicrosoft.com"; // TODO: Set current user
+                        paperwork.CreatedOn = DateTime.Now;
+                        await _unitOfWork.CustomerRepository.AddPaperworkAsync(paperwork);
+                    }
+                }
+
+                await _unitOfWork.SaveAsync();
+                return Json(new { success = true, message = "Customer updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Failed to update customer: " + ex.Message });
+            }
+        }
+
+        #endregion
+
         #region ========== Temp Functions ==========
+
+        private CustomerViewModel InitializeCustomerViewModel()
+        {
+            var paperworksMaster = _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK").Result;
+            var paperworks = paperworksMaster.Select(p => new CustomerPaperwork
+            {
+                PaperworkId = p.Id,
+                Paperwork = p
+            }).ToList();
+
+            var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
+            var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
+            var incoterms = _unitOfWork.MasterRepository.GetAllAsync("INCOTERM").Result;
+
+            // Prepend default options
+            consigneeTypes = consigneeTypes.Prepend(new MasterItem() { Id = 0, Name = "CONSIGNEETYPE", Key = "-Choose One-", Value = "0" }).ToList();
+            paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
+            incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
+
+            return new CustomerViewModel
+            {
+                Customer = new Customer
+                {
+                    BillToAddress = new Address(),
+                    ShipToAddress = new Address(),
+                    DocsSendToAddress = new Address(),
+                    BrokerAddress = new Address(),
+                    NotifyPartyAddress = new Address(),
+                    BankAddress = new Address()
+                },
+                Paperworks = paperworks,
+                ConsigneeTypes = consigneeTypes,
+                PaymentTerms = paymentTerms,
+                Incoterms = incoterms
+            };
+        }
 
         private async Task<Customer> ValidateCustomerModelAsync(Customer customer)
         {
@@ -198,28 +277,28 @@ namespace EDA.Controllers
                 //== billto 
                 customer.BillToNo = string.IsNullOrEmpty(customer.BillToNo) ? "CUSTOM" : customer.BillToNo;
                 customer.BillToName = string.IsNullOrEmpty(customer.BillToName) ? "CUSTOM" : customer.BillToName;
-                customer.BillToAddress = await BuildAddressAsync(customer.BillToAddress!);
+                customer.BillToAddress = customer.BillToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) : new Address();
                 customer.BillToAddressId = customer.BillToAddress.Id;
                 //== shipto 
-                customer.ShipToNo = string.IsNullOrEmpty(customer.BillToNo) ? "CUSTOM" : customer.BillToNo;
-                customer.ShipToName = string.IsNullOrEmpty(customer.BillToName) ? "CUSTOM" : customer.BillToName;
-                customer.ShipToAddress = await BuildAddressAsync(customer.ShipToAddress!);
+                customer.ShipToNo = string.IsNullOrEmpty(customer.ShipToNo) ? "CUSTOM" : customer.ShipToNo;
+                customer.ShipToName = string.IsNullOrEmpty(customer.ShipToName) ? "CUSTOM" : customer.ShipToName;
+                customer.ShipToAddress = customer.ShipToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) : new Address();
                 customer.ShipToAddressId = customer.ShipToAddress.Id;
                 //== associated company
-                customer.CompanyCode = (customer.CompanyCode != 0) ? customer.CompanyCode:999; // DEFAULTS TO CUSTOM  
+                customer.CompanyCode = (customer.CompanyCode != 0) ? customer.CompanyCode : 999; // DEFAULTS TO CUSTOM  
                 customer.Company = await _unitOfWork.CompanyRepository.GetByIdAsync(customer.CompanyCode);
                 //== docs sent to
-                customer.DocsSendToAddress = await BuildAddressAsync(customer.DocsSendToAddress!);
+                customer.DocsSendToAddress = customer.DocsSendToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) : new Address();
                 customer.DocsSendToAddressId = customer.DocsSendToAddress.Id;
                 customer.DocSendToNotes = string.IsNullOrEmpty(customer.DocSendToNotes) ? "CUSTOM" : customer.DocSendToNotes;
                 //== broker
-                customer.BrokerAddress = await BuildAddressAsync(customer.BrokerAddress!);
+                customer.BrokerAddress = customer.BrokerAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) : new Address();
                 customer.BrokerAddressId = customer.BrokerAddress.Id;
                 //== notify party
-                customer.NotifyPartyAddress = await BuildAddressAsync(customer.NotifyPartyAddress!);
+                customer.NotifyPartyAddress = customer.NotifyPartyAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) : new Address();
                 customer.NotifyPartyAddressId = customer.NotifyPartyAddress.Id;
                 //== bank info
-                customer.BankAddress = await BuildAddressAsync(customer.BankAddress!);
+                customer.BankAddress = customer.BankAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) : new Address();
                 customer.BankAddressId = customer.BankAddress.Id;
                 //== emails
                 customer.DocsDistributionEmails = string.IsNullOrEmpty(customer.DocsDistributionEmails) ? "CUSTOM" : customer.DocsDistributionEmails;
