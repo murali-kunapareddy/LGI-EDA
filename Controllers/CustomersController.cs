@@ -61,17 +61,17 @@ namespace EDA.Controllers
             // load company details
             customer.Company = await _unitOfWork.CompanyRepository.GetByIdAsync(customer.CompanyCode);
             // load billto address
-            customer.BillToAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) ?? new Address();
+            customer.BillToAddress = await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) ?? new Address();
             // load shipto address
-            customer.ShipToAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) ?? new Address();
+            customer.ShipToAddress = await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) ?? new Address();
             // load docssendto address
-            customer.DocsSendToAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) ?? new Address();
+            customer.DocsSendToAddress = await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) ?? new Address();
             // load broker address
-            customer.BrokerAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) ?? new Address();
+            customer.BrokerAddress = await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) ?? new Address();
             // load notify party address
-            customer.NotifyPartyAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) ?? new Address();
+            customer.NotifyPartyAddress = await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) ?? new Address();
             // bank address
-            customer.BankAddress ??= await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) ?? new Address();
+            customer.BankAddress = await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) ?? new Address();
             // master paper works
             var paperworksMaster = _unitOfWork.MasterRepository.GetAllAsync("PAPERWORK").Result;
             // Load existing paperwork for the customer
@@ -86,6 +86,7 @@ namespace EDA.Controllers
                 OriginalQuantity = existingPaperworks.FirstOrDefault(ep => ep.PaperworkId == p.Id)?.OriginalQuantity ?? 0,
                 CopyQuantity = existingPaperworks.FirstOrDefault(ep => ep.PaperworkId == p.Id)?.CopyQuantity ?? 0
             }).ToList();
+
             // pass required master items
             var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
             var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
@@ -102,6 +103,7 @@ namespace EDA.Controllers
                 ConsigneeTypes = consigneeTypes,
                 PaymentTerms = paymentTerms,
                 Incoterms = incoterms
+                //Countries = await _unitOfWork.CommonRepository.GetCoutriesAsync()
             };
 
             return View("Customer", customerVM);
@@ -246,11 +248,13 @@ namespace EDA.Controllers
             var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
             var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
             var incoterms = _unitOfWork.MasterRepository.GetAllAsync("INCOTERM").Result;
+            var countries = _unitOfWork.CommonRepository.GetCoutriesAsync().Result;
 
             // Prepend default options
             consigneeTypes = consigneeTypes.Prepend(new MasterItem() { Id = 0, Name = "CONSIGNEETYPE", Key = "-Choose One-", Value = "0" }).ToList();
             paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
             incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
+            countries = countries.Prepend(new Country() { Code = "0", Name = "-Choose One-" }).ToList();
 
             return new CustomerViewModel
             {
@@ -267,6 +271,7 @@ namespace EDA.Controllers
                 ConsigneeTypes = consigneeTypes,
                 PaymentTerms = paymentTerms,
                 Incoterms = incoterms
+                //Countries = countries
             };
         }
 
@@ -277,28 +282,28 @@ namespace EDA.Controllers
                 //== billto 
                 customer.BillToNo = string.IsNullOrEmpty(customer.BillToNo) ? "CUSTOM" : customer.BillToNo;
                 customer.BillToName = string.IsNullOrEmpty(customer.BillToName) ? "CUSTOM" : customer.BillToName;
-                customer.BillToAddress = customer.BillToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) : new Address();
+                customer.BillToAddress = customer.BillToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.BillToAddressId = customer.BillToAddress.Id;
                 //== shipto 
                 customer.ShipToNo = string.IsNullOrEmpty(customer.ShipToNo) ? "CUSTOM" : customer.ShipToNo;
                 customer.ShipToName = string.IsNullOrEmpty(customer.ShipToName) ? "CUSTOM" : customer.ShipToName;
-                customer.ShipToAddress = customer.ShipToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) : new Address();
+                customer.ShipToAddress = customer.ShipToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.ShipToAddressId = customer.ShipToAddress.Id;
                 //== associated company
                 customer.CompanyCode = (customer.CompanyCode != 0) ? customer.CompanyCode : 999; // DEFAULTS TO CUSTOM  
                 customer.Company = await _unitOfWork.CompanyRepository.GetByIdAsync(customer.CompanyCode);
                 //== docs sent to
-                customer.DocsSendToAddress = customer.DocsSendToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) : new Address();
+                customer.DocsSendToAddress = customer.DocsSendToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.DocsSendToAddressId = customer.DocsSendToAddress.Id;
                 customer.DocSendToNotes = string.IsNullOrEmpty(customer.DocSendToNotes) ? "CUSTOM" : customer.DocSendToNotes;
                 //== broker
-                customer.BrokerAddress = customer.BrokerAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) : new Address();
+                customer.BrokerAddress = customer.BrokerAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.BrokerAddressId = customer.BrokerAddress.Id;
                 //== notify party
-                customer.NotifyPartyAddress = customer.NotifyPartyAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) : new Address();
+                customer.NotifyPartyAddress = customer.NotifyPartyAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.NotifyPartyAddressId = customer.NotifyPartyAddress.Id;
                 //== bank info
-                customer.BankAddress = customer.BankAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) : new Address();
+                customer.BankAddress = customer.BankAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.BankAddressId = customer.BankAddress.Id;
                 //== emails
                 customer.DocsDistributionEmails = string.IsNullOrEmpty(customer.DocsDistributionEmails) ? "CUSTOM" : customer.DocsDistributionEmails;

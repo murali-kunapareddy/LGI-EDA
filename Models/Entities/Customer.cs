@@ -23,7 +23,7 @@ namespace WISSEN.EDA.Models.Entities
         public int BillToAddressId { get; set; }
 
         [ForeignKey("BillToAddressId")]
-        public Address? BillToAddress { get; set; }
+        public Address? BillToAddress { get; set; } = new Address();
 
         //== Ship To
         [Required(ErrorMessage = "Customer 'Ship To' no is required")]
@@ -38,7 +38,7 @@ namespace WISSEN.EDA.Models.Entities
         public int ShipToAddressId { get; set; }
 
         [ForeignKey("ShipToAddressId")]
-        public Address? ShipToAddress { get; set; }
+        public Address? ShipToAddress { get; set; } = new Address();
 
         //== associated company
         [Required(ErrorMessage = "Associated company is requried")]
@@ -52,7 +52,7 @@ namespace WISSEN.EDA.Models.Entities
         public int DocsSendToAddressId { get; set; }
 
         [ForeignKey("DocsSendToAddressId")]
-        public Address? DocsSendToAddress { get; set; }
+        public Address? DocsSendToAddress { get; set; } = new Address();
 
         [StringLength(200)]
         public string? DocSendToNotes { get; set; }
@@ -62,19 +62,19 @@ namespace WISSEN.EDA.Models.Entities
         public int BrokerAddressId { get; set; }
 
         [ForeignKey("BrokerAddressId")]
-        public Address? BrokerAddress { get; set; }
+        public Address? BrokerAddress { get; set; } = new Address();
 
         //== notify party
         public int NotifyPartyAddressId { get; set; }
 
         [ForeignKey("NotifyPartyAddressId")]
-        public Address? NotifyPartyAddress { get; set; }
+        public Address? NotifyPartyAddress { get; set; } = new Address();
 
         //== bank info
         public int BankAddressId { get; set; }
 
         [ForeignKey("BankAddressId")]
-        public Address? BankAddress { get; set; }
+        public Address? BankAddress { get; set; } = new Address();
 
         //== emails
         [StringLength(1000)]

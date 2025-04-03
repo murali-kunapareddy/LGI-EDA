@@ -8,5 +8,7 @@ namespace WISSEN.EDA.Repositories
         List<SelectListItem> GetDDLSelectedMasters(string masterName);
         List<SelectListItem> GetDDLCountries();
         List<SelectListItem> GetDDLCompanies();
+
+        Task<List<Country>> GetCoutriesAsync();
     }
 }

@@ -1,6 +1,7 @@
 ﻿// form load
 $(function () {
     // load dropdowns
+
     // company
     $.ajax({
         type: 'get',
@@ -12,6 +13,12 @@ $(function () {
             $.each(response, function (index, item) {
                 $('#CompanyName').append('<option value="' + item.text + '">' + item.value + '</option>');
             });
+
+            // set selected value
+            if ($('#Customer_CompanyCode').val()>0)
+                $('#CompanyName').val($('#Customer_CompanyCode').val());
+            else
+                $('#CompanyName').val('');
         },
         error: function (xhr) {
             displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
@@ -39,18 +46,25 @@ $(function () {
             // append full country code list
             $.each(response, function (index, item) {
                 //$('#BillToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#BillToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#BillToAddressCountryCode').data('selected') }));
-                $('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#ShipToAddressCountryCode').data('selected') }));
-                $('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#DocsSendToAddressCountryCode').data('selected') }));
-                $('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#BrokerAddressCountryCode').data('selected') }));
-                $('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#NotifyPartyAddressCountryCode').data('selected') }));
-                $('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: item.text === $('#BankAddressCountryCode').data('selected') }));
+                $('#BillToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                $('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                $('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                $('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                $('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                $('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
             });
         },
         error: function (xhr) {
             displayStatus("Unable to read the data. Status: " + xhr.status + " Message: " + xhr.statusText + " " + xhr.responseText, "error");
         }
     });
+
+    // few checks
+    if ($('#Customer_CompanyCode').val() > 0) {
+        // edit mode: set selected value
+        $('#BillToAddressCountryCode').val($('#Customer_BillToAddress_CountryCode').val());
+        $('#ShipToAddressCountryCode').val($('#Customer_ShipToAddress_CountryCode').val());
+    }
 });
 
 // company change event
