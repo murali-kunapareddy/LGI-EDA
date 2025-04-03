@@ -7,6 +7,7 @@
         ICompanyRepository CompanyRepository { get; }
         ICustomerRepository CustomerRepository { get; }
         IProductRepository ProductRepository { get; }
+        IOrderRepository OrderRepository { get; }
         Task<int> SaveAsync();
     }
 }

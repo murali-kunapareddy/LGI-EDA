@@ -9,6 +9,6 @@ namespace WISSEN.EDA.Repositories
         List<SelectListItem> GetDDLCountries();
         List<SelectListItem> GetDDLCompanies();
 
-        Task<List<Country>> GetCoutriesAsync();
+        Task<List<Country>> GetCountriesAsync();
     }
 }

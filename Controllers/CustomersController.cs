@@ -248,13 +248,13 @@ namespace EDA.Controllers
             var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
             var paymentTerms = _unitOfWork.MasterRepository.GetAllAsync("PAYMENTTERM").Result;
             var incoterms = _unitOfWork.MasterRepository.GetAllAsync("INCOTERM").Result;
-            var countries = _unitOfWork.CommonRepository.GetCoutriesAsync().Result;
+            var countries = _unitOfWork.CommonRepository.GetCountriesAsync().Result;
 
             // Prepend default options
-            consigneeTypes = consigneeTypes.Prepend(new MasterItem() { Id = 0, Name = "CONSIGNEETYPE", Key = "-Choose One-", Value = "0" }).ToList();
-            paymentTerms = paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" }).ToList();
-            incoterms = incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" }).ToList();
-            countries = countries.Prepend(new Country() { Code = "0", Name = "-Choose One-" }).ToList();
+            consigneeTypes = [.. consigneeTypes.Prepend(new MasterItem() { Id = 0, Name = "CONSIGNEETYPE", Key = "-Choose One-", Value = "0" })];
+            paymentTerms = [.. paymentTerms.Prepend(new MasterItem() { Id = 0, Name = "PAYMENTTERM", Key = "-Choose One-", Value = "0" })];
+            incoterms = [.. incoterms.Prepend(new MasterItem() { Id = 0, Name = "INCOTERM", Key = "-Choose One-", Value = "0" })];
+            countries = [.. countries.Prepend(new Country() { Code = "0", Name = "-Choose One-" })];
 
             return new CustomerViewModel
             {

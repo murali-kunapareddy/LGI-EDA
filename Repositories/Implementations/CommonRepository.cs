@@ -62,7 +62,7 @@ namespace WISSEN.EDA.Repositories.Implementations
             return list;
         }
 
-        public async Task<List<Country>> GetCoutriesAsync()
+        public async Task<List<Country>> GetCountriesAsync()
         {
             return await _dbContext.Countries.Where(c => c.IsActive && !c.IsDeleted).ToListAsync();
         }

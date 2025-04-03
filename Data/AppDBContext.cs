@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using WISSEN.EDA.Models.Entities;
 
 namespace WISSEN.EDA.Data
 {
-    public class AppDBContext: DbContext
+    public class AppDBContext : DbContext
     {
-        public AppDBContext(DbContextOptions<AppDBContext> options):base(options)
+        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
             // comes something
         }
@@ -19,6 +20,8 @@ namespace WISSEN.EDA.Data
         public DbSet<CustomerPaperwork> CustomerPaperworks { get; set; }
         public DbSet<MasterItem> MasterItems { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderAttachment> OrderAttachments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         //public DbSet<UserPrivilege> UserPrivileges { get; set; }
