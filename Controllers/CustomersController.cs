@@ -282,28 +282,33 @@ namespace EDA.Controllers
                 //== billto 
                 customer.BillToNo = string.IsNullOrEmpty(customer.BillToNo) ? "CUSTOM" : customer.BillToNo;
                 customer.BillToName = string.IsNullOrEmpty(customer.BillToName) ? "CUSTOM" : customer.BillToName;
-                customer.BillToAddress = customer.BillToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BillToAddressId) : BuildAddressAsync(new Address()).Result;
+                customer.BillToAddress.Id = customer.BillToAddressId;
+                customer.BillToAddress = BuildAddressAsync(customer.BillToAddress).Result;
                 customer.BillToAddressId = customer.BillToAddress.Id;
                 //== shipto 
                 customer.ShipToNo = string.IsNullOrEmpty(customer.ShipToNo) ? "CUSTOM" : customer.ShipToNo;
                 customer.ShipToName = string.IsNullOrEmpty(customer.ShipToName) ? "CUSTOM" : customer.ShipToName;
-                customer.ShipToAddress = customer.ShipToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) : BuildAddressAsync(new Address()).Result;
+                customer.ShipToAddress.Id = customer.ShipToAddressId;
+                customer.ShipToAddress = BuildAddressAsync(customer.ShipToAddress).Result; //customer.ShipToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.ShipToAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.ShipToAddressId = customer.ShipToAddress.Id;
                 //== associated company
                 customer.CompanyCode = (customer.CompanyCode != 0) ? customer.CompanyCode : 999; // DEFAULTS TO CUSTOM  
                 customer.Company = await _unitOfWork.CompanyRepository.GetByIdAsync(customer.CompanyCode);
                 //== docs sent to
-                customer.DocsSendToAddress = customer.DocsSendToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) : BuildAddressAsync(new Address()).Result;
+                customer.DocsSendToAddress.Id = customer.DocsSendToAddressId;
+                customer.DocsSendToAddress = BuildAddressAsync(customer.DocsSendToAddress).Result; //customer.DocsSendToAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.DocsSendToAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.DocsSendToAddressId = customer.DocsSendToAddress.Id;
                 customer.DocSendToNotes = string.IsNullOrEmpty(customer.DocSendToNotes) ? "CUSTOM" : customer.DocSendToNotes;
                 //== broker
-                customer.BrokerAddress = customer.BrokerAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) : BuildAddressAsync(new Address()).Result;
+                customer.BrokerAddress.Id = customer.BrokerAddressId;
+                customer.BrokerAddress = BuildAddressAsync(customer.BrokerAddress).Result; //customer.BrokerAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BrokerAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.BrokerAddressId = customer.BrokerAddress.Id;
                 //== notify party
-                customer.NotifyPartyAddress = customer.NotifyPartyAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) : BuildAddressAsync(new Address()).Result;
+                customer.NotifyPartyAddress = BuildAddressAsync(customer.NotifyPartyAddress).Result; //customer.NotifyPartyAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.NotifyPartyAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.NotifyPartyAddressId = customer.NotifyPartyAddress.Id;
                 //== bank info
-                customer.BankAddress = customer.BankAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) : BuildAddressAsync(new Address()).Result;
+                customer.BankAddress.Id = customer.BankAddressId;
+                customer.BankAddress = BuildAddressAsync(customer.BankAddress).Result;  //customer.BankAddressId > 0 ? await _unitOfWork.CustomerRepository.GetAddressByIdAsync(customer.BankAddressId) : BuildAddressAsync(new Address()).Result;
                 customer.BankAddressId = customer.BankAddress.Id;
                 //== emails
                 customer.DocsDistributionEmails = string.IsNullOrEmpty(customer.DocsDistributionEmails) ? "CUSTOM" : customer.DocsDistributionEmails;
@@ -340,6 +345,7 @@ namespace EDA.Controllers
             {
                 Address NewAddress = new Address
                 {
+                    Id= address.Id,
                     ContactName = string.IsNullOrEmpty(address.ContactName) ? "CUSTOM" : address.ContactName,
                     Name = string.IsNullOrEmpty(address.Name) ? "CUSTOM" : address.Name,
                     AddressLine = string.IsNullOrEmpty(address.AddressLine) ? "CUSTOM" : address.AddressLine,
@@ -359,10 +365,18 @@ namespace EDA.Controllers
                 };
 
                 // save to database
-                await _unitOfWork.CustomerRepository.AddAddressAsync(NewAddress);
-                await _unitOfWork.SaveAsync();
+                if (NewAddress.Id > 0)
+                {
+                    await _unitOfWork.CustomerRepository.UpdateAddressAsync(NewAddress);
+                    await _unitOfWork.SaveAsync();
+                }
+                else
+                {
+                    await _unitOfWork.CustomerRepository.AddAddressAsync(NewAddress);
+                    await _unitOfWork.SaveAsync();
+                }
 
-                return NewAddress;
+                    return NewAddress;
             }
             catch (Exception ex)
             {
@@ -373,4 +387,5 @@ namespace EDA.Controllers
 
         #endregion
     }
+
 }
