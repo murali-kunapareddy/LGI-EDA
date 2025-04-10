@@ -161,7 +161,7 @@
             </ul>
             <!-- Tabs navs -->
             <!-- Tabs content -->
-            <div class="tab-content" id="customer-tabs-content">
+            <div class="tab-content" id="order-tabs-content">
 
                 @* Tab setup Page 1*@
                 <div class="tab-pane fade show active"
@@ -482,320 +482,20 @@
 
                 @* Tab setup Page 2*@
                 <div class="tab-pane fade"
-                     id="customer-pages-2"
+                     id="order-pages-2"
                      role="tabpanel"
-                     aria-labelledby="customer-page-2">
+                     aria-labelledby="order-page-2">
                     <div class="row justify-content-around section">
                         <div class="mb-1 col-md-4 form-horizontal">
-                            <div class="section-header bg-primary">Broker Information (if applicable)</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.ContactName">Contact Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.ContactName" placeholder="Contact Name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.Name">Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.Name" placeholder="Name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.AddressLine">Address</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.BrokerAddress!.AddressLine" placeholder="Address" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.City">City</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.City" placeholder="City" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.State">State/Province</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.State" placeholder="State" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.CountryCode">Country</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <select name="BrokerAddressCountryCode" asp-for="Order.Customer!.BrokerAddress!.CountryCode" id="BrokerAddressCountryCode" title="Choose Country" class="form-control"></select>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.Zip">Zip</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.Zip" placeholder="Zip" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.Phone">Phone</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.Phone" placeholder="Phone" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.Email">Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BrokerAddress!.Email" placeholder="Email" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BrokerAddress!.AdditionalEmails">Additional Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.BrokerAddress!.AdditionalEmails" rows="5" placeholder="Additional Email" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-1 col-md-4 form-horizontal">
-                            <input type="hidden" asp-for="Order.Customer!.NotifyPartyAddressId" />
-                            <div class="section-header bg-primary">Notify Party Address</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.ContactName">Contact Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.ContactName" placeholder="Contact Name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.Name">Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.Name" placeholder="Name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.AddressLine">Address</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.NotifyPartyAddress!.AddressLine" placeholder="Address" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.City">City</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.City" placeholder="City" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.State">State/Province</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.State" placeholder="State" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.CountryCode">Country</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <select name="NotifyPartyAddressCountryCode" asp-for="Order.Customer!.NotifyPartyAddress!.CountryCode" id="NotifyPartyAddressCountryCode" title="Choose Country" class="form-control"></select>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.Zip">Zip</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.Zip" placeholder="Zip" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.Phone">Phone</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.Phone" placeholder="Phone" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.Email">Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.NotifyPartyAddress!.Email" placeholder="Email" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.NotifyPartyAddress!.AdditionalEmails">Additional Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.NotifyPartyAddress!.AdditionalEmails" rows="5" placeholder="Additional Email" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-1 col-md-4 form-horizontal">
-                            <input type="hidden" asp-for="Order.Customer!.BankAddressId" />
-                            <div class="section-header bg-primary">Bank Information (D/P Terms Only)</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.ContactName">Contact Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.ContactName" placeholder="Contact Name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Name">Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Name" placeholder="Name" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.AddressLine">Address</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.BankAddress!.AddressLine" placeholder="Address" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.City">City</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.City" placeholder="City" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.State">State/Province</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.State" placeholder="State" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.CountryCode">Country</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <select name="BankAddressCountryCode" asp-for="Order.Customer!.BankAddress!.CountryCode" id="BankAddressCountryCode" title="Choose Country" class="form-control"></select>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Zip">Zip</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Zip" placeholder="Zip" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Phone">Phone</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Phone" placeholder="Phone" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Email">Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Email" placeholder="Email" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="section-header bg-primary">Document Email Distribution List</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.DocsDistributionEmails">Email Distribution List</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.DocsDistributionEmails" placeholder="Email Distribution List" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @* Tab setup Page 3*@
-                <div class="tab-pane fade"
-                     id="customer-pages-3"
-                     role="tabpanel"
-                     aria-labelledby="customer-page-3">
-                    <div class="row justify-content-around section">
-                        <div class="mb-1 col-md-4 form-horizontal">
-                            <div class="section-header bg-primary">AES Notes/ Comments</div>
+                            <div class="section-header bg-primary">Other Details</div>
                             <div class="row mb-1 form-group">
                                 <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.UltimateConsgineeTypeId">Ultimate Consignee Type</label>
+                                    <label asp-for="Order.Customer!.UltimateConsgineeTypeId">Ship Via</label>
                                 </div>
                                 <div class="col-sm-7">
                                     @* <select name="UltimateConsgineeTypeId" asp-for="Order.Customer!.UltimateConsgineeTypeId" id="UltimateConsgineeTypeId" title="Choose Country" class="form-control"></select> *@
                                     @Html.DropDownListFor(m => m.ConsigneeTypes,
                                              new SelectList(Model.ConsigneeTypes, "Id", "Key"), new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.ExportInfoCode">Export Info Code</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" asp-for="Order.Customer!.ExportInfoCode" placeholder="Export Info Code" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.LicenseCode">License Code</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" asp-for="Order.Customer!.LicenseCode" placeholder="License Code" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.LicenseNo">License Code</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" asp-for="Order.Customer!.LicenseNo" placeholder="License No" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.RoutedTransaction">Routed Transaction (EAR99)</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="RoutedTransaction" id="RoutedTransactionYes" value="Yes">
-                                        <label class="form-check-label" for="RoutedTransactionYes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="RoutedTransaction" id="RoutedTransactionNo" value="No">
-                                        <label class="form-check-label" for="RoutedTransactionNo">No</label>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-1 form-group">
@@ -816,83 +516,80 @@
                             </div>
                             <div class="row mb-1 form-group">
                                 <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.ProformaInvoiceRequired">Proforma Invoice Required?</label>
+                                    <label asp-for="Order.IsImportPermitRequired">Import Permit Required?</label>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="Order.Customer!.ProformaInvoiceRequired" id="ProformaInvoiceRequiredYes" value="Yes">
-                                        <label class="form-check-label" for="ProformaInvoiceRequiredYes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="Order.Customer!.ProformaInvoiceRequired" id="ProformaInvoiceRequiredNo" value="No">
-                                        <label class="form-check-label" for="ProformaInvoiceRequiredNo">No</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.PictureRequired">Picture Required?</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="Order.Customer!.PictureRequired" id="PictureRequiredYes" value="Yes">
-                                        <label class="form-check-label" for="PictureRequiredYes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="Order.Customer!.PictureRequired" id="PictureRequiredNo" value="No">
-                                        <label class="form-check-label" for="PictureRequiredNo">No</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-5 align-right">
-                                    <label asp-for="Order.Customer!.ImportPermitRequired">Import Permit Required?</br>(before shipping)</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="Order.Customer!.ImportPermitRequired" id="ImportPermitRequiredYes" value="Yes">
+                                        <input class="form-check-input" type="radio" name="IsImportPermitRequired" id="ImportPermitRequiredYes" value="Yes">
                                         <label class="form-check-label" for="ImportPermitRequiredYes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="Order.Customer!.ImportPermitRequired" id="ImportPermitRequiredNo" value="No">
+                                        <input class="form-check-input" type="radio" name="IsImportPermitRequired" id="ImportPermitRequiredNo" value="No">
                                         <label class="form-check-label" for="ImportPermitRequiredNo">No</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="section-header bg-primary">
-                                Customer Booking Email Address(es)
-                            </div>
                             <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.CustomerBookingEmails">Customer Booking Emails</label>
+                                <div class="col-sm-5 align-right">
+                                    <label asp-for="Order.IsPermitReceived">Permit Received?</label>
                                 </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.CustomerBookingEmails" placeholder="Customer Booking Emails" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-1 col-md-4 form-horizontal">
-                            <div class="section-header bg-primary">Import Permit Notes</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-12">
-                                    <textarea asp-for="Order.Customer!.ImportPermitNotes" rows="4" placeholder="Import Permit Notes" class="form-control"></textarea>
+                                <div class="col-sm-7">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Order.IsPermitReceived" id="PermitReceivedYes" value="Yes">
+                                        <label class="form-check-label" for="PermitReceivedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Order.IsPermitReceived" id="PermitReceivedNo" value="No">
+                                        <label class="form-check-label" for="PermitReceivedNo">No</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="section-header bg-primary">Export Comments</div>
                             <div class="row mb-1 form-group">
-                                <div class="col-sm-12">
-                                    <textarea asp-for="Order.Customer!.ExportComments" rows="4" placeholder="Export Comments" class="form-control"></textarea>
+                                <div class="col-sm-5 align-right">
+                                    <label asp-for="Order.Customer!.UltimateConsgineeTypeId">Container Size</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    @* <select name="UltimateConsgineeTypeId" asp-for="Order.Customer!.UltimateConsgineeTypeId" id="UltimateConsgineeTypeId" title="Choose Country" class="form-control"></select> *@
+                                    @Html.DropDownListFor(m => m.ConsigneeTypes,
+                                             new SelectList(Model.ConsigneeTypes, "Id", "Key"), new { @class = "form-control" })
                                 </div>
                             </div>
-                            <div class="section-header bg-primary">Old Notes</div>
                             <div class="row mb-1 form-group">
-                                <div class="col-sm-12">
-                                    <textarea asp-for="Order.Customer!.OldNotes" rows="8" placeholder="Old Notes" class="form-control"></textarea>
+                                <div class="col-sm-5 align-right">
+                                    <label asp-for="Order.IsPermitReceived">Proforma Invoice Needed?</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Order.IsPermitReceived" id="PermitReceivedYes" value="Yes">
+                                        <label class="form-check-label" for="PermitReceivedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Order.IsPermitReceived" id="PermitReceivedNo" value="No">
+                                        <label class="form-check-label" for="PermitReceivedNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1 form-group">
+                                <div class="col-sm-5 align-right">
+                                    <label asp-for="Order.Customer!.UltimateConsgineeTypeId">Request Container Loading</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    @* <select name="UltimateConsgineeTypeId" asp-for="Order.Customer!.UltimateConsgineeTypeId" id="UltimateConsgineeTypeId" title="Choose Country" class="form-control"></select> *@
+                                    @Html.DropDownListFor(m => m.ConsigneeTypes,
+                                             new SelectList(Model.ConsigneeTypes, "Id", "Key"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row mb-1 form-group">
+                                <div class="col-sm-5 align-right">
+                                    <label asp-for="Order.Customer!.Incoterm2020Id">Requested ETA</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <input type="text" asp-for="Order.Customer!.Incoterm2020Id" placeholder="Requested ETA Date" class="form-control" />
                                 </div>
                             </div>
                         </div>
                         @* TODO: Paperworks *@
-                        @* <div class="mb-1 col-md-4 form-horizontal">
+                        <div class="mb-1 col-md-4 form-horizontal">
                             <div class="section-header bg-primary">Paperworks</div>
                             <div class="mb-3">
                                 <table class="table w-auto">
@@ -905,7 +602,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for (int i = 0; i < Model.Order!.Customer!.Paperworks!.Count; i++)
+                                        @* @for (int i = 0; i < Model.Order!.Customer!.Paperworks!.Count; i++)
                                         {
                                             <tr>
                                                 <td>
@@ -928,7 +625,7 @@
                                                            asp-for="Paperworks[i].CopyQuantity" />
                                                 </td>
                                             </tr>
-                                        }
+                                        } *@
                                     </tbody>
                                 </table>
                             </div>
@@ -941,7 +638,22 @@
                                     <!-- show attached files -->
                                 </div>
                             </div>
-                        </div> *@
+                        </div>
+
+                        <div class="mb-1 col-md-4 form-horizontal">
+                            <div class="section-header bg-primary">Special Shipping Instructions </div>
+                            <div class="row mb-1 form-group">
+                                <div class="col-sm-12">
+                                    <textarea asp-for="Order.Customer!.ImportPermitNotes" rows="4" placeholder="Enter special shipping instructions (Labels, Barcodes, Packaging)" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="section-header bg-primary">Special Lableing / SKU# (Specify)</div>
+                            <div class="row mb-1 form-group">
+                                <div class="col-sm-12">
+                                    <textarea asp-for="Order.Customer!.ExportComments" rows="4" placeholder="Enter special lableing / SKU# (Specify):" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

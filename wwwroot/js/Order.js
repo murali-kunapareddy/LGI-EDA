@@ -67,19 +67,18 @@ $(function () {
     }
 });
 
-// company change event
-$("#CompanyName").on("change", function () {
-    $("#Customer_CompanyCode").val($(this).find("option:selected").val());
-});
+// bill to no change event
+
+// ship to no change event
 
 // save functionality
-$("#btnSaveCustomer").on("click", function (e) {
+$("#btnSaveOrder").on("click", function (e) {
     e.preventDefault(); // Prevent the default form submission
 
-    const customerId = $("#Customer_Id").val();
-    const url = customerId === "0" ? '/Customers/SaveCustomer' : '/Customers/UpdateCustomer';
+    const customerId = $("#Order_Id").val();
+    const url = customerId === "0" ? '/Orders/SaveOrder' : '/Orders/UpdateOrder';
 
-    displayStatus("Saving customer information", "info");
+    displayStatus("Saving order information", "info");
     let formData = $("form").serialize(); // Serialize the form data
 
     // send the data via ajax
