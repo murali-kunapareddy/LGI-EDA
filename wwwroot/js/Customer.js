@@ -45,13 +45,53 @@ $(function () {
             $('#BankAddressCountryCode').append('<option value="">-Choose One-</option>');
             // append full country code list
             $.each(response, function (index, item) {
-                //$('#BillToAddressCountryCode').append('<option value="' + item.text + '">' + item.value + '</option>');
-                $('#BillToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
-                $('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
-                $('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
-                $('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
-                $('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
-                $('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                
+                if (item.text == $('#Customer_BillToAddress_CountryCode').val()) {
+                    $('#BillToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: true }));
+                }
+                else {
+                    $('#BillToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                }
+
+                if (item.text == $('#Customer_ShipToAddress_CountryCode').val()) {
+                    $('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: true }));
+                }
+                else {
+                    $('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                }
+                if (item.text == $('#Customer_DocsSendToAddress_CountryCode').val()) {
+                    $('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: true }));
+                }
+                else {
+                    $('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                }
+
+                if (item.text == $('#Customer_BrokerAddress_CountryCode').val()) {
+                    $('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: true }));
+                }
+                else {
+                    $('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                }
+
+                if (item.text == $('#Customer_NotifyPartyAddress_CountryCode').val()) {
+                    $('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: true }));
+                }
+                else {
+                    $('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                }
+
+                if (item.text == $('#Customer_BankAddress_CountryCode').val()) {
+                    $('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value, selected: true }));
+                }
+                else {
+                    $('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                }
+
+                //$('#ShipToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                //$('#DocsSendToAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                //$('#BrokerAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                //$('#NotifyPartyAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
+                //$('#BankAddressCountryCode').append($('<option>', { value: item.text, text: item.value }));
             });
         },
         error: function (xhr) {
@@ -60,11 +100,12 @@ $(function () {
     });
 
     // few checks
-    if ($('#Customer_CompanyCode').val() > 0) {
-        // edit mode: set selected value
-        $('#BillToAddressCountryCode').val($('#Customer_BillToAddress_CountryCode').val());
-        $('#ShipToAddressCountryCode').val($('#Customer_ShipToAddress_CountryCode').val());
-    }
+    //if ($('#Customer_CompanyCode').val() > 0) {
+    //    // edit mode: set selected value
+    //    $('#BillToAddressCountryCode').val($('#Customer_BillToAddress_CountryCode').val());
+    //    $('#ShipToAddressCountryCode').val($('#Customer_ShipToAddress_CountryCode').val());
+    //    $('#DocsSendToAddressCountryCode').val($('#Customer_DocsSendToAddress_CountryCode').val());
+    //}
 });
 
 // company change event
