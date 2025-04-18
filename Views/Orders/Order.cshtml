@@ -50,13 +50,78 @@
             border-color: #e3f2fd !important;
             font-weight: 600;
         }
+
+        /* AG-GRID STYLES */
+        .ag-theme-quartz {
+            --ag-borders: none;
+            /*--ag-row-border-color: rgb(150, 150, 200);*/
+            --ag-font-size: 1.2rem;
+            --ag-font-family: 'Barlow Semi Condensed', sans-serif;
+            --ag-header-background-color: #0D47A1;
+            --ag-odd-row-background-color: rgb(179, 229, 252, 0.5);
+        }
+
+        .ag-header-cell {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
+
+        .ag-header-cell-label {
+            justify-content: center;
+        }
+
+        .ag-cell-focus, .ag-cell-no-focus {
+            border: none !important;
+        }
+        /* This CSS is to not apply the border for the column having 'no-border' class */
+        .no-border.ag-cell:focus {
+            border: none !important;
+            outline: none;
+        }
     </style>
 }
 
 @section Scripts {
+    <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <script src="~/lib/mdb-ui-kit/mdb.umd.min.js"></script>
     <script src="~/js/commons.js"></script>
     <script src="~/js/order.js"></script>
+
+    <script>
+        // grid options
+        const gridOptions = {
+            domLayout: "autoHeight",
+            autoSizeStrategy: {
+                type: "fitGridWidth",
+                defaultMinWidth: 100
+            },
+            // Column Definitions: Defines the columns to be displayed.
+            columnDefs: [
+                {
+                    field: "action", headerName: "Actions", cellRenderer: function (params) {
+                        if (params.data != null) {
+                            if (params.data.isActive) {
+                                return '<a href="/Orders/EditOrder/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendOrder(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
+                            } else {
+                                return '<a href="/Orders/EditOrder/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendOrder(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
+                            }
+                        }
+                    }, maxWidth: 100
+                },
+                { field: "id", headerName: "Id", hide: true },
+                { field: "asdf", headerName: "Destination Port", flex: 1 },
+                { field: "contractNo", headerName: "Contract No", flex: 1 },
+                { field: "shipToName", headerName: "Ship To Name", flex: 1 },
+                { field: "billToName", headerName: "Bill To Name", flex: 2 },
+                { field: "orderDate", headerName: "Order Date", flex: 1 },
+                { field: "submitDate", headerName: "Submit Date", flex: 1 },
+                { field: "status", headerName: "Status", flex: 2 }
+            ]
+        };
+        // get grid element and apply grid options
+        const gridElement = document.querySelector('#gridProducts');
+        const gridApi = agGrid.createGrid(gridElement, gridOptions);
+    </script>
 }
 
 @* Update the heading to reflect the mode *@
@@ -159,7 +224,7 @@
                        aria-selected="false">Page 3</a>
                 </li>
             </ul>
-            <!-- Tabs navs -->
+
             <!-- Tabs content -->
             <div class="tab-content" id="customer-tabs-content">
 
@@ -482,9 +547,9 @@
 
                 @* Tab setup Page 2*@
                 <div class="tab-pane fade"
-                     id="customer-pages-2"
+                     id="order-pages-2"
                      role="tabpanel"
-                     aria-labelledby="customer-page-2">
+                     aria-labelledby="order-page-2">
                     <div class="row justify-content-around section">
                         <div class="mb-1 col-md-4 form-horizontal">
                             <div class="section-header bg-primary">Broker Information (if applicable)</div>
@@ -743,12 +808,21 @@
 
                 @* Tab setup Page 3*@
                 <div class="tab-pane fade"
-                     id="customer-pages-3"
+                     id="order-pages-3"
                      role="tabpanel"
-                     aria-labelledby="customer-page-3">
+                     aria-labelledby="order-page-3">
                     <div class="row justify-content-around section">
-                        <div class="mb-1 col-md-4 form-horizontal">
-                            <div class="section-header bg-primary">AES Notes/ Comments</div>
+                        <div class="mb-1 col-md-12 form-horizontal">
+                            <div class="section-header bg-primary">Pricing Breakdown by Destination Port</div>
+
+                            @* Produt list *@
+                            <div class="text-center">
+                                <div id="gridProducts" class="ag-theme-quartz"></div>
+                            </div>
+
+
+
+
                             <div class="row mb-1 form-group">
                                 <div class="col-sm-5 align-right">
                                     <label asp-for="Order.Customer!.UltimateConsgineeTypeId">Ultimate Consignee Type</label>
