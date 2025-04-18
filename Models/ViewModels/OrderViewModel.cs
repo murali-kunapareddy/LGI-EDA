@@ -7,5 +7,7 @@ namespace WISSEN.EDA.Models.ViewModels
     {
         public Order? Order { get; set; } = new Order();
         public List<MasterItem>? ConsigneeTypes { get; set; }
+        public List<MasterItem>? ContainerSizes { get; set; }
+
     }
 }

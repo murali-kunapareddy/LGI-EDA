@@ -50,6 +50,7 @@ namespace EDA.Controllers
         private OrderViewModel InitializeOrderViewModel()
         {
             var consigneeTypes = _unitOfWork.MasterRepository.GetAllAsync("CONSIGNEETYPE").Result;
+            var containerSizes = _unitOfWork.MasterRepository.GetAllAsync("CONTAINERSIZE").Result;
             var countries = _unitOfWork.CommonRepository.GetCountriesAsync().Result;
 
             // Prepend default options
