@@ -15,7 +15,7 @@ $(function () {
             });
 
             // set selected value
-            if ($('#Customer_CompanyCode').val()>0)
+            if ($('#Customer_CompanyCode').val() > 0)
                 $('#CompanyName').val($('#Customer_CompanyCode').val());
             else
                 $('#CompanyName').val('');
@@ -71,12 +71,46 @@ $(function () {
 
 // ship to no change event
 
+// add product button click
+$("#btnAddProduct").on("click", function (e) {
+    $('#addProductModal').modal('show');
+});
+
+// Handle product form submission
+$('#productForm').on('submit', function (e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+
+    // Add to grid
+    const newItem = {
+        id: Date.now(), // Temporary ID
+        destinationPort: formData.destinationPort,
+        product: formData.product,
+        quantity: parseInt(formData.quantity),
+        bagToteSize: parseFloat(formData.bagToteSize),
+        noOfBagsTotes: parseInt(formData.noOfBagsTotes),
+        fCA: parseFloat(formData.fCA),
+        fright: parseFloat(formData.fright),
+        insurance: parseFloat(formData.insurance),
+        commission: parseFloat(formData.commission),
+        floorPalletCharge: parseFloat(formData.floorPalletCharge || 0)
+    };
+
+    gridApi.applyTransaction({ add: [newItem] });
+
+    // Clear form and hide modal
+    e.target.reset();
+    $('#addProductModal').modal('hide');
+});
+
 // save functionality
 $("#btnSaveOrder").on("click", function (e) {
     e.preventDefault(); // Prevent the default form submission
 
-    const customerId = $("#Order_Id").val();
-    const url = customerId === "0" ? '/Orders/SaveOrder' : '/Orders/UpdateOrder';
+    const orderId = $("#Order_Id").val();
+    const url = orderId === "0" ? '/Orders/SaveOrder' : '/Orders/UpdateOrder';
 
     displayStatus("Saving order information", "info");
     let formData = $("form").serialize(); // Serialize the form data
@@ -100,9 +134,26 @@ $("#btnSaveOrder").on("click", function (e) {
     });
 });
 
-
 // edit customer 
 function EditCustomer(id) {
     displayStatus("Open separate page for customer information in edit mode", "info");
     window.location.href = "/Customers/EditCustomer/" + id;
 }
+
+// calculate no of bags
+//$("#bagToteSize").on("change", function (e) {
+//    $("#quantity").val();
+//});
+
+$('input[name="quantity"], input[name="bagToteSize"]').on('input', function () {
+    const quantity = parseFloat($('input[name="quantity"]').val()) || 0;
+    const bagToteSize = parseFloat($('input[name="bagToteSize"]').val()) || 0;
+
+    if (bagToteSize > 0) {
+        const calculatedValue = Math.ceil(quantity / bagToteSize);
+        $('input[name="noOfBagsTotes"]').val(calculatedValue);
+    } else {
+        $('input[name="noOfBagsTotes"]').val('');
+    }
+});
+//$("#bagToteSize").on("change", function (e) { });

@@ -100,22 +100,23 @@
                 {
                     field: "action", headerName: "Actions", cellRenderer: function (params) {
                         if (params.data != null) {
-                            if (params.data.isActive) {
-                                return '<a href="/Orders/EditOrder/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendOrder(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
-                            } else {
-                                return '<a href="/Orders/EditOrder/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendOrder(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
-                            }
+                            return '<a href="/Orders/EditProduct/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a>';
                         }
                     }, maxWidth: 100
                 },
                 { field: "id", headerName: "Id", hide: true },
-                { field: "asdf", headerName: "Destination Port", flex: 1 },
-                { field: "contractNo", headerName: "Contract No", flex: 1 },
-                { field: "shipToName", headerName: "Ship To Name", flex: 1 },
-                { field: "billToName", headerName: "Bill To Name", flex: 2 },
-                { field: "orderDate", headerName: "Order Date", flex: 1 },
-                { field: "submitDate", headerName: "Submit Date", flex: 1 },
-                { field: "status", headerName: "Status", flex: 2 }
+                { field: "destinationPort", headerName: "Destination Port", flex: 1 },
+                { field: "product", headerName: "Product", flex: 1 },
+                { field: "quantity", headerName: "Quantity", flex: 1 },
+                { field: "bagToteSize", headerName: "Bag/Tote Size", flex: 2 },
+                { field: "noOfBagsTotes", headerName: "No of Bags/Totes", flex: 1 },
+                { field: "fCA", headerName: "FCA (Exworks) (kgs)", flex: 1 },
+                { field: "fright", headerName: "Frieght (kgs)", flex: 1 },
+                { field: "insurance", headerName: "Insurance (kgs)", flex: 2 },
+                { field: "commission", headerName: "Commission (kgs)", flex: 2 },
+                { field: "floorPalletCharge", headerName: "Addl. Floor/Pallet Charge (kgs)", flex: 2 },
+                { field: "totalSalesPerWeight", headerName: "Total Sales Price/Weight (kgs)", flex: 2 },
+                { field: "totalSalesOnOrder", headerName: "Total Sales for Entire Order (kgs)", flex: 2 }
             ]
         };
         // get grid element and apply grid options
@@ -552,67 +553,6 @@
                      aria-labelledby="order-page-2">
                     <div class="row justify-content-around section">
                         <div class="mb-1 col-md-4 form-horizontal">
-                            <div class="section-header bg-primary">Other Details</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.State">State/Province</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.State" placeholder="State" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.CountryCode">Country</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <select name="BankAddressCountryCode" asp-for="Order.Customer!.BankAddress!.CountryCode" id="BankAddressCountryCode" title="Choose Country" class="form-control"></select>
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Zip">Zip</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Zip" placeholder="Zip" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Phone">Phone</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Phone" placeholder="Phone" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.BankAddress!.Email">Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" asp-for="Order.Customer!.BankAddress!.Email" placeholder="Email" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="section-header bg-primary">Document Email Distribution List</div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-4 align-right">
-                                    <label asp-for="Order.Customer!.DocsDistributionEmails">Email Distribution List</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea asp-for="Order.Customer!.DocsDistributionEmails" placeholder="Email Distribution List" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @* Tab setup Page 3*@
-                <div class="tab-pane fade"
-                     id="customer-pages-3"
-                     role="tabpanel"
-                     aria-labelledby="customer-page-3">
-                    <div class="row justify-content-around section">
-                        <div class="mb-1 col-md-4 form-horizontal">
                             <div class="section-header bg-primary">AES Notes/ Comments</div>
                             <div class="row mb-1 form-group">
                                 <div class="col-sm-5 align-right">
@@ -755,15 +695,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="section-header bg-primary">Attachments</div>
-                            <div class="mb-3">
-                                <input class="form-control" type="file" id="CustomerAttachments" multiple>
-                            </div>
-                            <div class="row mb-1 form-group">
-                                <div class="col-sm-12">
-                                    <!-- show attached files -->
-                                </div>
-                            </div>
                         </div>
 
                         <div class="mb-1 col-md-4 form-horizontal">
@@ -782,8 +713,131 @@
                         </div>
                     </div>
                 </div>
+
+                @* Tab setup Page 3*@
+                <div class="tab-pane fade"
+                     id="order-pages-3"
+                     role="tabpanel"
+                     aria-labelledby="order-page-3">
+                    <div class="row justify-content-around section">
+                        <div class="mb-1 col-md-12 form-horizontal">
+                            <div class="section-header bg-primary d-flex justify-content-between">
+                                Pricing Breakdown by Destination Port
+                                <button id="btnAddProduct" class="btn btn-primary" type="button">
+                                    <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD PRODUCT
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <div id="gridProducts" class="ag-theme-quartz"></div>
+                                <div>&nbsp;</div>
+                                <div>&nbsp;</div>
+                                <div>&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around section">
+                        <div class="mb-1 col-md-4 form-horizontal">
+                            <div class="section-header bg-primary">Additional Notes</div>
+                            <div class="row mb-1 form-group">
+                                <div class="col-sm-12">
+                                    <textarea asp-for="Order.AdditionalNotes" rows="4" placeholder="Enter additional notes" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-1 col-md-4 form-horizontal">
+                            <div class="section-header bg-primary">Attachments</div>
+                            <div class="mb-3">
+                                <input class="form-control" type="file" id="CustomerAttachments" multiple>
+                            </div>
+                        </div>
+                        <div class="mb-1 col-md-4 form-horizontal">
+                            <div class="section-header bg-primary">Customer Service/Export Usage Only</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Tabs content -->
         </div>
     </div>
 </form>
+
+<div class="modal fade" id="addProductModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="productForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Destination Port</label>
+                                <input type="text" class="form-control" name="destinationPort" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Product</label>
+                                <input type="text" class="form-control" name="product" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-control" name="quantity" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Bag/Tote Size</label>
+                                <input type="number" step="0.01" class="form-control" name="bagToteSize" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">No of Bags/Totes</label>
+                                <input type="number" class="form-control" name="noOfBagsTotes" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Each Price</label>
+                                <input type="number" class="form-control" name="noOfBagsTotes" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"> Total Sales Price Per Weight (KGS)</label>
+                                <input type="number" step="0.01" class="form-control" name="floorPalletCharge" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">FCA (Exworks)</label>
+                                <input type="number" step="0.01" class="form-control" name="fCA" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Freight</label>
+                                <input type="number" step="0.01" class="form-control" name="fright" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Insurance</label>
+                                <input type="number" step="0.01" class="form-control" name="insurance" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Commission</label>
+                                <input type="number" step="0.01" class="form-control" name="commission" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Additional Floor/Pallet Charge</label>
+                                <input type="number" step="0.01" class="form-control" name="floorPalletCharge" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Sales Price per Load</label>
+                                <input type="number" step="0.01" class="form-control" name="floorPalletCharge" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Total Sales for Entire Order</label>
+                                <input type="number" step="0.01" class="form-control" name="floorPalletCharge" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

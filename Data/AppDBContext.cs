@@ -22,13 +22,10 @@ namespace WISSEN.EDA.Data
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderAttachment> OrderAttachments { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         //public DbSet<UserPrivilege> UserPrivileges { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }
