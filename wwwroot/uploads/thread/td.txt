@@ -1,0 +1,73 @@
+<HTML><HEAD><style type="text/css">
+ #stacktrace_id
+{
+ visibility: hidden; 
+ position: absolute; 
+ width: 950px; 
+border: 3px solid blue; 
+ padding: 4px; 
+ background-color: lightyellow; 
+ z-index: 10; 
+ } 
+  .parent 
+ { 
+ cursor: hand; 
+ cursor: pointer; 
+ } 
+ .children 
+ { 
+ cursor: hand; 
+ margin-left: 10px; 
+ display: none; 
+ } 	</style><TITLE>IBM Thread and Monitor Dump Analyzer for Java Technology</TITLE><meta http-equiv="Content-Type" content="text/html;charset=utf-8" ></HEAD><BODY><span ID="checkMenu" style="width: 200px;padding: 2px; border: 3px solid blue;background-color:Yellow;Position:absolute; Top:10; Right:80; Z-Index:2;cursor:hand;"><input onclick="flip()" type="checkbox" CHECKED id="setting" value="on"/>Show Stack Trace</span><H1>Java Thread and Monitor Dump Analysis</H1><B>IBM Thread and Monitor Dump Analyzer for Java Technology</B> Version 4.6.18<BR>Architected & Developed by Jinwoo Hwang (jinwoo@us.ibm.com)<BR>Licensed Materials - Property of IBM Corp. (C) Copyright IBM Corp. 2020. All Rights Reserved.<BR><div id="stacktrace_id"></div><script type="text/javascript"> 
+ var enabletip=false 
+ var stackTraceElement=document.getElementById("stacktrace_id") 
+  function showStackTrace(text){ 
+ if(enabled=="0") return false; 
+ stackTraceElement.innerHTML= text 
+ enabletip=true  
+ return false 
+} 
+ function tiplocation(e){ 
+ if (enabletip){  
+ var newX=(document.all)? event.clientX+document.body.scrollLeft : e.pageX-50; 
+ var newY=(document.all)? event.clientY+document.body.scrollTop : e.pageY+30; 
+ var limitX =(document.all)? document.body.clientWidth-event.clientX+50 : window.innerWidth-e.clientX+30; 
+ var limitY =(document.all)? document.body.clientHeight-event.clientY-20 : window.innerHeight-e.clientY-40; 
+ if (limitX<stackTraceElement.offsetWidth) 
+ newX= (document.all)? document.body.scrollLeft+event.clientX-stackTraceElement.offsetWidth : window.pageXOffset+e.clientX-stackTraceElement.offsetWidth; 
+ if (limitY<stackTraceElement.offsetHeight) 
+ newY=(document.all)? document.body.scrollTop+event.clientY-stackTraceElement.offsetHeight-20 : window.pageYOffset+e.clientY-stackTraceElement.offsetHeight-20; 
+  if(document.all){ 
+   if(newX<document.body.scrollLeft) newX=document.body.scrollLeft + 10; 
+   if(newY<document.body.scrollTop) newY=document.body.scrollTop + 10; 
+  } else { 
+   if(newX<window.pageXOffset) newX=window.pageXOffset + 10; 
+   if(newY<window.pageYOffset) newY=window.pageYOffset + 10; 
+  } 
+ stackTraceElement.style.left=newX+"px" 
+ stackTraceElement.style.top=newY+"px" 
+ stackTraceElement.style.visibility="visible"  
+ } 
+ }  
+ var enabled="1"; 
+  function flip(){ 
+   if(enabled=="1") enabled ="0"; 
+  else enabled="1"; 
+  }
+ function hideStackTrace(){  
+ enabletip=false 
+ stackTraceElement.style.visibility="hidden" 
+ }  
+ function stayMenu(){ 
+  if(document.all) { checkMenu.style.pixelTop=document.body.scrollTop+10; 
+ checkMenu.style.pixelLeft=document.body.scrollLeft+document.body.clientWidth-checkMenu.offsetWidth-80; } 
+  else { 
+ document.getElementById("checkMenu").style.top=window.pageYOffset+10; 
+ document.getElementById("checkMenu").style.left=window.pageXOffset+window.innerWidth-checkMenu.offsetWidth-80; 
+ } 
+  setTimeout("stayMenu()",0); 
+  } 
+ document.onmousemove=tiplocation 
+ window.onload=stayMenu 
+</script><BR><TABLE WIDTH="100%"><TR><TD WIDTH="0%"></TD><TD WIDTH="100%">Report date and time: Thu Mar 06 13:57:07 IST 2025</TD></TR><TR><TD WIDTH="0%"></TD><TD WIDTH="100%">Problem Type for Analysis: Hang, Deadlock and Performance Degradation Problems</TD></TR><TR><TD WIDTH="0%"></TD><TD WIDTH="100%">Please run a <a href="http://www.alphaworks.ibm.com/tech/jca" target="_blank">standalone version of IBM Thread and Monitor Dump Analyzer for Java Technology</a> if you need interactive interfaces or more information</TD></TR></TABLE><BR><UL><li>Java Thread Dump Comparison Analysis : Not available for a single thread dump</UL><br><br></html>
