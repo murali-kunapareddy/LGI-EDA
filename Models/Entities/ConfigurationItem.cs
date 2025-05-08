@@ -7,7 +7,7 @@ namespace WISSEN.EDA.Models.Entities
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required]
         [StringLength(100, ErrorMessage ="Configuration name is required")]
         [Display(Name = "Configuration Name")]

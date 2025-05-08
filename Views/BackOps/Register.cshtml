@@ -1,0 +1,85 @@
+﻿@model WISSEN.EDA.Models.ViewModels.RegistrationViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-85">
+    <div class="card" style="width: 30rem;">
+        <form asp-action="Register" method="post">
+            <div class="card-header text-center text-bg-primary">
+                <h4>Register</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group position-relative">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" type="password" id="Password" oninput="checkPasswordStrength()" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <i class="fa fa-eye position-absolute" style="top: 35px; right: 10px; cursor: pointer;" onclick="togglePasswordVisibility('Password')"></i>
+                    <small id="passwordStrength" class="form-text text-muted"></small>
+                </div>
+                <div class="form-group position-relative">
+                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" type="password" id="ConfirmPassword" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    <i class="fa fa-eye position-absolute" style="top: 35px; right: 10px; cursor: pointer;" onclick="togglePasswordVisibility('ConfirmPassword')"></i>
+                </div>
+            </div>
+            <div class="card-footer text-center text-bg-info">
+                <button type="submit" class="btn">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    Already have an account? <a asp-area="" asp-controller="BackOps" asp-action="Login">Login here</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (field.type === "password") {
+                field.type = "text";
+            } else {
+                field.type = "password";
+            }
+        }
+
+        function checkPasswordStrength() {
+            const password = document.getElementById("Password").value;
+            const strengthText = document.getElementById("passwordStrength");
+            let strength = "Weak";
+            let color = "red";
+
+            if (password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[!#$%^&*]/.test(password)) {
+                strength = "Strong";
+                color = "green";
+            } else if (password.length >= 6) {
+                strength = "Medium";
+                color = "orange";
+            }
+
+            strengthText.textContent = `Password Strength: ${strength}`;
+            strengthText.style.color = color;
+        }
+    </script>
+}
+

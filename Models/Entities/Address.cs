@@ -22,11 +22,11 @@ namespace WISSEN.EDA.Models.Entities
 
         [Required(ErrorMessage = "City is required")]
         [StringLength(50)]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [Required(ErrorMessage = "State is required")]
         [StringLength(50)]
-        public string State { get; set; }
+        public string? State { get; set; }
 
         [Required(ErrorMessage = "Country is required")]
         [StringLength(2)]

@@ -7,6 +7,7 @@ namespace WISSEN.EDA.Models.Entities
     public class Company : BaseTable
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] // Specify no auto-generation
         public int Code { get; set; }
         
         [Required(ErrorMessage = "Company Name is required")]

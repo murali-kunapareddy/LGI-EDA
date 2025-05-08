@@ -48,7 +48,7 @@ namespace WISSEN.EDA.Repositories.Implementations
                         ShipToName = o.Customer != null ? o.Customer.ShipToName : string.Empty,
                         BillToName = o.Customer != null ? o.Customer.BillToName : string.Empty,
                         OrderDate = o.OrderDate != default(DateTime) ? DateOnly.FromDateTime(o.OrderDate) : default(DateOnly),
-                        SubmitDate = o.CreatedOn.HasValue ? DateOnly.FromDateTime(o.CreatedOn.Value) : default(DateOnly),
+                        SubmitDate = o.CreatedOn != default(DateTime) ? DateOnly.FromDateTime(o.CreatedOn) : default(DateOnly), // Fixed issue here
                         Status = "STATUS",
                         IsActive = o.IsActive
                     })

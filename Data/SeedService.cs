@@ -12,10 +12,15 @@ namespace WISSEN.EDA.Data
             try
             {
                 await SeedCountriesAsync(context, logger);
-                await SeedMenusAsync(context, logger);
+                //await SeedMenusAsync(context, logger);
                 await SeedConfigurationItemsAsync(context, logger);
                 await SeedMasterItemsAsync(context, logger);
                 await SeedCompaniesAsync(context, logger);
+                await SeedRolesAsync(context, logger);
+                await SeedUsersAsync(context, logger);
+                await SeedAddressesAsync(context, logger);
+                await SeedUserRolesAsync(context, logger);
+                await SeedUserProfilesAsync(context, logger);
             }
             catch (Exception ex)
             {
@@ -53,6 +58,7 @@ namespace WISSEN.EDA.Data
             }
         }
 
+        /*
         private static async Task SeedMenusAsync(AppDBContext context, ILogger logger)
         {
             if (await context.Menus.AnyAsync())
@@ -73,6 +79,7 @@ namespace WISSEN.EDA.Data
                 logger.LogWarning("No menus found in seed data");
             }
         }
+        */
 
         private static async Task SeedConfigurationItemsAsync(AppDBContext context, ILogger logger)
         {
@@ -142,6 +149,156 @@ namespace WISSEN.EDA.Data
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error seeding companies");
+                throw;
+            }
+        }
+
+        private static async Task SeedRolesAsync(AppDBContext context, ILogger logger)
+        {
+
+            try
+            {
+                if (await context.Roles.AnyAsync())
+                {
+                    logger.LogInformation("Roles table already has data - skipping seeding");
+                    return;
+                }
+
+                List<Role>? roles = JsonSeedLoader.LoadFromJson<Role>("Data/SeedData/Roles.json");
+                if (roles?.Any() == true)
+                {
+                    await context.Roles.AddRangeAsync(roles);
+                    await context.SaveChangesAsync();
+                    logger.LogInformation("Seeded {Count} roles", roles.Count);
+                }
+                else
+                {
+                    logger.LogWarning("No roles found in seed data");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error seeding roles");
+                throw;
+            }
+        }
+
+        private static async Task SeedUsersAsync(AppDBContext context, ILogger logger)
+        {
+
+            try
+            {
+                if (await context.Users.AnyAsync())
+                {
+                    logger.LogInformation("Users table already has data - skipping seeding");
+                    return;
+                }
+
+                List<User>? users = JsonSeedLoader.LoadFromJson<User>("Data/SeedData/Users.json");
+                if (users?.Any() == true)
+                {
+                    await context.Users.AddRangeAsync(users);
+                    await context.SaveChangesAsync();
+                    logger.LogInformation("Seeded {Count} users", users.Count);
+                }
+                else
+                {
+                    logger.LogWarning("No user found in seed data");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error seeding users");
+                throw;
+            }
+        }
+
+        private static async Task SeedAddressesAsync(AppDBContext context, ILogger logger)
+        {
+
+            try
+            {
+                if (await context.Addresses.AnyAsync())
+                {
+                    logger.LogInformation("Addresses table already has data - skipping seeding");
+                    return;
+                }
+
+                List<Address>? addresses = JsonSeedLoader.LoadFromJson<Address>("Data/SeedData/Addresses.json");
+                if (addresses?.Any() == true)
+                {
+                    await context.Addresses.AddRangeAsync(addresses);
+                    await context.SaveChangesAsync();
+                    logger.LogInformation("Seeded {Count} addresses", addresses.Count);
+                }
+                else
+                {
+                    logger.LogWarning("No address found in seed data");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error seeding addresses");
+                throw;
+            }
+        }
+
+        private static async Task SeedUserRolesAsync(AppDBContext context, ILogger logger)
+        {
+
+            try
+            {
+                if (await context.UserRoles.AnyAsync())
+                {
+                    logger.LogInformation("UserRoles table already has data - skipping seeding");
+                    return;
+                }
+
+                List<UserRole>? userRoles = JsonSeedLoader.LoadFromJson<UserRole>("Data/SeedData/UserRoles.json");
+                if (userRoles?.Any() == true)
+                {
+                    await context.UserRoles.AddRangeAsync(userRoles);
+                    await context.SaveChangesAsync();
+                    logger.LogInformation("Seeded {Count} user roles", userRoles.Count);
+                }
+                else
+                {
+                    logger.LogWarning("No user roles found in seed data");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error seeding user roles");
+                throw;
+            }
+        }
+
+        private static async Task SeedUserProfilesAsync(AppDBContext context, ILogger logger)
+        {
+
+            try
+            {
+                if (await context.UserProfiles.AnyAsync())
+                {
+                    logger.LogInformation("UserProfiles table already has data - skipping seeding");
+                    return;
+                }
+
+                List<UserProfile>? userProfiles = JsonSeedLoader.LoadFromJson<UserProfile>("Data/SeedData/UserProfiles.json");
+                if (userProfiles?.Any() == true)
+                {
+                    await context.UserProfiles.AddRangeAsync(userProfiles);
+                    await context.SaveChangesAsync();
+                    logger.LogInformation("Seeded {Count} user profiles", userProfiles.Count);
+                }
+                else
+                {
+                    logger.LogWarning("No user profiles found in seed data");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error seeding user profiles");
                 throw;
             }
         }

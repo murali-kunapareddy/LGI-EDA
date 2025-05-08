@@ -1,0 +1,39 @@
+﻿@using WISSEN.EDA.Models.ViewModels
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-85">
+    <div class="card" style="width: 30rem;">
+        <form asp-action="Login" method="post">
+            <div class="card-header text-center text-bg-primary">
+                <h4>Login</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="card-footer text-center text-bg-info">
+                <button type="submit" class="btn">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center mt-3">
+    Don't have an account? <a asp-area="" asp-controller="BackOps" asp-action="Register">Create a new account</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

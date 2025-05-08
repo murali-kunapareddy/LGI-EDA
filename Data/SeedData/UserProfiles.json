@@ -1,0 +1,15 @@
+[
+  {
+    "FirstName": "SYSTEM",
+    "LastName": "ADMIN",
+    "Gender": "O",
+    "JoiningDate": "2025-01-01T00:00:00",
+    "Designation": "SYSTEM ADMIN",
+    "Department": "IT",
+    "CompanyCode": 0,
+    "AddressId": 1,
+    "UserId": 1,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  }
+]

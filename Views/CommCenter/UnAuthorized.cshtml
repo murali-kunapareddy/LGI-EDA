@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Unauthorized Access";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-85">
+    <div class="card text-center" style="width: 30rem;">
+        <div class="card-header text-bg-danger">
+            <h4>Unauthorized Access</h4>
+        </div>
+        <div class="card-body">
+            <p>You attempted to access a resource without proper authorization.</p>
+            <p><strong>Request Origin:</strong> @ViewBag.Origin</p>
+            <p><strong>Request Method:</strong> @ViewBag.Method</p>
+            <p>If you believe this is an error, please contact the administrator.</p>
+        </div>
+        <div class="card-footer">
+            <a asp-area="" asp-controller="BackOps" asp-action="Login" class="btn btn-primary">Back to Login</a>
+        </div>
+    </div>
+</div>

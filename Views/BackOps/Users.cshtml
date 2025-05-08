@@ -1,0 +1,99 @@
+﻿@using WISSEN.EDA.Models.ViewModels
+@model UserListViewModel
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+@section Styles {
+    <style>
+        .ag-theme-quartz {
+            --ag-borders: none;
+            /*--ag-row-border-color: rgb(150, 150, 200);*/
+            --ag-font-size: 1.2rem;
+            --ag-font-family: 'Barlow Semi Condensed', sans-serif;
+            --ag-header-background-color: #0D47A1;
+            --ag-odd-row-background-color: rgb(179, 229, 252, 0.5);
+        }
+
+        .ag-header-cell {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
+
+        .ag-header-cell-label {
+            justify-content: center;
+        }
+
+        .ag-cell-focus, .ag-cell-no-focus {
+            border: none !important;
+        }
+        /* This CSS is to not apply the border for the column having 'no-border' class */
+        .no-border.ag-cell:focus {
+            border: none !important;
+            outline: none;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="~/js/commons.js"></script>
+    @* <script src="~/js/userlist.js"></script> *@
+    <script>
+        // grid options
+        const gridOptions = {
+            domLayout: "autoHeight",
+            autoSizeStrategy: {
+                type: "fitGridWidth",
+                defaultMinWidth: 100
+            },
+            // Column Definitions: Defines the columns to be displayed.
+            columnDefs: [
+                {
+                    field: "action", headerName: "Actions", cellRenderer: function (params) {
+                        if (params.data != null) {
+                            if (params.data.isActive) {
+                                return '<a href="/Orders/EditOrder/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendOrder(' + params.data.id + ')"><i class="bi bi-unlock" title="Active"></i></a>';
+                            } else {
+                                return '<a href="/Orders/EditOrder/' + params.data.id + '"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="SuspendOrder(' + params.data.id + ')"><i class="bi bi-lock text-danger" title="Suspended"></i></a>';
+                            }
+                        }
+                    }, maxWidth: 100
+                },
+                { field: "id", headerName: "Id", hide: true },
+                { field: "customerPoNo", headerName: "Customer PO No", flex: 1 },
+                { field: "contractNo", headerName: "Contract No", flex: 1 },
+                { field: "shipToName", headerName: "Ship To Name", flex: 1 },
+                { field: "billToName", headerName: "Bill To Name", flex: 2 },
+                { field: "orderDate", headerName: "Order Date", flex: 1 },
+                { field: "submitDate", headerName: "Submit Date", flex: 1 },
+                { field: "status", headerName: "Status", flex: 2 }
+            ]
+        };
+        // get grid element and apply grid options
+        const gridElement = document.querySelector('#gridOrders');
+        const gridApi = agGrid.createGrid(gridElement, gridOptions);
+    </script>
+}
+
+<div class="text-center">
+    <h1 class="display-5">Orders</h1>
+</div>
+
+@* add section *@
+<div class="mb-4 row">
+    <div class="col-md-10 d-flex" id="message-container"></div>
+    <div class="col-md-2 offset-10 d-flex justify-content-end">
+        <form method="post" asp-action="AddOrder" asp-controller="Orders">
+            <button type="submit" id="btnAddOrder" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addOrder">
+                <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD ORDER
+            </button>
+        </form>
+    </div>
+</div>
+
+@* list, edit & delete section *@
+<div class="text-center">
+    <div id="gridOrders" class="ag-theme-quartz"></div>
+</div>

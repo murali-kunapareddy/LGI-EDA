@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Not Approved";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-85">
+    <div class="card text-center" style="width: 30rem;">
+        <div class="card-header text-bg-warning">
+            <h4>Account Not Approved</h4>
+        </div>
+        <div class="card-body">
+            <p>Your account has not been approved yet. Please contact the administrator for further assistance.</p>
+            <p><strong>Admin Email:</strong> <a href="mailto:@ViewBag.AdminEmail">@ViewBag.AdminEmail</a></p>
+        </div>
+        <div class="card-footer">
+            <a asp-area="" asp-controller="BackOps" asp-action="Login" class="btn btn-primary">Back to Login</a>
+        </div>
+    </div>
+</div>

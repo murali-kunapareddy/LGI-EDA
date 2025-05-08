@@ -1,0 +1,12 @@
+[
+  {
+    "FirstName": "SYSTEM",
+    "LastName": "ADMIN",
+    "Email": "murali.kunapareddy@bhjgroup.onmicrosoft.com",
+    "PasswordHash": "9u09s2B/KyZb93kCYvmVTUhc2zfIiMTmAigO6jE5kSE=",
+    "PasswordSalt": "y2tD0envbq2M6O7l3L8+gg==",
+    "IsApproved": true,
+    "CreatedBy": "SYSTEM",
+    "CreatedOn": "2025-01-01T00:00:00"
+  }
+]

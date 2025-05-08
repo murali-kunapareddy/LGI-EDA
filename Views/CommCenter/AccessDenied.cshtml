@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+
+    var action = ViewBag.ReturnUrl switch
+    {
+        _=>"Unknow Action"
+    };
+}
+
+<div class="d-flex justify-content-center align-items-center vh-85">
+    <div class="card text-center" style="width: 30rem;">
+        <div class="card-header text-bg-danger">
+            <h4>Access Denied</h4>
+        </div>
+        <div class="card-body">
+            <p>You do not have permission to access this resource.</p>
+            @if (!string.IsNullOrEmpty(ViewBag.ReturnUrl))
+            {
+                <p>
+                    <a href="@ViewBag.ReturnUrl" class="btn btn-primary">Return to Previous Page</a>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <a asp-area="" asp-controller="BackOps" asp-action="Login" class="btn btn-primary">Go to Login</a>
+                </p>
+            }
+            <p>Or contact Administrator for further assistance.</p>
+        </div>
+    </div>
+</div>

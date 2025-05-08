@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+using WISSEN.EDA.Helpers;
 using WISSEN.EDA.Models.Entities;
+using WISSEN.EDA.Models.ViewModels;
 using WISSEN.EDA.Repositories;
 
 namespace EDA.Controllers
@@ -123,9 +127,166 @@ namespace EDA.Controllers
 
         #region ========== USERS ==========
 
-        public IActionResult Users()
+        [Authorize(Policy = "ViewUser")]
+        public async Task<IActionResult> Users()
         {
-            return View();
+            // show all the users
+            var userList = await GetActiveUsers();
+            return View(userList);
+        }
+
+        private async Task<List<UserListViewModel>> GetActiveUsers()
+        {
+            List<UserListViewModel> userList = new List<UserListViewModel>();
+            var users = await _unitOfWork.UserRepository.GetAllAsync();
+            foreach (var user in users)
+            {
+                if (!user.IsApproved || !user.IsActive || user.IsDeleted)
+                {
+                    continue; // Skip unapproved users
+                }
+                // get user profile from user id
+                var userProfile = await _unitOfWork.UserProfileRepository.GetByIdAsync(user.Id);
+                // get user role from user id
+                var userRole = await _unitOfWork.UserRoleRepository.GetByUserIdAsync(user.Id);
+                // pop UserListViewModel
+                var userListViewModel = new UserListViewModel
+                {
+                    UserId = user.Id,
+                    FirstName = userProfile?.FirstName,
+                    LastName = userProfile?.LastName,
+                    Gender = userProfile?.Gender,
+                    Email = user.Email,
+                    Designation = userProfile?.Designation,
+                    Role = userRole?.RoleCode,
+                    CompanyName = userProfile?.Company?.Name
+                };
+                userList.Add(userListViewModel);
+            }
+            return userList;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserProfile(int? id)
+        {
+            ViewBag.Companies = await _unitOfWork.CommonRepository.GetAllCompaniesAsync();
+            ViewBag.Countries = await _unitOfWork.CommonRepository.GetAllCountriesAsync();
+
+            if (id == null)
+            {
+                var userVM = new UserViewModel();
+                userVM.User = new User();
+                userVM.UserProfile = new UserProfile();
+                userVM.UserProfile.ProfilePhoto = "~/images/profiles/default.png";
+                userVM.UserRole = new Role() { Code = "USER", Name = "User" };
+
+                return View(new UserViewModel());
+            }
+
+            // get user profile from user id
+            var userViewModel = new UserViewModel();
+
+            // get user from id
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(id.Value);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            userViewModel.UserId = user.Id;
+            userViewModel.User = user;
+
+            // get user profile from user id
+            var userProfile = await _unitOfWork.UserProfileRepository.GetByIdAsync(user.Id);
+            if (userProfile != null)
+            {
+                userViewModel.UserProfile = userProfile;
+                if(userProfile.AddressId != 0)
+                {
+                    userViewModel.UserProfile.Address = await _unitOfWork.CommonRepository.GetAddressByIdAsync(userProfile.AddressId!.Value);
+                }
+                else
+                {
+                    userViewModel.UserProfile.Address = new Address();
+                }
+            }
+            else
+            {
+                userViewModel.UserProfile = new UserProfile();
+            }
+
+            // get user role from user id
+            var userRole = await _unitOfWork.UserRoleRepository.GetByUserIdAsync(user.Id);
+            if (userRole != null)
+            {
+                userViewModel.UserRole = userRole.Role;
+            }
+            else
+            {
+                userViewModel.UserRole = new Role() { Code = "USER", Name = "User" };
+            }
+
+            return View(userViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveUserProfile(UserViewModel model)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    ViewBag.Companies = await _unitOfWork.CommonRepository.GetAllCompaniesAsync();
+            //    ViewBag.Countries = await _unitOfWork.CommonRepository.GetAllCountriesAsync();
+            //    return View("UserProfile", model);
+            //}
+
+            if (model.UserId == 0)
+            {
+                try
+                {
+                    // Add new user
+                    string salt;
+                    string hashedPassword = PasswordHasher.HashPassword("Wissen@01", out salt);
+                    model.User.FirstName = model.UserProfile.FirstName;
+                    model.User.LastName = model.UserProfile.LastName;
+                    model.User.PasswordHash = hashedPassword;
+                    model.User.PasswordSalt = salt;
+                    await _unitOfWork.UserRepository.AddAsync(model.User!);
+                    int userId = model.User.Id;
+                    // add user address
+                    await _unitOfWork.CommonRepository.AddAddressAsync(model.UserProfile!.Address!);
+                    // add user profile
+                    await _unitOfWork.UserProfileRepository.AddAsync(model.UserProfile!);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Error: {ex.Message}");
+                    return View("UserProfile", model);
+                }
+            }
+            else
+            {
+                // do not update user
+                model.User.Id = model.UserId;
+                // update or add address
+                int addressId = 0;
+                if (model.UserProfile.Address != null)
+                {
+                    await _unitOfWork.CommonRepository.UpdateAddressAsync(model.UserProfile.Address);
+                    addressId = model.UserProfile.Address.Id;
+                }
+                else
+                {
+                    // add new address
+                    await _unitOfWork.CommonRepository.AddAddressAsync(model.UserProfile.Address!);
+                    addressId = model.UserProfile.Address.Id;
+                }
+                // update userprofile
+                model.UserProfile.UserId = model.UserId;
+                model.UserProfile.AddressId = addressId;
+                await _unitOfWork.UserProfileRepository.UpdateAsync(model.UserProfile!);
+            }
+
+            await _unitOfWork.SaveAsync();
+            return RedirectToAction("Users");
         }
 
         #endregion

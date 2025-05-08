@@ -1,8 +1,136 @@
-﻿@{
-    ViewData["Title"] = "Users Page";
+﻿@using WISSEN.EDA.Models.ViewModels
+@model IEnumerable<UserListViewModel>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<!-- Include Ag-Grid CSS -->
+@section Styles {
+    <style>
+        .ag-theme-quartz {
+            --ag-borders: none;
+            --ag-font-size: 1.2rem;
+            --ag-font-family: 'Barlow Semi Condensed', sans-serif;
+            --ag-header-background-color: #0D47A1;
+            --ag-odd-row-background-color: rgb(179, 229, 252, 0.5);
+        }
+
+        .ag-header-cell {
+            font-size: 1.4rem;
+            color: #FFF;
+        }
+
+        .ag-header-cell-label {
+            justify-content: center;
+        }
+
+        .ag-cell-focus, .ag-cell-no-focus {
+            border: none !important;
+        }
+
+        .no-border.ag-cell:focus {
+            border: none !important;
+            outline: none;
+        }
+
+        .action-buttons button {
+            margin-right: 5px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <!-- Include Ag-Grid JavaScript -->
+    <script src="~/lib/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Define the column definitions
+            const columnDefs = [
+                {
+                    headerName: "Actions", field: "action", cellRenderer: function (params) {
+                        if (params.data != null) {
+                            if (params.data.isActive) {
+                                return '<a onclick="viewUser(' + params.data.userId + ')"><i class="bi bi-eye" title="View"></i></a> &nbsp; <a onclick="editUser(' + params.data.userId + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="suspendUser(' + params.data.userId + ')"><i class="bi bi-unlock" title="Suspend"></i></a>';
+                            } else {
+                                return '<a onclick="viewUser(' + params.data.userId + ')"><i class="bi bi-eye" title="View"></i></a> &nbsp; <a onclick="editUser(' + params.data.userId + ')"><i class="bi bi-pencil" title="Edit"></i></a> &nbsp; <a onclick="suspendUser(' + params.data.userId + ')"><i class="bi bi-lock" title="Activate"></i></a>';
+                            }
+                        }
+                    }, maxWidth: 120
+                },
+                { headerName: "Id", field: "userId", flex: 1, sortable: true, filter: true, hide: true},
+                { headerName: "First Name", field: "firstName", flex: 2, sortable: true, filter: true },
+                { headerName: "Last Name", field: "lastName", flex: 2, sortable: true, filter: true },
+                { headerName: "Gender", field: "gender", flex: 1, sortable: true, filter: true },
+                { headerName: "Email", field: "email", flex: 3, sortable: true, filter: true },
+                { headerName: "Designation", field: "designation", flex: 2, sortable: true, filter: true },
+                { headerName: "Role", field: "role", flex: 1, sortable: true, filter: true },
+                { headerName: "Company", field: "companyName", flex: 2, sortable: true, filter: true }
+            ];
+
+            // Define the row data
+            const rowData = @Html.Raw(Json.Serialize(Model));
+
+            // Initialize the grid
+            const gridOptions = {
+                columnDefs: columnDefs,
+                rowData: rowData,
+                pagination: true,
+                paginationPageSize: 10,
+                defaultColDef: {
+                    resizable: true
+                },
+                domLayout: "autoHeight",
+                autoSizeStrategy: {
+                    type: "fitGridWidth",
+                    defaultMinWidth: 100
+                }
+            };
+
+            // Create the grid
+            const gridDiv = document.querySelector('#gridUsers');
+            new agGrid.Grid(gridDiv, gridOptions);
+
+            // Redirect to add user page
+            document.getElementById('btnAddUser').addEventListener('click', function () {
+                window.location.href = '@Url.Action("UserProfile", "Settings")';
+            });
+        });
+
+        // Define action handlers
+        // view user
+        function viewUser(userId) {
+            window.location.href = '@Url.Action("UserProfile", "Settings")' + '?id=' + userId;
+        }
+
+        // edit user
+        function editUser(userId) {
+            window.location.href = '@Url.Action("UserProfile", "Settings")' + '?id=' + userId;
+        }
+
+        // suspend user
+        function suspendUser(userId) {
+            if (confirm("Are you sure you want to suspend this user?")) {
+                alert(`Suspend user with ID: ${userId}`);
+                // Perform suspend logic (e.g., call an API to suspend the user)
+            }
+        }
+    </script>
 }
 
 <div class="text-center">
-    <h1 class="display-5">This is Settings > Users Page</h1>
-    <p>Under Construction</p>
+    <h1 class="display-5">User Management</h1>
+</div>
+
+<div class="mb-4 row">
+    <div class="col-md-10 d-flex" id="message-container"></div>
+    <div class="col-md-2 offset-10 d-flex justify-content-end">
+        <button id="btnAddUser" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#addConsigneeType">
+            <i class="bi bg-success bi-plus-square"></i> &nbsp; ADD USER
+        </button>
+    </div>
+</div>
+
+<div class="text-center">
+    <div id="gridUsers" class="ag-theme-quartz"></div>
 </div>

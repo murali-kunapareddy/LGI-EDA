@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 using WISSEN.EDA.Data;
 
 namespace WISSEN.EDA.Models.Entities
@@ -7,6 +9,7 @@ namespace WISSEN.EDA.Models.Entities
     {
         [Key]
         [StringLength(2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] // Specify no auto-generation
         public string? Code { get; set; }
         [Required(ErrorMessage = "Country Name is required")]
         [StringLength(100)]

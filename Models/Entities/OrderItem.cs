@@ -5,9 +5,11 @@ using WISSEN.EDA.Data;
 
 namespace WISSEN.EDA.Models.Entities
 {
-    public class OrderItems: BaseTable
+    public class OrderItem: BaseTable
     {
+        [Key]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Destination port is required")]
         public string? DestinationPort { get; set; }
         [Required(ErrorMessage = "Product is required")]
