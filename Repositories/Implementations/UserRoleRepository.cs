@@ -51,7 +51,7 @@ namespace WISSEN.EDA.Repositories.Implementations
                 return null!; // TODO: handle if user not found
             }
             // Get the user's role from userid
-            var userRole = await _dbContext.UserRoles.FindAsync(user.Id);
+            var userRole = await _dbContext.UserRoles.Where(u=>u.UserId == user.Id).FirstOrDefaultAsync();
             return userRole!;
         }
 

@@ -172,9 +172,10 @@ namespace EDA.Controllers
             ViewBag.Companies = await _unitOfWork.CommonRepository.GetAllCompaniesAsync();
             ViewBag.Countries = await _unitOfWork.CommonRepository.GetAllCountriesAsync();
 
+            var userVM = new UserViewModel();
+            // check if id is null
             if (id == null)
-            {
-                var userVM = new UserViewModel();
+            {   
                 userVM.User = new User();
                 userVM.UserProfile = new UserProfile();
                 userVM.UserProfile.ProfilePhoto = "~/images/profiles/default.png";
@@ -182,61 +183,65 @@ namespace EDA.Controllers
 
                 return View(new UserViewModel());
             }
-
-            // get user profile from user id
-            var userViewModel = new UserViewModel();
-
             // get user from id
             var user = await _unitOfWork.UserRepository.GetByIdAsync(id.Value);
             if (user == null)
             {
                 return NotFound();
             }
-            userViewModel.UserId = user.Id;
-            userViewModel.User = user;
-
-            // get user profile from user id
-            var userProfile = await _unitOfWork.UserProfileRepository.GetByIdAsync(user.Id);
-            if (userProfile != null)
-            {
-                userViewModel.UserProfile = userProfile;
-                if(userProfile.AddressId != 0)
-                {
-                    userViewModel.UserProfile.Address = await _unitOfWork.CommonRepository.GetAddressByIdAsync(userProfile.AddressId!.Value);
-                }
-                else
-                {
-                    userViewModel.UserProfile.Address = new Address();
-                }
-            }
-            else
-            {
-                userViewModel.UserProfile = new UserProfile();
-            }
-
+            userVM.UserId = user.Id;
+            userVM.User = user;
             // get user role from user id
             var userRole = await _unitOfWork.UserRoleRepository.GetByUserIdAsync(user.Id);
             if (userRole != null)
             {
-                userViewModel.UserRole = userRole.Role;
+                userVM.UserRole = await _unitOfWork.RoleRepository.GetByCodeAsync(string.IsNullOrEmpty(userRole.RoleCode) ? "USER" : userRole.RoleCode);
             }
             else
             {
-                userViewModel.UserRole = new Role() { Code = "USER", Name = "User" };
+                userVM.UserRole = new Role() { Code = "USER", Name = "User" };
+            }
+            
+            // get user profile from user id
+            var userProfile = await _unitOfWork.UserProfileRepository.GetByIdAsync(user.Id);
+            if (userProfile != null)
+            {
+                userVM.UserProfile = userProfile;
+                if(userProfile.AddressId != 0)
+                {
+                    userVM.UserProfile.Address = await _unitOfWork.CommonRepository.GetAddressByIdAsync(userProfile.AddressId!.Value);
+                }
+                else
+                {
+                    userVM.UserProfile.Address = new Address();
+                }
+            }
+            else
+            {
+                userVM.UserProfile = new UserProfile();
             }
 
-            return View(userViewModel);
+            return View(userVM);
         }
 
         [HttpPost]
         public async Task<IActionResult> SaveUserProfile(UserViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    ViewBag.Companies = await _unitOfWork.CommonRepository.GetAllCompaniesAsync();
-            //    ViewBag.Countries = await _unitOfWork.CommonRepository.GetAllCountriesAsync();
-            //    return View("UserProfile", model);
-            //}
+            /*
+             * 1. check for user id
+             * 2. if user id is 0, add new user
+             *  a. add new user
+             *  b. add new address for the user
+             *  c. add new user profile
+             *  d. add user role
+             *  e. add user profile photo
+             * 3. if user id is not 0, update user
+             *  a. update user (firstname, lastname)
+             *  b. update address
+             *  c. update user profile
+             *  d. update user role
+             *  e. update user profile photo
+            */
 
             if (model.UserId == 0)
             {
@@ -268,10 +273,23 @@ namespace EDA.Controllers
                 model.User.Id = model.UserId;
                 // update or add address
                 int addressId = 0;
-                if (model.UserProfile.Address != null)
+                // get address from user id
+                var userProfile = await _unitOfWork.UserProfileRepository.GetByIdAsync(model.UserId);
+                if (userProfile.AddressId != null && userProfile.AddressId != 0)
                 {
+                    // update address from model's address
+                    var address = await _unitOfWork.CommonRepository.GetAddressByIdAsync(userProfile.AddressId.Value);
+
+                    addressId = userProfile.AddressId.Value;
+                    address.AddressLine = model.UserProfile?.Address?.AddressLine;
+                    address.City = model.UserProfile?.Address?.City;
+                    address.State = model.UserProfile?.Address?.State;
+                    address.CountryCode = model.UserProfile?.Address?.CountryCode;
+                    address.Zip = model.UserProfile.Address.Zip;
+                    address.ModifiedBy = "Logged in User";
+                    address.ModifiedOn = DateTime.Now;
+
                     await _unitOfWork.CommonRepository.UpdateAddressAsync(model.UserProfile.Address);
-                    addressId = model.UserProfile.Address.Id;
                 }
                 else
                 {
@@ -282,6 +300,7 @@ namespace EDA.Controllers
                 // update userprofile
                 model.UserProfile.UserId = model.UserId;
                 model.UserProfile.AddressId = addressId;
+
                 await _unitOfWork.UserProfileRepository.UpdateAsync(model.UserProfile!);
             }
 

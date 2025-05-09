@@ -20,9 +20,9 @@ namespace WISSEN.EDA.Repositories.Implementations
 			await _dbContext.SaveChangesAsync();
 		}
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string code)
 		{
-			var role = await _dbContext.Roles.FindAsync(id, false);
+			var role = await _dbContext.Roles.FindAsync(code, false);
 			if (role != null)
 			{
 				_dbContext.Roles.Remove(role);
@@ -36,9 +36,9 @@ namespace WISSEN.EDA.Repositories.Implementations
 			return roles;
 		}
 
-		public async Task<Role> GetByIdAsync(int id)
+		public async Task<Role> GetByCodeAsync(string code)
 		{
-			var role = await _dbContext.Roles.FindAsync(id);
+			var role = await _dbContext.Roles.FindAsync(code);
 			return role!;
 		}
 
